@@ -24,6 +24,7 @@ if ($id) {
     {
         $respons=$respons->data;
 
+
     }
     else
     {
@@ -144,6 +145,8 @@ if ($id) {
                     <div class="col-md-8">
                         <input <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
                                                                           name="Icon" accept="image/*">
+                        <input name="old-img" type="hidden" value="<?php if (isset($respons->Icon)) echo $respons->Icon ?>">
+
                     </div>
                 </div>
                 <div class="form-group">

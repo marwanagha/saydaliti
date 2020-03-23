@@ -38,10 +38,11 @@ else if (isset($_POST['draw'])) {
     $Price = isset($_POST['Price']) ? make_safe($_POST['Price']) : null;
     $ManufactureId = isset($_POST['manufacture-select']) ? make_safe($_POST['manufacture-select']) : null;
     $CategoryId = isset($_POST['category-select']) ? make_safe($_POST['category-select']) : null;
+    $old_pic= isset($_POST['old-img']) ? make_safe($_POST['old-img']) : null;
     $Status = 1;
     $Icon = isset($_FILES['Icon']) ? make_safe($_FILES['Icon']) : null;
 
-
+//var_dump($old_pic);exit;
     $pics = array();
     $allowed_files = array(
         "image/png",
@@ -63,10 +64,10 @@ else if (isset($_POST['draw'])) {
         $upload_result = @upload_image($Icon, $uploadPath, $image_sizes['services'], '../');
         $uploaded_file_name = $upload_result['data']['file_name'];
 
-//                unlink('../files/images/products/large/' . $row['pic']);
-
+                unlink('../files/images/drugs/large/' . $old_pic);
 
     }
+
 if(!isset($uploaded_file_name))
     $uploaded_file_name='';
 

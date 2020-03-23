@@ -1,6 +1,6 @@
 
 <?php
-//hello from git
+
 require_once "include/config.php";
 
 if($page=='login')
