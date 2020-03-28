@@ -28,7 +28,7 @@
 
 </head>
 
-<body>
+<body style="background: #f6effb">
 
 <!--====================================================
                          MAIN NAVBAR
