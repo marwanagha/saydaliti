@@ -119,7 +119,8 @@ table {
 .content-inner {
     padding:25px;
     width: calc(100% - 250px);
-    background: #EEF5F9;
+    /*background: #EEF5F9;*/
+    background: #f6effb ;
 }
 
 .content-inner.active {
@@ -289,7 +290,8 @@ nav.side-navbar {
     background: #fff;
     min-width: 250px;
     max-width: 250px;
-    color: #686a76;
+    /*color: #686a76;*/
+    color:#757575;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
     z-index: 999;
     /*==== Sidebar Header ====*/
@@ -314,7 +316,8 @@ nav.side-navbar a[data-toggle="collapse"]::before {
 }
 
 nav.side-navbar a[aria-expanded="true"] {
-    background: #EEF5F9;
+    /*background: #EEF5F9;*/
+    background: #f6effb;
 }
 
 nav.side-navbar a[aria-expanded="true"]::before {
@@ -375,7 +378,8 @@ nav.side-navbar ul a {
 
 nav.side-navbar ul a:hover {
     /*background: linear-gradient(to left, #7c8ce4, #2196f3);*/
-    background: linear-gradient(to left, #033e48, #17a2b8);
+    background: linear-gradient(to left, #651380, #803399);
+    /*background: linear-gradient(to left, #033e48, #17a2b8);*/
     border-left: 4px solid #7b4397;
     color: #fff;
 }
@@ -385,12 +389,14 @@ nav.side-navbar ul a:hover i{
 }
 
 nav.side-navbar ul li.active a {
-    background: #EEF5F9;
+    /*background: #EEF5F9;*/
+    background: #f6effb;
 }
 
 nav.side-navbar ul li.active a:hover {
     /*background: linear-gradient(to left, #7c8ce4, #2196f3);*/
-    background: linear-gradient(to left, #033e48, #17a2b8);
+    /*background: linear-gradient(to left, #033e48, #17a2b8);*/
+    background: linear-gradient(to left, #651380, #803399);
 }
 
 nav.side-navbar ul ul {
@@ -399,7 +405,8 @@ nav.side-navbar ul ul {
 
 nav.side-navbar ul ul a {
     padding-left: 50px;
-    background: #EEF5F9;
+    /*background: #EEF5F9;*/
+    background: #f6effb;
 }
 
 nav.side-navbar ul ul li.active a {
@@ -691,7 +698,8 @@ nav.side-navbar.shrinked .sidebar-header .title {
 
 nav.navbar {
     /*background: linear-gradient(to left, #7b4397, #2196f3);*/
-    background: linear-gradient(to left, #033e48, #17a2b8);
+    /*background: linear-gradient(to left, #033e48, #17a2b8);*/
+    background: linear-gradient(to left, #651380, #803399);
     /*background: #2f333e;*/
     padding-top: 15px;
     padding-bottom: 15px;

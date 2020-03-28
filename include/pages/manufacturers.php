@@ -12,6 +12,8 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 
 }
 
+
+
 $sq = "'";
 $path = '../';
 

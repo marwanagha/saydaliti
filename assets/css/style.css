@@ -454,9 +454,15 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     margin-top: 10px;
 }
 
+/*651380*/
+/*803399*/
+/*f6effb*/
+/*757575*/
+/*898585*/
+
 
 .bg-info {
-    background: linear-gradient(to left, #033e48, #17a2b8); !important;
+    background: linear-gradient(to left, #651380, #803399); !important;
 }
 
 .nav-pills .nav-link.active, .show>.nav-pills .nav-link {
@@ -464,7 +470,8 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 }
 
 .page-item.active .page-link {
-    background: #17a2b8 !important;
+    /*background: #17a2b8 !important;*/
+    background: #803399 !important;
     color: #fff;
 }
 
@@ -511,3 +518,53 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
     width: -webkit-fill-available;
 }
+
+
+.btn-info.active, .btn-info:active, .show>.btn-info.dropdown-toggle {
+    background-color: #651380; !important;
+    background-image: none; !important;
+    border-color: #4c0065; !important;
+}
+
+.btn-info {
+    color: #fff; !important;
+    background-color: #803399; !important;
+    border-color: #4c0065; !important;
+}
+
+.btn-blue {
+    background: #803399; !important;
+    border: #4c0065; !important;
+}
+
+.btn-blue:hover {
+    background: #651380; !important;
+    border: #4c0065; !important;
+}
+
+.btn-info:hover {
+    color: #fff; !important;
+    background-color: #651380; !important;
+    border-color: #4c0065; !important;
+}
+
+h2 {
+
+    color: #757575;
+
+}
+
+h3 {
+
+    color: #757575;
+
+}
+
+.page-item.active .page-link {
+    z-index: 2; !important;
+    color: #fff; !important;
+    background-color: #651380; !important;
+    border-color: #4c0065; !important;
+}
+
+

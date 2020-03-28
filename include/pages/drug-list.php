@@ -12,6 +12,7 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 
 }
 
+
 ?>
 
 <div id="confirm-modal-delete-drug" class="modal fade" role="dialog">

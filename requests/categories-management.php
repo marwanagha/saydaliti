@@ -21,8 +21,9 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
         'NameEn'=>$en,
         'NameAr'=>$ar
     );
-
-    $respons = api_post('CategoriesAdmin/AddCategory', $post_array);
+//var_dump($post_array);
+    $respons = api_post( 'CategoriesAdmin/AddCategory', $post_array);
+//    var_dump($respons);exit;
     if ($respons->code == 1) {
         $_SESSION['error_msg'] = $lang['successfully_done'];
         $_SESSION['msg_type'] = 1;

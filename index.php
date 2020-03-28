@@ -3,6 +3,7 @@
 
 require_once "include/config.php";
 
+
 if($page=='login')
 {
     require_once "include/layout/header.php";
