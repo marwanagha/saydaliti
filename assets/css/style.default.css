@@ -157,18 +157,20 @@ input {
 } 
 
 .btn-blue {
-    border-color: #2196f3;
+    border-color: #4c0065;
     background: transparent;
-    color: #2196f3;
+    color: #4c0065;
 }
 
 .btn-blue:hover,
 .btn-blue:focus {
-    border-color: #2196f3;
-    background-color: #2196f3;
+    border-color: #4c0065;
+    background-color: #651380;
     color: #fff;
     cursor: pointer;
 }
+
+
 
 .btn-white {
     border-color: #2196f3;
@@ -1158,3 +1160,4 @@ section.dashboard-counts div[class*='col-']:last-of-type .item {
     color:#fff;
     text-transform: uppercase;
 }
+
