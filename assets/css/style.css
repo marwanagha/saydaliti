@@ -567,4 +567,7 @@ h3 {
     border-color: #4c0065; !important;
 }
 
-
+.badge {
+    min-width: 56px;
+    font-size: 15px;
+}

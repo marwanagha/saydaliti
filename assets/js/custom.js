@@ -8,7 +8,7 @@ $(document).ready(function () {
     $('#add-drug').click(function () {
 
         // $('#man-modal').modal({show: true})
-        window.location.href=siteURL+"drug-form";
+        window.location.href = siteURL + "drug-form";
     })
 
 
@@ -112,11 +112,11 @@ $(document).ready(function () {
 
     $('#add-category').click(function () {
 
-            $('#category-modal').modal({show: true})
+        $('#category-modal').modal({show: true})
     })
 
 
-    $(document).on('change','.active-category',function () {
+    $(document).on('change', '.active-category', function () {
 // alert()
         // $('#confirm-modal-cat-status').modal({show: true})
         // localStorage.setItem('cat_status', '1');
@@ -141,10 +141,9 @@ $(document).ready(function () {
         })
 
 
-
     })
 
-    $(document).on('change','.inactive-category',function () {
+    $(document).on('change', '.inactive-category', function () {
         // $('#confirm-modal-cat-status').modal({show: true})
         // localStorage.setItem('cat_status', '0');
         // localStorage.setItem('cat_id', $(this).data('id'));
@@ -198,7 +197,7 @@ $(document).ready(function () {
     // })
 
 
-    $(document).on('click','.delete-cat',function () {
+    $(document).on('click', '.delete-cat', function () {
 
         $('#confirm-modal-delete-cat').modal({show: true})
 
@@ -240,7 +239,6 @@ $(document).ready(function () {
     })
 
 
-
     /** manufacturers**/
 
     $(document).on('click', '.edit-man', function () {
@@ -251,11 +249,11 @@ $(document).ready(function () {
     $('#add-man').click(function () {
 
         // $('#man-modal').modal({show: true})
-        window.location.href=siteURL+"manufacturer-form";
+        window.location.href = siteURL + "manufacturer-form";
     })
 
 
-    $(document).on('change','.active-man',function () {
+    $(document).on('change', '.active-man', function () {
 // alert()
         // $('#confirm-modal-cat-status').modal({show: true})
         // localStorage.setItem('cat_status', '1');
@@ -280,10 +278,9 @@ $(document).ready(function () {
         })
 
 
-
     })
 
-    $(document).on('change','.inactive-man',function () {
+    $(document).on('change', '.inactive-man', function () {
         // $('#confirm-modal-cat-status').modal({show: true})
         // localStorage.setItem('cat_status', '0');
         // localStorage.setItem('cat_id', $(this).data('id'));
@@ -337,7 +334,7 @@ $(document).ready(function () {
     // })
 
 
-    $(document).on('click','.delete-man',function () {
+    $(document).on('click', '.delete-man', function () {
 
         $('#confirm-modal-delete-man').modal({show: true})
 
@@ -378,6 +375,140 @@ $(document).ready(function () {
 
     })
 
+
+    /** saydaliti pharmacies **/
+
+
+    $(document).on('change', '.approve-pharmacy', function () {
+
+        $('#confirm-modal-approve-pharmacy').modal({show: true})
+
+        localStorage.setItem('pharmacy_id', $(this).data('id'));
+    })
+
+
+    $(document).on('change', '.reject-pharmacy', function () {
+
+        $('#confirm-modal-reject-pharmacy').modal({show: true})
+
+        localStorage.setItem('pharmacy_id', $(this).data('id'));
+    })
+
+    $(document).on('click', '#yes-approve-pharmacy', function () {
+
+        $pharmacy_id = localStorage.getItem('pharmacy_id');
+
+
+        $.ajax({
+            method: "POST",
+            url: "../requests/pharmacies-management.php",
+            data: {
+                pharmacy_id: $pharmacy_id,
+                action: 'change-status',
+                status: 1,
+            }
+        }).done(function (msg) {
+
+            if (msg == 1)
+
+                window.location.href = siteURL + "pharmacy-form/" + $pharmacy_id;
+            else
+                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+
+
+        })
+
+
+    })
+
+    $(document).on('click', '#yes-reject-pharmacy', function () {
+
+        $pharmacy_id = localStorage.getItem('pharmacy_id');
+
+        $.ajax({
+            method: "POST",
+            url: "../requests/pharmacies-management.php",
+            data: {
+                pharmacy_id: $pharmacy_id,
+                action: 'change-status',
+                status: 0,
+            }
+        }).done(function (msg) {
+
+            if (msg == 1)
+                window.location.href = siteURL + "pharmacy-form/" + $pharmacy_id;
+            else
+                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+
+
+        })
+
+    });
+
+    $(document).on('click', '#no-approve-pharmacy', function () {
+        $('.btn-info').removeClass('active');
+    });
+
+    $(document).on('click', '#no-reject-pharmacy', function () {
+        $('.btn-info').removeClass('active');
+    });
+
+
+    $('#add-pharmacy').click(function () {
+
+        // $('#man-modal').modal({show: true})
+        window.location.href = siteURL + "pharmacy-form";
+    })
+
+
+    $(document).on('click', '.edit-pharmacy', function () {
+        $f_id = $(this).data('id')
+        window.location.href = siteURL + 'pharmacy-form/' + $f_id;
+    })
+
+    $(document).on('click', '.delete-pharmacy', function () {
+        $('#confirm-modal-delete-pharmacy').modal({show: true})
+
+        localStorage.setItem('pharmacy_id', $(this).data('id'))
+
+    })
+
+    $('#yes-delete-pharmacy').click(function () {
+        $pharmacy_id = localStorage.getItem('pharmacy_id');
+        // $selector = '#drug-' + $drug_id;
+
+        $.ajax({
+            method: "POST",
+            url: "requests/pharmacies-management.php",
+            data: {
+                pharmacy_id: $pharmacy_id,
+                delete: 'delete',
+            }
+        }).done(function (msg) {
+
+            if (msg == 1) {
+                $("button[data-id=" + $drug_id + "]").parent().parent().fadeOut(500, function () {
+
+                    $(this).remove();
+
+                })
+
+                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+            } else if (msg == -1) {
+                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+            } else
+                $.notify('Can not delete drug ' + msg, {position: "left bottom", className: "error"});
+
+        })
+
+    })
+
+    $('#no-delete-pharmacy').click(function () {
+
+        // $('#confirm-modal-product-status').hide();
+        //remove tr
+
+    })
 
 
     /** orders **/
@@ -1231,6 +1362,88 @@ $(document).ready(function () {
         }
         // sAjaxSource: "requests/products_management.php"
     });
+
+    var table_pharmacies = $('#table-pharmacies').DataTable({
+        language: {
+            processing: "Loading Data...",
+            zeroRecords: "No matching records found"
+        },
+        processing: true,
+        serverSide: true,
+        orderCellsTop: true,
+        autoWidth: true,
+        deferRender: true,
+        lengthMenu: [10, 25, 50, 100, 1000],
+        // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        // buttons: [
+        //     {
+        //         text: 'Export to Excel',
+        //         className: 'btn btn-sm btn-dark',
+        //         action: function (e, dt, node, config) {
+        //             window.location.href = "/Home/GetExcel";
+        //         },
+        //         init: function (api, node, config) {
+        //             $(node).removeClass('dt-button');
+        //         }
+        //     }
+        // ],
+
+
+        columns: [
+
+            {'data': 'Id'},
+            {'data': 'PharmacyName'},
+            {'data': 'PharmacistName'},
+            {'data': 'LicenseNumber'},
+            {'data': 'City'},
+            {'data': 'Address'},
+            {'data': 'Status'},
+            {'data': 'Actions'},
+
+        ],
+
+
+        columnDefs: [{
+            "targets": 7, "data": "Actions", render: function (data, type, row) {
+                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-pharmacy "><i\n' +
+                    '                                        class="fa fa-pencil-square-o  "\n' +
+                    '                                        aria-hidden="true"></i></button>\n' +
+                    '                            <button data-id="' + row.Id + '" class="btn btn-blue btn delete-pharmacy"><i\n' +
+                    '                                        class="fa fa-trash-o  "\n' +
+                    '                                        aria-hidden="true"></i></button>';
+            }
+        },
+            {
+                "targets": 6, "data": "Status", render: function (data, type, row) {
+                    if (row.Status === 0) {
+                        return '<span class="badge badge-pill badge-danger">Rejected</span>';
+                    } else if (row.Status === 1) {
+                        return '<span class="badge badge-pill badge-success">Approved</span>';
+                    } else if (row.Status === 2) {
+                        return '<span class="badge badge-pill badge-warning">Pending</span>';
+                    } else if (row.Status === 4) {
+                        return '<span class="badge badge-pill badge-primary">Admin</span>';
+                    }
+
+                    return row.Status;
+                }
+            }],
+        // bServerSide: true,
+        ajax: {
+            "url": "requests/pharmacies-management.php",
+            "type": "post",
+            async: true,
+            data: function (data) {
+                let additionalValues = [];
+                additionalValues[0] = "Additional Parameters 1";
+                additionalValues[1] = "Additional Parameters 2";
+                data.AdditionalValues = additionalValues;
+                // return JSON.stringify(data);
+            }
+        }
+        // sAjaxSource: "requests/products_management.php"
+    });
+
 
     var select_clicked_cat = false;
     var select_clicked_city = false;

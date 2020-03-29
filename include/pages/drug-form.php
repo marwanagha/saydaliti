@@ -28,7 +28,7 @@ if ($id) {
     }
     else
     {
-       general_error('drug-list');
+       general_error('../drug-list');
     }
 
 
