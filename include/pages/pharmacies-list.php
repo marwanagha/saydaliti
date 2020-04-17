@@ -45,8 +45,17 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 
 <div class="content-inner chart-cont">
     <div class="row">
-        <div class="col-7"><h2 class="mb-5">Pharmacies Listing</h2></div>
-        <div class="col-5">
+        <div class="col-4"><h2 class="mb-5">Pharmacies Listing</h2></div>
+        <div class="col-4 text-center">
+            <label class=" text-left mr-3 ">City: </label>
+            <select  required name="city-select" id="city-select" class="selectpicker "
+                     menuPlacement="top">
+                <option value="-1" selected>please choose</option>
+            </select>
+            <input id="city-id" type="hidden"
+                   value="">
+        </div>
+        <div class="col-4">
             <button id="add-pharmacy" class="btn btn-info admin-add-btn">Add</i></button>
         </div>
     </div>

@@ -1,5 +1,6 @@
 var siteURL = '/saydaliti/';
 var siteFilesURL = siteURL + 'files/';
+var city_id_global=$('#city-select').val();
 
 $(document).ready(function () {
 
@@ -511,8 +512,6 @@ $(document).ready(function () {
     })
 
 
-
-
     /** warehouses**/
 
     $(document).on('click', '.edit-warehouse', function () {
@@ -654,7 +653,6 @@ $(document).ready(function () {
     //     e.preventDefault()
     //
     // })
-
 
 
     /** orders **/
@@ -1267,7 +1265,6 @@ $(document).ready(function () {
         // ],
 
 
-
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
             {'data': 'Id'},
@@ -1335,11 +1332,7 @@ $(document).ready(function () {
             "type": "post",
             async: true,
             data: function (data) {
-                let additionalValues = [];
-                additionalValues[0] = "Additional Parameters 1";
-                additionalValues[1] = "Additional Parameters 2";
-                data.AdditionalValues = additionalValues;
-                // return JSON.stringify(data);
+                data.city_id=city_id_global;
             }
         }
         // sAjaxSource: "requests/products_management.php"
@@ -1437,11 +1430,11 @@ $(document).ready(function () {
             "type": "post",
             async: true,
             data: function (data) {
-                let additionalValues = [];
-                additionalValues[0] = "Additional Parameters 1";
-                additionalValues[1] = "Additional Parameters 2";
-                data.AdditionalValues = additionalValues;
-                // return JSON.stringify(data);
+
+                data.city_id=city_id_global;
+
+
+
             }
         }
         // sAjaxSource: "requests/products_management.php"
@@ -1534,11 +1527,7 @@ $(document).ready(function () {
             "type": "post",
             async: true,
             data: function (data) {
-                let additionalValues = [];
-                additionalValues[0] = "Additional Parameters 1";
-                additionalValues[1] = "Additional Parameters 2";
-                data.AdditionalValues = additionalValues;
-                // return JSON.stringify(data);
+
             }
         }
         // sAjaxSource: "requests/products_management.php"
@@ -1604,13 +1593,7 @@ $(document).ready(function () {
             "url": "requests/drugs-management.php",
             "type": "post",
             async: true,
-            data: function (data) {
-                let additionalValues = [];
-                additionalValues[0] = "Additional Parameters 1";
-                additionalValues[1] = "Additional Parameters 2";
-                data.AdditionalValues = additionalValues;
-                // return JSON.stringify(data);
-            }
+            data: {city_id:city_id_global}
         }
         // sAjaxSource: "requests/products_management.php"
     });
@@ -1686,14 +1669,10 @@ $(document).ready(function () {
             "type": "post",
             async: true,
             data: function (data) {
-                let additionalValues = [];
-                additionalValues[0] = "Additional Parameters 1";
-                additionalValues[1] = "Additional Parameters 2";
-                data.AdditionalValues = additionalValues;
-                // return JSON.stringify(data);
+                data.city_id=city_id_global;
             }
         }
-        // sAjaxSource: "requests/products_management.php"
+
     });
 
 
@@ -1873,11 +1852,20 @@ $(document).ready(function () {
     })
 
 
-    if ($('#error-msg').val()) {
+    $(document).on('changed.bs.select', '#city-select', function () {
 
-        $.notify($('#error-msg').val(), {position: "left bottom", className: $('#error-msg').data('type')});
 
-    }
+         city_id_global = $(this).val();
+        // localStorage.setItem('city_id',city_id_global)
+        table_manufacturers.draw()
+        // $('#table-manufacturers').DataTable().ajax.reload();
+        // localStorage.setItem('city_id',"")
+        // table_categories.reload()
+        // table_drugs.reload()
+        // table_pharmacies.reload()
+
+
+    })
 
 
 })
