@@ -3,10 +3,26 @@
 //session_start();
 
 
-function general_error ($path)
+function randomPassword() {
+    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
+}
+
+
+function general_error ($path,$msg=null)
 {
 
+if($msg!=null)
+    $_SESSION['error_msg'] = $msg;
+else
     $_SESSION['error_msg'] = 'General error';
+
     $_SESSION['msg_type'] = -1;
     redirect($path);
     exit();
@@ -16,29 +32,41 @@ function general_error ($path)
 
 function api_post ($service,$post_array)
 {
-
+//var_dump($_SESSION);
     global $API_ROOT;
     $ch = curl_init();
-//    var_dump($post_array);
+//    var_dump(json_encode($post_array));exit();
 //    var_dump($API_ROOT.$service);
     curl_setopt($ch, CURLOPT_URL, $API_ROOT.$service);
     curl_setopt($ch, CURLOPT_POST, 1);
 
 if(!empty($post_array))
 {
-//    var_dump(json_encode($post_array));
+//    var_dump(json_encode($post_array));exit;
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_array));
 }
 else
     curl_setopt($ch, CURLOPT_POSTFIELDS, '');
 
 
+
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json'));
+        "Content-Type: application/json","Session-ID: {$_SESSION['session']} "));
+
+    curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+
+
     $server_output = json_decode(curl_exec($ch));
+
+//    var_dump(curl_getinfo($ch));exit;
+
+
     curl_close($ch);
+
+
 //var_dump($server_output);exit;
    return $server_output;
 

@@ -1,8 +1,33 @@
 <?php
 
 require '../include/config.php';
-//var_dump($_POST);exit;
-if(isset($_POST['delete']))
+
+
+
+if (isset($_POST['action']) && $_POST['action'] == 'show-list-forms') {
+
+    $respons = api_post('Listing/GetDrugsFormsList', $_POST);
+
+    if ($respons->code == 1) {
+        echo json_encode($respons->data->dropDownListItems);
+    } else {
+        echo -1;
+    }
+}
+
+else if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
+    $respons=api_post('Listing/GetDrugsList',$_POST);
+
+    if($respons->code==1)
+    {
+        echo json_encode($respons->data->dropDownListItems);
+    }
+    else
+    {
+        echo -1;
+    }
+}
+else if(isset($_POST['delete']))
 {
     $drug_id = isset($_POST['drug_id']) ? make_safe($_POST['drug_id']) : null;
     $post_array=array(
@@ -38,6 +63,7 @@ else if (isset($_POST['draw'])) {
     $Price = isset($_POST['Price']) ? make_safe($_POST['Price']) : null;
     $ManufactureId = isset($_POST['manufacture-select']) ? make_safe($_POST['manufacture-select']) : null;
     $CategoryId = isset($_POST['category-select']) ? make_safe($_POST['category-select']) : null;
+    $FormId = isset($_POST['drug-forms-select']) ? make_safe($_POST['drug-forms-select']) : null;
     $old_pic= isset($_POST['old-img']) ? make_safe($_POST['old-img']) : null;
     $Status = 1;
     $Icon = isset($_FILES['Icon']) ? make_safe($_FILES['Icon']) : null;
@@ -82,21 +108,29 @@ if(!isset($uploaded_file_name))
         'Price' => $Price,
         'ManufactureId' => $ManufactureId,
         'CategoryId' => $CategoryId,
+        'FormId' => $FormId,
         'Icon' => $uploaded_file_name,
         'Status' => $Status
 
     );
-//    var_dump($post_array);exit;
+
+//    var_dump(json_encode($post_array));exit;
+//    var_dump($post_array);
     $respons = api_post('DrugsAdmin/EditDrug', $post_array);
+//    var_dump($respons);exit;
+
     if ($respons->code == 1) {
         $_SESSION['error_msg'] = $lang['successfully_done'];
         $_SESSION['msg_type'] = 1;
         redirect('../' . 'drug-form/'.$id);
     } else {
-        general_error('../' . 'drug-list');
+//        general_error('../' . 'drug-list');
+        general_error('../' . 'drug-list',$respons->message);
+
     }
 
 } else if (isset($_POST['add-drug'])) {
+
     $CommerceNameAr = isset($_POST['CommerceNameAr']) ? make_safe($_POST['CommerceNameAr']) : null;
     $CommerceNameEn = isset($_POST['CommerceNameEn']) ? make_safe($_POST['CommerceNameEn']) : null;
     $ScientificNameAr = isset($_POST['ScientificNameAr']) ? make_safe($_POST['ScientificNameAr']) : null;
@@ -104,6 +138,7 @@ if(!isset($uploaded_file_name))
     $Strengths = isset($_POST['Strengths']) ? make_safe($_POST['Strengths']) : null;
     $Price = isset($_POST['Price']) ? make_safe($_POST['Price']) : null;
     $ManufactureId = isset($_POST['manufacture-select']) ? make_safe($_POST['manufacture-select']) : null;
+    $FormId = isset($_POST['drug-forms-select']) ? make_safe($_POST['drug-forms-select']) : null;
     $CategoryId = isset($_POST['category-select']) ? make_safe($_POST['category-select']) : null;
     $Status = 1;
     $Icon = isset($_FILES['Icon']) ? make_safe($_FILES['Icon']) : null;
@@ -139,18 +174,22 @@ if(!isset($uploaded_file_name))
             'Price' => $Price,
             'ManufactureId' => $ManufactureId,
             'CategoryId' => $CategoryId,
+            'FormId' => $FormId,
             'Icon' => $uploaded_file_name,
             'Status' => $Status
 
         );
+        var_dump($post_array);
         $respons = api_post('DrugsAdmin/AddDrug', $post_array);
+        var_dump($respons);exit;
 
         if ($respons->code == 1) {
             $_SESSION['error_msg'] = $lang['successfully_done'];
             $_SESSION['msg_type'] = 1;
             redirect('../' . 'drug-list');
         } else {
-            general_error('../' . 'drug-list');
+//            general_error('../' . 'drug-list');
+            general_error('../' . 'drug-list',$respons->message);
         }
 
     }

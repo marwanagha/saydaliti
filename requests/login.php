@@ -22,6 +22,7 @@ if($response->code==1)
     $_SESSION['role_id']=$response->data->RoleId;
     $_SESSION['admin_id']=$response->data->Id;
     $_SESSION['username']=$response->data->Username;
+    $_SESSION['session']=$response->data->Session;
 
     redirect('categories', $path);
 

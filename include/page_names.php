@@ -1,5 +1,5 @@
 <?php
-
+//var_dump($_SESSION);exit;
 
 $pages = array(
 
@@ -13,5 +13,7 @@ $pages = array(
     "manufacturer-form"=>"manufacturer-form",
     "pharmacy-form"=>"pharmacy-form",
     "pharmacies-list"=>"pharmacies-list",
+    "warehouses-list"=>"warehouses-list",
+    "warehouse-form"=>"warehouse-form",
 
 );

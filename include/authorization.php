@@ -17,6 +17,8 @@ $Super_Admin_pages = array_merge(
         $pages['manufacturer-form'],
         $pages['pharmacy-form'],
         $pages['pharmacies-list'],
+        $pages['warehouses-list'],
+        $pages['warehouse-form'],
 
     )
 

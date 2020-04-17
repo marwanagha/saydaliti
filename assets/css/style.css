@@ -571,3 +571,10 @@ h3 {
     min-width: 56px;
     font-size: 15px;
 }
+
+.drugs-list {
+    min-height: 604px;
+    max-height: 604px;
+    overflow: scroll;
+    right: 20px;
+}

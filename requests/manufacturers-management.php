@@ -47,7 +47,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
         $_SESSION['msg_type'] = 1;
         redirect(  '../manufacturers');
     } else {
-        general_error('../manufacturers');
+//        general_error('../manufacturers');
+        general_error('../' . 'manufacturers',$respons->message);
     }
 
 } else if ((isset($_POST['action']) && $_POST['action'] == 'delete')) {
@@ -135,45 +136,47 @@ else if (isset($_POST['edit-man'])) {
         $_SESSION['msg_type'] = 1;
         redirect('../' . 'manufacturer-form/'.$Id);
     } else {
-        general_error('../' . 'manufacturers');
+//        general_error('../' . 'manufacturers');
+        general_error('../' . 'manufacturers',$respons->message);
     }
 
 }
 
-else if (isset($_POST['add-man'])) {
-
-    $Status = 1;
-    $Name = isset($_POST['Name']) ? make_safe($_POST['Name']) : null;
-    $Address = isset($_POST['Address']) ? make_safe($_POST['Address']) : null;
-    $Longitude = isset($_POST['Longitude']) ? make_safe($_POST['Longitude']) : null;
-    $Phones = isset($_POST['Phones']) ? make_safe($_POST['Phones']) : null;
-    $Latidude = isset($_POST['Latidude']) ? make_safe($_POST['Latidude']) : null;
-    $CityId = isset($_POST['city-select']) ? make_safe($_POST['city-select']) : null;
-
-
-
-
-        $post_array = array(
-
-            'Status' => $Status,
-            'Name' => $Name,
-            'Address' => $Address,
-            'Longitude' => $Longitude,
-            'Phones' => $Phones,
-            'Latidude' => $Latidude,
-            'CityId' => $CityId,
-
-
-        );
-        $respons = api_post('ManufacturesAdmin/AddManufacture', $post_array);
-
-        if ($respons->code == 1) {
-            $_SESSION['error_msg'] = $lang['successfully_done'];
-            $_SESSION['msg_type'] = 1;
-            redirect('../' . 'manufacturers');
-        } else {
-            general_error('../' . 'manufacturers');
-        }
-
-    }
+//else if (isset($_POST['add-man'])) {
+//
+//    $Status = 1;
+//    $Name = isset($_POST['Name']) ? make_safe($_POST['Name']) : null;
+//    $Address = isset($_POST['Address']) ? make_safe($_POST['Address']) : null;
+//    $Longitude = isset($_POST['Longitude']) ? make_safe($_POST['Longitude']) : null;
+//    $Phones = isset($_POST['Phones']) ? make_safe($_POST['Phones']) : null;
+//    $Latidude = isset($_POST['Latidude']) ? make_safe($_POST['Latidude']) : null;
+//    $CityId = isset($_POST['city-select']) ? make_safe($_POST['city-select']) : null;
+//
+//
+//
+//
+//        $post_array = array(
+//
+//            'Status' => $Status,
+//            'Name' => $Name,
+//            'Address' => $Address,
+//            'Longitude' => $Longitude,
+//            'Phones' => $Phones,
+//            'Latidude' => $Latidude,
+//            'CityId' => $CityId,
+//
+//
+//        );
+//        $respons = api_post('ManufacturesAdmin/AddManufacture', $post_array);
+//
+//        if ($respons->code == 1) {
+//            $_SESSION['error_msg'] = $lang['successfully_done'];
+//            $_SESSION['msg_type'] = 1;
+//            redirect('../' . 'manufacturers');
+//        } else {
+////            general_error('../' . 'manufacturers');
+//            general_error('../' . 'manufacturers',$respons->message);
+//        }
+//
+//    }
 

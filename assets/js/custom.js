@@ -487,7 +487,7 @@ $(document).ready(function () {
         }).done(function (msg) {
 
             if (msg == 1) {
-                $("button[data-id=" + $drug_id + "]").parent().parent().fadeOut(500, function () {
+                $("button[data-id=" + $pharmacy_id + "]").parent().parent().fadeOut(500, function () {
 
                     $(this).remove();
 
@@ -509,6 +509,152 @@ $(document).ready(function () {
         //remove tr
 
     })
+
+
+
+
+    /** warehouses**/
+
+    $(document).on('click', '.edit-warehouse', function () {
+        $w_id = $(this).data('id')
+        window.location.href = siteURL + 'warehouse-form/' + $w_id;
+    })
+
+    $('#add-warehouse').click(function () {
+
+        // $('#man-modal').modal({show: true})
+        window.location.href = siteURL + "warehouse-form";
+    })
+
+
+    $(document).on('change', '.active-warehouse', function () {
+// alert()
+        // $('#confirm-modal-cat-status').modal({show: true})
+        // localStorage.setItem('cat_status', '1');
+        // localStorage.setItem('cat_id', $(this).data('id'));
+
+        $.ajax({
+            method: "POST",
+            url: "requests/warehouses-management.php",
+            data: {
+                warehouse_id: $(this).data('id'),
+                action: 'change-status',
+                status: 1,
+            }
+        }).done(function (msg) {
+
+            if (msg == 1)
+                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+            else
+                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+
+
+        })
+
+
+    })
+
+    $(document).on('change', '.inactive-warehouse', function () {
+
+        // $('#confirm-modal-cat-status').modal({show: true})
+        // localStorage.setItem('cat_status', '0');
+        // localStorage.setItem('cat_id', $(this).data('id'));
+
+        $.ajax({
+            method: "POST",
+            url: "requests/warehouses-management.php",
+            data: {
+                warehouse_id: $(this).data('id'),
+                action: 'change-status',
+                status: 0,
+            }
+        }).done(function (msg) {
+
+            if (msg == 1)
+                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+            else
+                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+
+
+        })
+
+    })
+
+    // $('#yes-status-cat').click(function () {
+    //     $.ajax({
+    //         method: "POST",
+    //         url: "requests/category-management.php",
+    //         data: {
+    //             cat_id: localStorage.getItem('cat_id'),
+    //             action: 'change-status',
+    //             status: localStorage.getItem('cat_status'),
+    //         }
+    //     }).done(function (msg) {
+    //
+    //         if (msg == 1)
+    //             $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+    //         else
+    //             $.notify(lang.general_error, {position: "left bottom", className: "error"});
+    //
+    //
+    //     })
+    //
+    // })
+    //
+    // $('#no-status-cat').click(function () {
+    //
+    //     //remove tr
+    //
+    //
+    // })
+
+
+    $(document).on('click', '.delete-warehouse', function () {
+
+        $('#confirm-modal-delete-warehouse').modal({show: true})
+
+        localStorage.setItem('warehouse_id', $(this).data('id'))
+
+    })
+
+    $('#yes-delete-warehouse').click(function () {
+        $warehouse_id = localStorage.getItem('warehouse_id');
+        // $selector = '#category-' + $cat_id;
+
+        $.ajax({
+            method: "POST",
+            url: "requests/warehouses-management.php",
+            data: {
+                warehouse_id: $warehouse_id,
+                action: 'delete',
+            }
+        }).done(function (msg) {
+
+            if (msg == 1) {
+                $("button[data-id=" + $warehouse_id + "]").parent().parent().fadeOut(500, function () {
+
+                    $(this).remove();
+
+                })
+                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+            } else {
+                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
+            }
+
+        })
+
+    })
+
+    $('#no-delete-warehouse').click(function () {
+
+
+    })
+
+    // $(document).on('submit','#warehouse-form',function (e) {
+    //     e.preventDefault()
+    //
+    // })
+
 
 
     /** orders **/
@@ -1094,6 +1240,111 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
+
+    var table_warehouses = $('#table-warehouses').DataTable({
+        language: {
+            processing: "Loading Data...",
+            zeroRecords: "No matching records found"
+        },
+        processing: true,
+        serverSide: true,
+        orderCellsTop: true,
+        autoWidth: true,
+        deferRender: true,
+        lengthMenu: [10, 25, 50, 100, 1000],
+        // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        // buttons: [
+        //     {
+        //         text: 'Export to Excel',
+        //         className: 'btn btn-sm btn-dark',
+        //         action: function (e, dt, node, config) {
+        //             window.location.href = "/Home/GetExcel";
+        //         },
+        //         init: function (api, node, config) {
+        //             $(node).removeClass('dt-button');
+        //         }
+        //     }
+        // ],
+
+
+
+        columns: [
+            // {"DT_RowId": "drug-"+'Id'},
+            {'data': 'Id'},
+            {'data': 'Name'},
+            {'data': 'Username'},
+            {'data': 'City'},
+            {'data': 'Address'},
+            {'data': 'Phones'},
+            {'data': 'Status'},
+            {'data': 'Actions'}
+
+        ],
+
+        columnDefs: [{
+            "targets": 7, "data": "Actions", render: function (data, type, row) {
+                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-warehouse "><i\n' +
+                    '                                        class="fa fa-pencil-square-o  "\n' +
+                    '                                        aria-hidden="true"></i></button>\n' +
+                    '                            <button data-id="' + row.Id + '" class="btn btn-blue btn delete-warehouse"><i\n' +
+                    '                                        class="fa fa-trash-o  "\n' +
+                    '                                        aria-hidden="true"></i></button>';
+            }
+        },
+
+            {
+                "targets": 6, "data": "Status", render: function (data, type, row) {
+                    if (row.Status == 1) {
+                        $status = 'active';
+                        $status2 = '';
+                        $checked = 'checked'
+                        $checked2 = ''
+                    } else {
+                        $status = '';
+                        $checked = '';
+                        $status2 = 'active';
+                        $checked2 = 'checked'
+                    }
+
+                    return '<div class="btn-group btn-group-toggle" data-toggle="buttons">' +
+                        '<label class="btn btn-info ' + $status + '">' +
+                        '<input ' + $checked +
+                        ' type="radio"' +
+                        ' name="options"' +
+                        ' data-id="' + row.Id + '"' +
+                        ' class="active-warehouse"' +
+                        ' autocomplete="off">' +
+                        ' Active' +
+                        ' </label>' +
+
+                        '<label class="btn btn-info ' + $status2 + '">' +
+                        '<input ' + $checked2 +
+                        ' type="radio"' +
+                        ' name="options"' +
+                        ' data-id="' + row.Id + '"' +
+                        ' class="inactive-warehouse"' +
+                        ' autocomplete="off">' +
+                        ' Inactive' +
+                        ' </label>' +
+                        '</div>';
+                }
+            }],
+        // bServerSide: true,
+        ajax: {
+            "url": "requests/warehouses-management.php",
+            "type": "post",
+            async: true,
+            data: function (data) {
+                let additionalValues = [];
+                additionalValues[0] = "Additional Parameters 1";
+                additionalValues[1] = "Additional Parameters 2";
+                data.AdditionalValues = additionalValues;
+                // return JSON.stringify(data);
+            }
+        }
+        // sAjaxSource: "requests/products_management.php"
+    });
+
     var table_manufacturers = $('#table-manufacturers').DataTable({
         language: {
             processing: "Loading Data...",
@@ -1328,6 +1579,7 @@ $(document).ready(function () {
             {'data': 'Price'},
             {'data': 'Manufacture'},
             {'data': 'Category'},
+            {'data': 'Form'},
             {
                 'data': 'Icon', render: function (data, type, row) {
                     return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
@@ -1338,7 +1590,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 10, "data": "Actions", render: function (data, type, row) {
+            "targets": 11, "data": "Actions", render: function (data, type, row) {
                 return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-drug "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button>\n' +
@@ -1448,6 +1700,7 @@ $(document).ready(function () {
     var select_clicked_cat = false;
     var select_clicked_city = false;
     var select_clicked_man = false;
+    var select_clicked_form = false;
 
     $(document).on('shown.bs.select', '#category-select', function () {
 
@@ -1529,6 +1782,49 @@ $(document).ready(function () {
             });
 
             select_clicked_man = true;
+        }
+
+    })
+
+
+
+    $(document).on('shown.bs.select', '#drug-forms-select', function () {
+
+
+        document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
+        $form_id = $('#form-id').val();
+        $selected = '';
+        $path = '';
+        if ($form_id !== '') {
+            $selected = 'selected';
+            $path = '../';
+            $('#drug-forms-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
+            $('#drug-forms-select').selectpicker('refresh');
+        }
+
+        if (select_clicked_form == false) {
+            $.ajax({
+                method: "POST",
+                url: $path + "requests/drugs-management.php",
+                data: {
+                    action: 'show-list-forms'
+                }
+            }).done(function (msg) {
+                if (msg == -1)
+                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                else {
+                    console.log(msg)
+                    jQuery(JSON.parse(msg)).each(function (i, item) {
+
+                        $('#drug-forms-select').append('<option value="' + item.id + '">' + item.Name + '</option>');
+                        $('#drug-forms-select').selectpicker('refresh');
+
+                    });
+                }
+
+            });
+
+            select_clicked_form = true;
         }
 
     })

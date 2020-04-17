@@ -12,7 +12,6 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 
 }
 
-
 $path = '../';
 $id = isset($_GET['id']) ? make_safe($_GET['id']) : null;
 
@@ -102,7 +101,7 @@ if ($id) {
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left ">Category:</label>
                     <div class="col-lg-8">
-                        <select required name="category-select" id="category-select" class="selectpicker"
+                        <select required name="category-select"  id="category-select" class="selectpicker"
                                 menuPlacement="top">
                             <?php if (isset($respons->CategoryId)) {
 
@@ -139,6 +138,26 @@ if ($id) {
                 </div>
                 <input id="man-id" type="hidden"
                        value="<?php if (isset($respons->ManufactureId)) echo $respons->ManufactureId ?>">
+
+                <div class="form-group">
+                    <label class="col-md-8 control-label text-left ">Drug form:</label>
+                    <div class="col-lg-8">
+                        <select required name="drug-forms-select"  id="drug-forms-select"
+                                class="selectpicker">
+                            <?php if (isset($respons->FormId)) {
+                                if ($_SESSION['lang'] == 'en')
+                                    $form = $respons->Form;
+                                else $form = $respons->Form;
+
+                                echo '<option value="' . $respons->FormId . '" >' . $form . '</option>';
+                            } else {
+                                echo '<option value="-1" selected>please choose</option>';
+                            } ?>
+                        </select>
+                    </div>
+                </div>
+                <input id="form-id" type="hidden"
+                       value="<?php if (isset($respons->FormId)) echo $respons->FormId ?>">
 
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left ">Thumbnail:</label>

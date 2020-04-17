@@ -79,7 +79,7 @@ else if (isset($_POST['draw'])) {
 
     );
 
-//    var_dump($post_array);exit;
+//    var_dump(json_encode($post_array));exit;
 
 
     $respons = api_post('PharmacistsAdmin/EditPharmacist', $post_array);
@@ -90,7 +90,9 @@ else if (isset($_POST['draw'])) {
         $_SESSION['msg_type'] = 1;
         redirect('../' . 'pharmacy-form/'.$id);
     } else {
-        general_error('../' . 'pharmacies-list');
+//        general_error('../' . 'pharmacies-list');
+
+        general_error('../' . 'pharmacies-list',$respons->message);
     }
 
 } else if (isset($_POST['add-pharmacy'])) {
@@ -133,7 +135,9 @@ else if (isset($_POST['draw'])) {
             $_SESSION['msg_type'] = 1;
             redirect('../' . 'pharmacies-list');
         } else {
-            general_error('../' . 'pharmacies-list');
+//            general_error('../' . 'pharmacies-list');
+
+            general_error('../' . 'pharmacies-list',$respons->message);
         }
 
 } else

@@ -13,32 +13,32 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
 } else if (isset($_POST['add-cat'])) {
 
 
-
-  $ar = isset($_POST['category-name-en']) ? make_safe($_POST['category-name-en']) : null;
+    $ar = isset($_POST['category-name-en']) ? make_safe($_POST['category-name-en']) : null;
     $en = isset($_POST['category-name-ar']) ? make_safe($_POST['category-name-ar']) : null;
     $post_array = array(
-        'Status'=>1,
-        'NameEn'=>$en,
-        'NameAr'=>$ar
+        'Status' => 1,
+        'NameEn' => $en,
+        'NameAr' => $ar
     );
 //var_dump($post_array);
-    $respons = api_post( 'CategoriesAdmin/AddCategory', $post_array);
+    $respons = api_post('CategoriesAdmin/AddCategory', $post_array);
 //    var_dump($respons);exit;
     if ($respons->code == 1) {
         $_SESSION['error_msg'] = $lang['successfully_done'];
         $_SESSION['msg_type'] = 1;
-        redirect(  '../categories');
+        redirect('../categories');
     } else {
-        general_error('../categories');
+//        general_error('../categories');
+        general_error('../' . 'categories', $respons->message);
     }
 
 } else if ((isset($_POST['action']) && $_POST['action'] == 'delete')) {
     $cat_id = isset($_POST['cat_id']) ? make_safe($_POST['cat_id']) : null;
-    $status=2;
+    $status = 2;
 
     $post_array = array(
-        'Status'=>$status,
-        'Id'=>$cat_id
+        'Status' => $status,
+        'Id' => $cat_id
     );
 
     $respons = api_post('CategoriesAdmin/ChangeCategoryStatus', $post_array);
@@ -47,7 +47,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
     } else {
         echo -1;
     }
-
 
 
 } else if ((isset($_POST['action']) && $_POST['action'] == 'change-status')) {
@@ -60,8 +59,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
     $cat_id = isset($_POST['cat_id']) ? make_safe($_POST['cat_id']) : null;
 
     $post_array = array(
-        'Status'=>$status,
-        'Id'=>$cat_id
+        'Status' => $status,
+        'Id' => $cat_id
     );
 
     $respons = api_post('CategoriesAdmin/ChangeCategoryStatus', $post_array);
