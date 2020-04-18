@@ -1332,7 +1332,8 @@ $(document).ready(function () {
             "type": "post",
             async: true,
             data: function (data) {
-                data.city_id=city_id_global;
+               var AdditionalValues = [city_id_global];
+                data.AdditionalValues=AdditionalValues;
             }
         }
         // sAjaxSource: "requests/products_management.php"
@@ -1431,9 +1432,8 @@ $(document).ready(function () {
             async: true,
             data: function (data) {
 
-                data.city_id=city_id_global;
-
-
+                var AdditionalValues = [city_id_global];
+                data.AdditionalValues=AdditionalValues;
 
             }
         }
@@ -1669,7 +1669,8 @@ $(document).ready(function () {
             "type": "post",
             async: true,
             data: function (data) {
-                data.city_id=city_id_global;
+                var AdditionalValues = [city_id_global];
+                data.AdditionalValues=AdditionalValues;
             }
         }
 
