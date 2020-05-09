@@ -583,3 +583,24 @@ h3 {
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 250px !important;
 }
+
+.hidden {
+    display: none;
+}
+
+
+
+.order-status-btn {
+    width:70px;
+}
+
+
+.order-offer-field {
+
+    min-width: auto; max-width: 200px;white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+

@@ -12,19 +12,28 @@ $post_array= array (
     'Password'=>$password
 );
 $response = api_post('Admin/Login',$post_array);
-
+//var_dump($response);exit;
 
 if($response->code==1)
 {
 
-//    var_dump($response);exit;
+
 
     $_SESSION['role_id']=$response->data->RoleId;
     $_SESSION['admin_id']=$response->data->Id;
     $_SESSION['username']=$response->data->Username;
     $_SESSION['session']=$response->data->Session;
 
+    if($_SESSION['role_id']==2)
+    {
+        $_SESSION['change_password']=$response->data->RequireRestPassword;
+
+    }
+
+    if($_SESSION['role_id']==1)
     redirect('categories', $path);
+    else
+        redirect('orders-list', $path);
 
 }else {
 

@@ -1,8 +1,8 @@
 <?php
 session_start();
-
+//var_dump($_SESSION);
 require_once "functions.php";
-$API_ROOT = 'http://mypharma-001-site1.atempurl.com/api/';
+$API_ROOT = 'http://pharmav2-001-site1.btempurl.com/api/';
 $APP_ROOT = "/saydaliti/";
 $FILES_ROOT = '/saydaliti/files/';
 $ASSET_URL = $APP_ROOT . 'assets/';

@@ -69,13 +69,14 @@ $path = '../';
         <thead class="bg-info text-white">
         <tr>
 
-
             <th>Id</th>
             <th>Name</th>
             <th>Username</th>
             <th>City</th>
             <th>Address</th>
             <th>Phones</th>
+            <th>SubscriptionType</th>
+            <th>SubscriptionPrice</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>

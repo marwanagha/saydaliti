@@ -1,8 +1,20 @@
 var siteURL = '/saydaliti/';
 var siteFilesURL = siteURL + 'files/';
-var city_id_global=$('#city-select').val();
+var city_id_global = $('#city-select').val();
+var order_status_id_global = $('#status-select').val();
+
 
 $(document).ready(function () {
+
+
+    var select_clicked_cat = false;
+    var select_clicked_city = false;
+    var select_clicked_man = false;
+    var select_clicked_form = false;
+    var select_clicked_type = false;
+    var select_clicked_offer = false;
+    var select_clicked_warehouse = false;
+
 
     /** saydaliti drugs**/
 
@@ -579,34 +591,6 @@ $(document).ready(function () {
 
     })
 
-    // $('#yes-status-cat').click(function () {
-    //     $.ajax({
-    //         method: "POST",
-    //         url: "requests/category-management.php",
-    //         data: {
-    //             cat_id: localStorage.getItem('cat_id'),
-    //             action: 'change-status',
-    //             status: localStorage.getItem('cat_status'),
-    //         }
-    //     }).done(function (msg) {
-    //
-    //         if (msg == 1)
-    //             $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
-    //         else
-    //             $.notify(lang.general_error, {position: "left bottom", className: "error"});
-    //
-    //
-    //     })
-    //
-    // })
-    //
-    // $('#no-status-cat').click(function () {
-    //
-    //     //remove tr
-    //
-    //
-    // })
-
 
     $(document).on('click', '.delete-warehouse', function () {
 
@@ -655,259 +639,123 @@ $(document).ready(function () {
     // })
 
 
+    /** ads **/
+
+
+    $('#add-ad').click(function () {
+        // select_clicked_type = false;
+        $('#ad-modal').modal({show: true})
+    })
+
+    $(document).on('click', '.delete-ad', function () {
+
+        $('#confirm-modal-delete-ad').modal({show: true})
+
+        localStorage.setItem('ad_id', $(this).data('id'))
+
+    })
+
+    $('#yes-delete-ad').click(function () {
+        $ad_id = localStorage.getItem('ad_id');
+        // $selector = '#category-' + $cat_id;
+
+        $.ajax({
+            method: "POST",
+            url: "requests/ads-management.php",
+            data: {
+                ad_id: $ad_id,
+                action: 'delete',
+            }
+        }).done(function (msg) {
+
+            if (msg == 1) {
+                $("button[data-id=" + $ad_id + "]").parent().parent().fadeOut(500, function () {
+
+                    $(this).remove();
+
+                })
+                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+            } else {
+                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
+            }
+
+        })
+
+    })
+
+    $('#no-delete-ad').click(function () {
+
+
+    })
+
+
     /** orders **/
 
-
-    $('.reject').change(function () {
-        $('#confirm-modal-reject-order').modal({show: true})
-        localStorage.setItem('order_status', '1');
-        localStorage.setItem('order_id', $(this).data('id'));
-    })
-    // $('#yes-reject-order').click(function () {
-    //
-    //     $order_id = localStorage.getItem('order_id');
-    //     $status = localStorage.getItem('order_status');
-    //     $note = $('#reject-text').val();
-    //     $selector = '#order-' + $order_id;
-    //
-    //
-    //
-    //     $.ajax({
-    //         method: "POST",
-    //         url: "requests/products_management.php",
-    //         data: {
-    //             order_id: $order_id,
-    //             action: 'change-status',
-    //             status: $status,
-    //             note: $note,
-    //         }
-    //     }).done(function (msg) {
-    //
-    //         if (msg == 1) {
-    //             $('#order-' + $product_id).fadeOut(500, function () {
-    //
-    //                 $(this).remove();
-    //
-    //             })
-    //             alert(lang.successfully_done)
-    //             $('#reject-text').val('');
-    //         } else {
-    //             alert(msg)
-    //             $('#reject-text').val('');
-    //         }
-    //
-    //     })
-    //
-    //
-    // })
-    //
-    // $('#no-reject-order').click(function () {
-    //
-    //     // let x = $('.pending').parent().addClass('active');
-    //     // x.siblings().removeClass('active');
-    // })
-
-
-    $('.fail').change(function () {
-        $('#confirm-modal-status-order').modal({show: true})
-        localStorage.setItem('order_status', '4');
-        localStorage.setItem('order_id', $(this).data('id'));
-        localStorage.setItem('user_id_order', $(this).data('userid'));
-    })
-
-    $('.resolve').change(function () {
-        $('#confirm-modal-status-order').modal({show: true})
-        localStorage.setItem('order_status', '3');
-        localStorage.setItem('order_id', $(this).data('id'));
-        localStorage.setItem('user_id_order', $(this).data('userid'));
-    })
-
-
-    $('.yes-status-order').click(function () {
-
-
-        $order_id = localStorage.getItem('order_id');
-        $status = localStorage.getItem('order_status');
-        $selector = '#order-' + $order_id;
-        $note = $('#reject-text').val();
-        $user_id = localStorage.getItem('user_id_order');
-        $.ajax({
-            method: "POST",
-            url: "requests/orders-management.php",
-            data: {
-                order_id: $order_id,
-                action: 'change-status',
-                status: $status,
-                note: $note,
-                user_id: $user_id,
-            }
-        }).done(function (msg) {
-
-            if (msg == 1) {
-                $('#order-' + $order_id).fadeOut(500, function () {
-
-                    $(this).remove();
-
-                })
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
-            } else {
-                // alert(msg)
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
-            }
-
-        })
-    })
-
-    $('.no-status-order').click(function () {
-        // let x = $('.pending').parent().addClass('active');
-        // x.siblings().removeClass('active');
-
-    })
-
-    $('.check-cart').click(function () {
-
-        $('#cart-modal').modal({show: true})
-
-        $order_id = $(this).data('id');
+    $(document).on('change', '.processing-order', function () {
+// alert()
+        // $('#confirm-modal-cat-status').modal({show: true})
+        // localStorage.setItem('cat_status', '1');
+        // localStorage.setItem('cat_id', $(this).data('id'));
 
         $.ajax({
             method: "POST",
             url: "requests/orders-management.php",
             data: {
-                order_id: $order_id,
-                action: 'get-cart',
-
-            }
-        }).done(function (msg) {
-            if (msg == -1) {
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
-            } else {
-                $('#cart-table').empty();
-                $total = 0;
-                jQuery(JSON.parse(msg)).each(function (i, item) {
-                    $total = $total + parseInt(item.sub_total);
-                    $('#cart-table').append('<tr class="table-primary"><td class="text-left">' + item.product_id + '</td><td class="table-width-3">' + item.name + '</td> <td class="table-width-3">' + item.quantity + '</td> <td class="table-width-3">' + item.sub_total + '</td></tr>');
-
-                })
-                $('#cart-total').text('Total: ' + $total + ' ' + lang.sp);
-            }
-
-
-        });
-    });
-
-    $('.check-note').click(function () {
-        $('#note-modal').modal({show: true})
-        $('#note-text').val($(this).data('note'))
-    })
-
-
-    /** projects**/
-    //when download delete
-
-
-    /** news**/
-
-
-    $('.edit-news').click(function () {
-        window.location.href = "http://localhost/E-commerce/admin/news-form.php";
-    })
-
-    $('.delete-news').click(function () {
-        $('#confirm-modal-delete').modal({show: true})
-    })
-
-    /** admins**/
-
-    $('.active-admin').change(function () {
-        $('#confirm-modal-user-status').modal({show: true})
-        localStorage.setItem('user_status', '5');
-        localStorage.setItem('user_id', $(this).data('id'));
-    })
-    $('.block-admin').change(function () {
-        $('#confirm-modal-user-status').modal({show: true})
-        localStorage.setItem('user_status', '7');
-        localStorage.setItem('user_id', $(this).data('id'));
-    })
-
-
-    /** users**/
-
-
-    $('.active-user').change(function () {
-        $('#confirm-modal-user-status').modal({show: true})
-        localStorage.setItem('user_status', '2');
-        localStorage.setItem('user_id', $(this).data('id'));
-    })
-
-    $('.block-user').change(function () {
-        $('#confirm-modal-user-status').modal({show: true})
-        localStorage.setItem('user_status', '4');
-        localStorage.setItem('user_id', $(this).data('id'));
-    })
-    $('.vip-user').change(function () {
-        $('#confirm-modal-user-status').modal({show: true})
-        localStorage.setItem('user_status', '3');
-        localStorage.setItem('user_id', $(this).data('id'));
-    })
-
-    $('#yes-status-user').click(function () {
-
-        $.ajax({
-            method: "POST",
-            url: "requests/users-management.php",
-            data: {
-                user_id: localStorage.getItem('user_id'),
+                order_id: $(this).data('id'),
                 action: 'change-status',
-                user_status: localStorage.getItem('user_status'),
+                status: 2,
             }
         }).done(function (msg) {
-// alert(msg)
+
             if (msg == 1)
-
                 $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
             else
                 $.notify(lang.general_error, {position: "left bottom", className: "error"});
+
+
         })
 
-    })
-    $('#no-status-user').click(function () {
-
-        //let the previous status come back
 
     })
+    $(document).on('change', '.done-order', function () {
+// alert()
+        // $('#confirm-modal-cat-status').modal({show: true})
+        // localStorage.setItem('cat_status', '1');
+        // localStorage.setItem('cat_id', $(this).data('id'));
 
-
-    /** subcategories**/
-
-    $('#add-subcategory').click(function () {
-
-        $('#subcategory-modal').modal({show: true})
-        $('#category-select').selectpicker('refresh');
-    })
-
-
-    $('.active-subcategory').change(function () {
-        $('#confirm-modal-sub-status').modal({show: true})
-        localStorage.setItem('sub_status', '1');
-        localStorage.setItem('sub_id', $(this).data('id'));
-
-    })
-
-    $('.inactive-subcategory').change(function () {
-        $('#confirm-modal-sub-status').modal({show: true})
-        localStorage.setItem('sub_status', '2');
-        localStorage.setItem('sub_id', $(this).data('id'));
-    })
-
-    $('#yes-status-sub').click(function () {
         $.ajax({
             method: "POST",
-            url: "requests/subcategory-management.php",
+            url: "requests/orders-management.php",
             data: {
-                sub_id: localStorage.getItem('sub_id'),
+                order_id: $(this).data('id'),
                 action: 'change-status',
-                status: localStorage.getItem('sub_status'),
+                status: 3,
+            }
+        }).done(function (msg) {
+
+            if (msg == 1)
+                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+            else
+                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+
+
+        })
+
+
+    })
+    $(document).on('change', '.reject-order', function () {
+// alert()
+        // $('#confirm-modal-cat-status').modal({show: true})
+        // localStorage.setItem('cat_status', '1');
+        // localStorage.setItem('cat_id', $(this).data('id'));
+
+        $.ajax({
+            method: "POST",
+            url: "requests/orders-management.php",
+            data: {
+                order_id: $(this).data('id'),
+                action: 'change-status',
+                status: 4,
             }
         }).done(function (msg) {
 
@@ -917,326 +765,186 @@ $(document).ready(function () {
                 $.notify(lang.general_error, {position: "left bottom", className: "error"});
 
         })
-    })
-
-    $('#no-status-sub').click(function () {
 
 
     })
-    $('.delete-subcategory').click(function () {
 
-        $('#confirm-modal-delete-sub').modal({show: true})
 
-        localStorage.setItem('sub_id', $(this).data('id'))
+    /** warehouse admin drugs **/
+
+    $(document).on('click', '.link-drug-modal', function () {
+        $('#warehouse-admin-link-drug-modal').modal({show: true})
+
+
+        $('#warehouse-drug-id').val($(this).data('id'))
+        $('#drug-warehouse-name').val($(this).data('name'))
+
 
     })
 
-    $('#yes-delete-subcategory').click(function () {
-        $sub_id = localStorage.getItem('sub_id');
-        $selector = '#subcategory-' + $sub_id;
+    $(document).on('click', '.link-drug-modal', function () {
+
+        $('#wa-drug-price').val('')
+        $('#drug-expiry-date').val('')
+
+        $('#warehouse-admin-link-drug-modal').modal({show: true})
+
+
+        $('#warehouse-drug-id').val($(this).data('id'))
+        $('#drug-warehouse-name').val($(this).data('name'))
+
+
+    })
+
+    $(document).on('click', '.unlink-drug-modal', function () {
+
+
+        $('#confirm-modal-unlink-drug').modal({show: true})
+
+        localStorage.setItem('admin_drug_id', $(this).data('id'))
+
+
+    })
+
+    $(document).on('click', '#link-drug', function () {
+
+
+        var $id = $('#warehouse-drug-id').val()
+        var $price = $('#wa-drug-price').val()
+        var $expiry_date = $('#drug-expiry-date').val()
 
         $.ajax({
             method: "POST",
-            url: "requests/subcategory-management.php",
+            url: "requests/drugs-management.php",
             data: {
-                sub_id: $sub_id,
-                action: 'delete',
-            }
-        }).done(function (msg) {
-
-            if (msg == 1) {
-                $('#subcategory-' + $sub_id).fadeOut(500, function () {
-
-                    $(this).remove();
-
-                })
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
-
-            } else {
-                $.notify(lang.canNotDeleteSub, {position: "left bottom", className: "error"});
-            }
-
-        })
-
-    })
-
-    $('#no-delete-subcategory').click(function () {
-
-
-    })
-
-    /** about **/
-
-
-    $('#add-about').click(function () {
-
-        $('#about-form-modal').modal({show: true})
-    })
-
-    $('.delete-about').click(function () {
-        $('#confirm-modal-delete-about').modal({show: true})
-        localStorage.setItem('about_id', $(this).data('id'))
-    })
-    $('#yes-delete-about').click(function () {
-        $id = localStorage.getItem('about_id');
-        $selector = '#about-' + $id;
-        $.ajax({
-            method: "POST",
-            url: "requests/about-management.php",
-            data: {
+                action: 'link-drug',
                 id: $id,
-                action: 'delete',
+                price: $price,
+                expiry_date: $expiry_date,
             }
         }).done(function (msg) {
+
+            $('#warehouse-admin-link-drug-modal').modal('hide');
+
+
             if (msg == 1) {
-                $('#about-' + $id).fadeOut(500, function () {
-                    $(this).remove();
+                $("button[data-id=" + $id + "]").fadeOut(500, function () {
+
+                    $(this).replaceWith('<span class="badge badge-pill badge-primary">Added</span>');
+
                 })
+
                 $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
-            } else {
-                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
-            }
+            } else
+                $.notify(msg, {position: "left bottom", className: "error"});
+
         })
-    })
-    $('#no-delete-category').click(function () {
-        // $('#confirm-modal-product-status').hide();
-        //remove tr
+
+
     })
 
-    /** leading companies **/
+    $('#yes-unlink-drug').click(function () {
 
+        $drug_id = localStorage.getItem('admin_drug_id');
+        // $selector = '#drug-' + $drug_id;
 
-    $('#add-companies').click(function () {
-
-        $('#companies-form-modal').modal({show: true})
-    })
-
-    $('.delete-companies').click(function () {
-        $('#confirm-modal-delete-companies').modal({show: true})
-        localStorage.setItem('companies_id', $(this).data('id'))
-    })
-    $('#yes-delete-companies').click(function () {
-        $id = localStorage.getItem('companies_id');
-        $selector = '#companies-' + $id;
         $.ajax({
             method: "POST",
-            url: "requests/companies-management.php",
+            url: "requests/drugs-admin-management.php",
             data: {
-                id: $id,
+                drug_id: $drug_id,
                 action: 'delete',
             }
         }).done(function (msg) {
+
             if (msg == 1) {
-                $('#companies-' + $id).fadeOut(500, function () {
+                $("button[data-id=" + $drug_id + "]").parent().parent().fadeOut(500, function () {
+
                     $(this).remove();
+
                 })
+
                 $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
-            } else {
-                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
-            }
+
+            } else
+                $.notify(msg, {position: "left bottom", className: "error"});
+
         })
-    })
-
-
-    $('#datatable').DataTable();
-    $('#datatable2').DataTable();
-
-
-    // product form
-
-    $('#submit-product').click(function (e) {
-
-        if ($('#category-select').val() == -1) {
-            e.preventDefault();
-
-            document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "red";
-
-            $('#subcategory-select').css('border-color', 'red');
-
-        }
-
-        if ($('#subcategory-select').val() == -1) {
-            e.preventDefault();
-            document.getElementsByClassName("btn dropdown-toggle btn-light")[1].style.borderColor = "red";
-
-
-        }
-
-
-    })
-
-    $('#submit-subcategory').click(function (e) {
-
-        if ($('#category-select').val() == -1) {
-            e.preventDefault();
-
-            document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "red";
-        }
-
 
     })
 
 
-//category and subcategory
+    /** offers **/
 
 
-    if ($('#category-select').val !== -1) {
-        $("#subcategory-select").prop("disabled", false);
-        $('#subcategory-select').selectpicker('refresh');
+    $(document).on('click', '.edit-offer', function () {
+        $o_id = $(this).data('id')
+        window.location.href = siteURL + 'offer-form/' + $o_id;
+    })
+
+    $(document).on('click', '.add-offer-drug', function () {
+
+        $id = $(this).data('id')
+
+        $name = $(this).data('name')
+        $price = $(this).data('price')
+
+        localStorage.setItem('drug_offer_name', $name)
+        localStorage.setItem('drug_offer_price', $price)
+
+
+        // $('#man-modal').modal({show: true})
+        window.location.href = siteURL + "offer-form/" +'D'+ $id;
+
+    })
+
+    $drug_offer_name = localStorage.getItem('drug_offer_name')
+    $drug_offer_price = localStorage.getItem('drug_offer_price')
+
+    if($drug_offer_name!=null && $drug_offer_price!=null)
+    {
+        $('#drug-offer-name').val($drug_offer_name)
+        $('#drug-offer-price').val($drug_offer_price)
+
     }
 
-    // var select_clicked_cat = false;
-    // var select_clicked_sub = false;
-
-    // $(document).on('shown.bs.select', '#category-select', function () {
-    //
-    //
-    //     document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
-    //     $cat_id = $('#cat-id').val();
-    //     $selected = '';
-    //     $path = '';
-    //     if ($cat_id !== '') {
-    //         $selected = 'selected';
-    //         $path = '../';
-    //         $('#category-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
-    //         $('#category-select').selectpicker('refresh');
-    //     }
-    //
-    //     if (select_clicked_cat == false) {
-    //
-    //         $.ajax({
-    //             method: "POST",
-    //             url: $path + "requests/categories.php",
-    //             data: {}
-    //         }).done(function (msg) {
-    //             if (msg == -1)
-    //                 $.notify(lang.general_error, {position: "left bottom", className: "error"});
-    //             else {
-    //                 console.log(msg)
-    //                 jQuery(JSON.parse(msg)).each(function (i, item) {
-    //
-    //                     $('#category-select').append('<option value="' + item.id + '">' + item.name + '</option>');
-    //                     $('#category-select').selectpicker('refresh');
-    //
-    //                 });
-    //             }
-    //
-    //         });
-    //
-    //         select_clicked_cat = true;
-    //     }
-    //
-    // })
-    //
-    //
-    // $(document).on('changed.bs.select', '#category-select', function () {
-    //     select_clicked_sub = false;
-    //
-    //     if ($(this).val() != -1) {
-    //         $("#subcategory-select").prop("disabled", false);
-    //         $('#subcategory-select').selectpicker('refresh');
-    //     } else {
-    //         $("#subcategory-select").prop('disabled', true);
-    //         $('#subcategory-select').selectpicker('refresh');
-    //     }
-    //     $('#subcategory-select').empty();
-    //     $('#subcategory-select').append('<option  value="-1">' + lang.pleaseChoose + '</option>');
-    //     $('#subcategory-select').selectpicker('refresh');
-    //
-    // })
 
 
-    $(document).on('shown.bs.select', '#subcategory-select', function () {
+    $(document).on('click', '.delete-offer', function () {
 
+        $('#confirm-modal-delete-offer').modal({show: true})
 
-        document.getElementsByClassName("btn dropdown-toggle btn-light")[1].style.borderColor = "";
-        $sub_id = $('#sub-id').val();
-        $selected = '';
-        $path = '';
-        if ($sub_id !== '') {
-            $selected = 'selected';
-            $path = '../';
-            $('#subcategory-select').find('option').eq(0).replaceWith('<option value="-1">' + lang.pleaseChoose + '</option>');
-            // replaceWith('<option selected  value="-1">' + lang.pleaseChoose + '</option>');
+        localStorage.setItem('offer_id', $(this).data('id'))
 
-            // $('#subcategory-select').empty();
-            $('#subcategory-select').selectpicker('refresh');
-            //
-        }
-        if (select_clicked_sub == false) {
-            $.ajax({
-                method: "POST",
-                url: $path + "requests/subcategories.php",
-                data: {cat_id: $('#category-select').val()}
-            }).done(function (msg) {
-
-                if (msg == -1) {
-                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
-
-                } else {
-                    jQuery(JSON.parse(msg)).each(function (i, item) {
-                        $('#subcategory-select').append('<option value="' + item.id + '">' + item.name + '</option>');
-                        $('#subcategory-select').selectpicker('refresh');
-
-                    });
-                }
-
-
-            })
-            select_clicked_sub = true;
-        }
     })
 
+    $('#yes-delete-offer').click(function () {
+        $offer_id = localStorage.getItem('offer_id');
+        // $selector = '#category-' + $cat_id;
 
-    //register for admin
-
-    var $submit_admin = false;
-
-    $(document).on('submit', '#submit-admin', function (e) {
-
-        if (!$submit_admin) {
-            {
-                if ($('#password').val() !== $('#re-password').val()) {
-                    $.notify(lang.passwordsNotMatched, {position: "left bottom", className: "warn"});
-                } else {
-                    $submit_admin = true;
-                    $('#submit-admin').submit();
-                }
+        $.ajax({
+            method: "POST",
+            url: "requests/offers-management.php",
+            data: {
+                offer_id: $offer_id,
+                action: 'delete-offer',
             }
-            e.preventDefault()
-        }
-        // else
-        //     $('#register-form-user').submit();
+        }).done(function (msg) {
 
+            if (msg == 1) {
+                $("button[data-id=" + $offer_id + "]").parent().parent().fadeOut(500, function () {
 
-    });
+                    $(this).remove();
 
-
-    var $submit_change_password = false;
-
-    $(document).on('submit', '#change-password-form', function (e) {
-
-        if (!$submit_change_password) {
-            {
-                if ($('#new-password').val() !== $('#re-password').val()) {
-                    alert(lang.passwordsNotMatched);
-                } else {
-                    $submit_change_password = true;
-                    $('#change-password-form').submit();
-                }
+                })
+                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+            } else {
+                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
             }
-            e.preventDefault()
-        }
-        // else
-        //     $('#register-form-user').submit();
 
+        })
 
-    });
-
-
-})
-
-$(document).ready(function () {
+    })
 
 
     var table_warehouses = $('#table-warehouses').DataTable({
@@ -1273,13 +981,27 @@ $(document).ready(function () {
             {'data': 'City'},
             {'data': 'Address'},
             {'data': 'Phones'},
+            {
+                'data': 'SubscriptionType', render: function (data, type, row) {
+
+                    if (row.SubscriptionType == 1) {
+                        return 'Commission';
+                    } else if (row.SubscriptionType == 2) {
+                        return 'Subscription';
+                    } else {
+                        return '';
+                    }
+
+                }
+            },
+            {'data': 'SubscriptionPrice'},
             {'data': 'Status'},
             {'data': 'Actions'}
 
         ],
 
         columnDefs: [{
-            "targets": 7, "data": "Actions", render: function (data, type, row) {
+            "targets": 9, "data": "Actions", render: function (data, type, row) {
                 return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-warehouse "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button>\n' +
@@ -1290,7 +1012,7 @@ $(document).ready(function () {
         },
 
             {
-                "targets": 6, "data": "Status", render: function (data, type, row) {
+                "targets": 8, "data": "Status", render: function (data, type, row) {
                     if (row.Status == 1) {
                         $status = 'active';
                         $status2 = '';
@@ -1332,8 +1054,8 @@ $(document).ready(function () {
             "type": "post",
             async: true,
             data: function (data) {
-               var AdditionalValues = [city_id_global];
-                data.AdditionalValues=AdditionalValues;
+                var AdditionalValues = [city_id_global];
+                data.AdditionalValues = AdditionalValues;
             }
         }
         // sAjaxSource: "requests/products_management.php"
@@ -1433,7 +1155,131 @@ $(document).ready(function () {
             data: function (data) {
 
                 var AdditionalValues = [city_id_global];
-                data.AdditionalValues=AdditionalValues;
+                data.AdditionalValues = AdditionalValues;
+
+            }
+        }
+        // sAjaxSource: "requests/products_management.php"
+    });
+
+    var table_offers_admin = $('#table-offers-admin').DataTable({
+        language: {
+            processing: "Loading Data...",
+            zeroRecords: "No matching records found"
+        },
+        processing: true,
+        serverSide: true,
+        orderCellsTop: true,
+        autoWidth: true,
+        deferRender: true,
+        lengthMenu: [10, 25, 50, 100, 1000],
+        // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        // buttons: [
+        //     {
+        //         text: 'Export to Excel',
+        //         className: 'btn btn-sm btn-dark',
+        //         action: function (e, dt, node, config) {
+        //             window.location.href = "/Home/GetExcel";
+        //         },
+        //         init: function (api, node, config) {
+        //             $(node).removeClass('dt-button');
+        //         }
+        //     }
+        // ],
+
+
+        columns: [
+            // {"DT_RowId": "drug-"+'Id'},
+            {'data': 'Id'},
+            {'data': 'Description'},
+            {'data': 'Durg'},
+            {'data': 'Quantity'},
+            {'data': 'ExpiryDate'},
+            {'data': 'Discount'},
+            {'data': 'TotalPrice'},
+            {'data': 'Actions'}
+
+        ],
+
+        columnDefs: [{
+            "targets": 7, "data": "Actions", render: function (data, type, row) {
+                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-offer "><i\n' +
+                    '                                        class="fa fa-pencil-square-o  "\n' +
+                    '                                        aria-hidden="true"></i></button>\n' +
+                    '                            <button data-id="' + row.Id + '" class="btn btn-blue btn delete-offer"><i\n' +
+                    '                                        class="fa fa-trash-o  "\n' +
+                    '                                        aria-hidden="true"></i></button>';
+            }
+
+        }],
+        // bServerSide: true,
+        ajax: {
+            "url": "requests/offers-management.php",
+            "type": "post",
+            async: true,
+            data: function (data) {
+
+
+            }
+        }
+        // sAjaxSource: "requests/products_management.php"
+    });
+
+    var table_offers = $('#table-offers').DataTable({
+        language: {
+            processing: "Loading Data...",
+            zeroRecords: "No matching records found"
+        },
+        processing: true,
+        serverSide: true,
+        orderCellsTop: true,
+        autoWidth: true,
+        deferRender: true,
+        lengthMenu: [10, 25, 50, 100, 1000],
+        // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        // buttons: [
+        //     {
+        //         text: 'Export to Excel',
+        //         className: 'btn btn-sm btn-dark',
+        //         action: function (e, dt, node, config) {
+        //             window.location.href = "/Home/GetExcel";
+        //         },
+        //         init: function (api, node, config) {
+        //             $(node).removeClass('dt-button');
+        //         }
+        //     }
+        // ],
+
+
+        columns: [
+            // {"DT_RowId": "drug-"+'Id'},
+            {'data': 'Id'},
+            {'data': 'Warehouse'},
+            {'data': 'Description'},
+            {'data': 'Durg'},
+            {'data': 'Quantity'},
+            {'data': 'ExpiryDate'},
+            {'data': 'Discount'},
+            {'data': 'TotalPrice'},
+            {'data': 'Actions'}
+
+        ],
+
+        columnDefs: [{
+            "targets": 8, "data": "Actions", render: function (data, type, row) {
+                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-offer "><i\n' +
+                    '                                        class="fa fa-search-plus  "\n' +
+                    '                                        aria-hidden="true"></i></button>\n';
+            }
+
+        }],
+        // bServerSide: true,
+        ajax: {
+            "url": "requests/offers-management.php",
+            "type": "post",
+            async: true,
+            data: function (data) {
+
 
             }
         }
@@ -1593,7 +1439,137 @@ $(document).ready(function () {
             "url": "requests/drugs-management.php",
             "type": "post",
             async: true,
-            data: {city_id:city_id_global}
+            data: {city_id: city_id_global}
+        }
+        // sAjaxSource: "requests/products_management.php"
+    });
+
+    var table_drugs_admin = $('#table-drugs-admin').DataTable({
+        language: {
+            processing: "Loading Data...",
+            zeroRecords: "No matching records found"
+        },
+        processing: true,
+        serverSide: true,
+        orderCellsTop: true,
+        autoWidth: true,
+        deferRender: true,
+        lengthMenu: [10, 25, 50, 100, 1000],
+        // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        // buttons: [
+        //     {
+        //         text: 'Export to Excel',
+        //         className: 'btn btn-sm btn-dark',
+        //         action: function (e, dt, node, config) {
+        //             window.location.href = "/Home/GetExcel";
+        //         },
+        //         init: function (api, node, config) {
+        //             $(node).removeClass('dt-button');
+        //         }
+        //     }
+        // ],
+        columns: [
+            // {"DT_RowId": "drug-"+'Id'},
+            {'data': 'Id'},
+            {'data': 'CommerceNameAr'},
+            {'data': 'CommerceNameEn'},
+            {'data': 'ScientificNameAr'},
+            {'data': 'ScientificNameEn'},
+            {'data': 'Strengths'},
+            {'data': 'Price'},
+            {'data': 'Manufacture'},
+            {'data': 'Category'},
+            {'data': 'Form'},
+            {
+                'data': 'Icon', render: function (data, type, row) {
+                    return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
+                }
+            },
+            {'data': 'Actions'}
+
+        ],
+
+        columnDefs: [{
+            "targets": 11, "data": "Actions", render: function (data, type, row) {
+                if (row.AvaiableInWarehouse != 1) {
+                    return '<button data-toggle="tooltip" data-placement="top" title="Add drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn link-drug-modal "><i\n' +
+                        '                                        class="fa fa-plus-square-o  "\n' +
+                        '                                        aria-hidden="true"></i></button>';
+                } else return '<span class="badge badge-pill badge-primary">Added</span>';
+
+            }
+        }],
+        // bServerSide: true,
+        ajax: {
+            "url": "requests/drugs-management.php",
+            "type": "post",
+            async: true,
+            data: {city_id: city_id_global}
+        }
+        // sAjaxSource: "requests/products_management.php"
+    });
+
+    var table_my_drugs_admin = $('#table-my-drugs-admin').DataTable({
+        language: {
+            processing: "Loading Data...",
+            zeroRecords: "No matching records found"
+        },
+        processing: true,
+        serverSide: true,
+        orderCellsTop: true,
+        autoWidth: true,
+        deferRender: true,
+        lengthMenu: [10, 25, 50, 100, 1000],
+        // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        // buttons: [
+        //     {
+        //         text: 'Export to Excel',
+        //         className: 'btn btn-sm btn-dark',
+        //         action: function (e, dt, node, config) {
+        //             window.location.href = "/Home/GetExcel";
+        //         },
+        //         init: function (api, node, config) {
+        //             $(node).removeClass('dt-button');
+        //         }
+        //     }
+        // ],
+        columns: [
+            // {"DT_RowId": "drug-"+'Id'},
+            {'data': 'Id'},
+            {'data': 'CommerceNameAr'},
+            {'data': 'CommerceNameEn'},
+            {'data': 'ScientificNameAr'},
+            {'data': 'ScientificNameEn'},
+            {'data': 'Strengths'},
+            {'data': 'Price'},
+            {'data': 'Manufacture'},
+            {'data': 'Category'},
+            {'data': 'Form'},
+            {
+                'data': 'Icon', render: function (data, type, row) {
+                    return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
+                }
+            },
+            {'data': 'Actions'}
+
+        ],
+
+        columnDefs: [{
+            "targets": 11, "data": "Actions", render: function (data, type, row) {
+                return '<button data-toggle="tooltip" data-placement="top" title="delete drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn unlink-drug-modal  "><i\n' +
+                    '                                        class="fa fa-trash  "\n' +
+                    '                                        aria-hidden="true"></i></button> ' +
+                    '<button data-toggle="tooltip" data-placement="top" title="Add offer" data-name="' + row.CommerceNameEn + '" data-price="' + row.Price + '" data-id="' + row.Id + '" class="btn btn-blue btn add-offer-drug "><i\n' +
+                    '                                        class="fa fa-plus-square-o  "\n' +
+                    '                                        aria-hidden="true"></i></button>';
+            }
+        }],
+        // bServerSide: true,
+        ajax: {
+            "url": "requests/drugs-admin-management.php",
+            "type": "post",
+            async: true,
+            data: {city_id: city_id_global}
         }
         // sAjaxSource: "requests/products_management.php"
     });
@@ -1670,17 +1646,216 @@ $(document).ready(function () {
             async: true,
             data: function (data) {
                 var AdditionalValues = [city_id_global];
-                data.AdditionalValues=AdditionalValues;
+                data.AdditionalValues = AdditionalValues;
             }
         }
 
     });
 
+    var table_ads = $('#table-ads').DataTable({
+        language: {
+            processing: "Loading Data...",
+            zeroRecords: "No matching records found"
+        },
+        processing: true,
+        serverSide: true,
+        orderCellsTop: true,
+        autoWidth: true,
+        deferRender: true,
+        lengthMenu: [10, 25, 50, 100, 1000],
+        // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        // buttons: [
+        //     {
+        //         text: 'Export to Excel',
+        //         className: 'btn btn-sm btn-dark',
+        //         action: function (e, dt, node, config) {
+        //             window.location.href = "/Home/GetExcel";
+        //         },
+        //         init: function (api, node, config) {
+        //             $(node).removeClass('dt-button');
+        //         }
+        //     }
+        // ],
 
-    var select_clicked_cat = false;
-    var select_clicked_city = false;
-    var select_clicked_man = false;
-    var select_clicked_form = false;
+
+        columns: [
+
+            {'data': 'Id'},
+            {'data': 'TypeName'},
+            {'data': 'Name'},
+            {'data': 'Actions'},
+
+        ],
+
+
+        columnDefs: [{
+            "targets": 3, "data": "Actions", render: function (data, type, row) {
+                return '<button data-id="' + row.Id + '" class="btn btn-blue btn delete-ad"><i\n' +
+                    '                                        class="fa fa-trash-o  "\n' +
+                    '                                        aria-hidden="true"></i></button>';
+            }
+
+        }],
+        // bServerSide: true,
+        ajax: {
+            "url": "requests/ads-management.php",
+            "type": "post",
+            async: true,
+            data: function (data) {
+
+            }
+        }
+
+    });
+
+    var table_orders = $('#table-orders').DataTable({
+        language: {
+            processing: "Loading Data...",
+            zeroRecords: "No matching records found"
+        },
+        processing: true,
+        serverSide: true,
+        orderCellsTop: true,
+        autoWidth: true,
+        deferRender: true,
+        lengthMenu: [10, 25, 50, 100, 1000],
+        // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        // buttons: [
+        //     {
+        //         text: 'Export to Excel',
+        //         className: 'btn btn-sm btn-dark',
+        //         action: function (e, dt, node, config) {
+        //             window.location.href = "/Home/GetExcel";
+        //         },
+        //         init: function (api, node, config) {
+        //             $(node).removeClass('dt-button');
+        //         }
+        //     }
+        // ],
+
+
+        columns: [
+
+            {'data': 'Id'},
+            {'data': 'Pharmacy'},
+            {'data': 'Drug'},
+            {'data': 'Quantity'},
+            {'data': 'DeliveryDate'},
+            {'data': 'City'},
+            {
+                'data': 'OfferDescription', render: function (data, type, row) {
+                    return '<span class="order-offer-field" data-toggle="tooltip" data-placement="top" title="' + row.OfferDescription + '">' + row.OfferDescription + '</span>';
+
+                }
+            },
+            {
+                'data': 'RequestType', render: function (data, type, row) {
+                    if (row.RequestType == 1) {
+                        return ("Order");
+                    } else {
+                        return ("Offer");
+                    }
+                }
+            },
+            {'data': 'RequestStatus'},
+            {'data': 'Actions'},
+
+        ],
+
+
+        columnDefs: [{
+            "targets": 9, "data": "Actions", render: function (data, type, row) {
+                if (row.RequestStatus == 1) {
+
+
+                    return '<div class="btn-group btn-group-toggle" data-toggle="buttons">' +
+
+                        '<label  class="btn btn-info order-status-btn ">' +
+                        '<input type="radio"' +
+                        ' name="options"' +
+                        ' data-id="' + row.Id + '"' +
+                        ' class="processing-order"' +
+                        ' autocomplete="off">' +
+                        ' Processing' +
+                        ' </label>' +
+
+                        '<label class="btn btn-info order-status-btn ">' +
+                        '<input type="radio"' +
+                        ' name="options"' +
+                        ' data-id="' + row.Id + '"' +
+                        ' class="done-order"' +
+                        ' autocomplete="off">' +
+                        ' Done' +
+                        ' </label>' +
+
+                        '<label class="btn btn-info order-status-btn ">' +
+                        '<input type="radio"' +
+                        ' name="options"' +
+                        ' data-id="' + row.Id + '"' +
+                        ' class="reject-order"' +
+                        ' autocomplete="off">' +
+                        ' Reject' +
+                        ' </label>' +
+                        '</div>';
+
+
+                } else if (row.RequestStatus == 2) {
+                    return '<div class="btn-group btn-group-toggle" data-toggle="buttons">' +
+
+                        '<label class="btn btn-info order-status-btn ">' +
+                        '<input type="radio"' +
+                        ' name="options"' +
+                        ' data-id="' + row.Id + '"' +
+                        ' class="done-order"' +
+                        ' autocomplete="off">' +
+                        ' Done' +
+                        ' </label>' +
+
+                        '<label class="btn btn-info order-status-btn">' +
+                        '<input type="radio"' +
+                        ' name="options"' +
+                        ' data-id="' + row.Id + '"' +
+                        ' class="reject-order"' +
+                        ' autocomplete="off">' +
+                        ' Reject' +
+                        ' </label>' +
+                        '</div>';
+                } else {
+                    return "";
+                }
+            }
+
+
+        }, {
+
+            "targets": 8, "data": "RequestStatus", render: function (data, type, row) {
+
+                if (row.RequestStatus === 4) {
+                    return '<span class="badge badge-pill badge-danger">Rejected</span>';
+                } else if (row.RequestStatus === 3) {
+                    return '<span class="badge badge-pill badge-success">Done</span>';
+                } else if (row.RequestStatus === 1) {
+                    return '<span class="badge badge-pill badge-warning">Pending</span>';
+                } else if (row.RequestStatus === 2) {
+                    return '<span class="badge badge-pill badge-primary">Processing</span>';
+                }
+
+
+            }
+        }],
+        // bServerSide: true,
+        ajax: {
+            "url": "requests/orders-management.php",
+            "type": "post",
+            async: true,
+            data: function (data) {
+                var AdditionalValues = [city_id_global, order_status_id_global];
+                data.AdditionalValues = AdditionalValues;
+            }
+        }
+
+    });
+
 
     $(document).on('shown.bs.select', '#category-select', function () {
 
@@ -1729,17 +1904,17 @@ $(document).ready(function () {
 
 
         document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
-        $cat_id = $('#cat-id').val();
+        $man_id = $('#man-id').val();
         $selected = '';
         $path = '';
-        if ($cat_id !== '') {
+        if ($man_id !== '') {
             $selected = 'selected';
             $path = '../';
             $('#manufacture-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
             $('#manufacture-select').selectpicker('refresh');
         }
 
-        if (select_clicked_city == false) {
+        if (select_clicked_man == false) {
             $.ajax({
                 method: "POST",
                 url: $path + "requests/manufacturers-management.php",
@@ -1765,8 +1940,6 @@ $(document).ready(function () {
         }
 
     })
-
-
 
     $(document).on('shown.bs.select', '#drug-forms-select', function () {
 
@@ -1852,13 +2025,193 @@ $(document).ready(function () {
 
     })
 
+    $(document).on('shown.bs.select', '#type-select', function () {
+        select_clicked_man = false;
+        select_clicked_offer = false;
+        select_clicked_warehouse = false;
+        document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
+        $type_id = $('#type-id').val();
+        $selected = '';
+        $path = '';
+        if ($type_id !== '') {
+            $selected = 'selected';
+            $path = '../';
+            $('#type-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
+            $('#type-select').selectpicker('refresh');
+        }
+
+        if (select_clicked_type == false) {
+
+            $.ajax({
+                method: "POST",
+                url: $path + "requests/ads-management.php",
+                data: {
+
+                    action: 'show-list-types'
+                }
+            }).done(function (msg) {
+                if (msg == -1)
+                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                else {
+                    console.log(msg)
+                    jQuery(JSON.parse(msg)).each(function (i, item) {
+
+                        $('#type-select').append('<option value="' + item.id + '">' + item.Name + '</option>');
+                        $('#type-select').selectpicker('refresh');
+
+                    });
+                }
+
+            });
+
+            select_clicked_type = true;
+        }
+
+    })
+
+    $(document).on('shown.bs.select', '#delivery-select', function () {
+
+        document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
+        $selected = $('#delivery-select').val()
+
+        $('#delivery-select').empty();
+        $('#delivery-select').append('<option value="' + -1 + '">' + 'Please choose' + '</option>');
+        if ($selected == 0) {
+            $('#delivery-select').append('<option selected value="' + 0 + '">' + 'No' + '</option>');
+            $('#delivery-select').append('<option value="' + 1 + '">' + 'Yes' + '</option>');
+        } else if ($selected == 1) {
+            $('#delivery-select').append('<option  value="' + 0 + '">' + 'No' + '</option>');
+            $('#delivery-select').append('<option selected value="' + 1 + '">' + 'Yes' + '</option>');
+        } else {
+            $('#delivery-select').append('<option  value="' + 0 + '">' + 'No' + '</option>');
+            $('#delivery-select').append('<option  value="' + 1 + '">' + 'Yes' + '</option>');
+        }
+
+
+        $('#delivery-select').selectpicker('refresh');
+
+
+    })
+
+    $(document).on('shown.bs.select', '#SubscriptionType-select', function () {
+
+        document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
+        $selected = $('#SubscriptionType-select').val()
+
+        $('#SubscriptionType-select').empty();
+        $('#SubscriptionType-select').append('<option value="' + -1 + '">' + 'Please choose' + '</option>');
+        if ($selected == 1) {
+            $('#SubscriptionType-select').append('<option selected value="' + 1 + '">' + 'Commission' + '</option>');
+            $('#SubscriptionType-select').append('<option value="' + 2 + '">' + 'Subscription' + '</option>');
+        } else if ($selected == 2) {
+            $('#SubscriptionType-select').append('<option  value="' + 1 + '">' + 'Commission' + '</option>');
+            $('#SubscriptionType-select').append('<option selected value="' + 2 + '">' + 'Subscription' + '</option>');
+        } else {
+            $('#SubscriptionType-select').append('<option  value="' + 1 + '">' + 'Commission' + '</option>');
+            $('#SubscriptionType-select').append('<option  value="' + 2 + '">' + 'Subscription' + '</option>');
+        }
+
+
+        $('#SubscriptionType-select').selectpicker('refresh');
+
+
+    })
+
+    $(document).on('shown.bs.select', '#offer-select', function () {
+
+
+        document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
+        $offer_id = $('#offer-id').val();
+        $selected = '';
+        $path = '';
+        if ($offer_id !== '') {
+            $selected = 'selected';
+            $path = '../';
+            $('#offer-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
+            $('#offer-select').selectpicker('refresh');
+        }
+
+        if (select_clicked_offer == false) {
+
+            $.ajax({
+                method: "POST",
+                url: $path + "requests/offers-management.php",
+                data: {
+
+                    action: 'show-list-offer'
+                }
+            }).done(function (msg) {
+                if (msg == -1)
+                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                else {
+                    console.log(msg)
+                    jQuery(JSON.parse(msg)).each(function (i, item) {
+
+                        $('#offer-select').append('<option value="' + item.id + '">' + item.Name + '</option>');
+                        $('#offer-select').selectpicker('refresh');
+
+                    });
+                }
+
+            });
+
+            select_clicked_offer = true;
+        }
+
+    })
+
+    $(document).on('shown.bs.select', '#warehouse-select', function () {
+
+
+        document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
+        $warehouse_id = $('#warehouse-id').val();
+        $selected = '';
+        $path = '';
+        if ($warehouse_id !== '') {
+            $selected = 'selected';
+            $path = '../';
+            $('#warehouse-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
+            $('#warehouse-select').selectpicker('refresh');
+        }
+
+        if (select_clicked_warehouse == false) {
+
+            $.ajax({
+                method: "POST",
+                url: $path + "requests/warehouses-management.php",
+                data: {
+
+                    action: 'show-list-warehouse'
+                }
+            }).done(function (msg) {
+                if (msg == -1)
+                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                else {
+                    console.log(msg)
+                    jQuery(JSON.parse(msg)).each(function (i, item) {
+
+                        $('#warehouse-select').append('<option value="' + item.id + '">' + item.Name + '</option>');
+                        $('#warehouse-select').selectpicker('refresh');
+
+                    });
+                }
+
+            });
+
+            select_clicked_warehouse = true;
+        }
+
+    })
 
     $(document).on('changed.bs.select', '#city-select', function () {
 
 
-         city_id_global = $(this).val();
+        city_id_global = $(this).val();
         // localStorage.setItem('city_id',city_id_global)
         table_manufacturers.draw()
+        table_pharmacies.draw()
+        table_warehouses.draw()
+        table_orders.draw()
         // $('#table-manufacturers').DataTable().ajax.reload();
         // localStorage.setItem('city_id',"")
         // table_categories.reload()
@@ -1868,5 +2221,81 @@ $(document).ready(function () {
 
     })
 
+    $(document).on('changed.bs.select', '#status-select', function () {
+
+
+        order_status_id_global = $(this).val();
+        // localStorage.setItem('city_id',city_id_global)
+
+        table_orders.draw()
+        // $('#table-manufacturers').DataTable().ajax.reload();
+        // localStorage.setItem('city_id',"")
+        // table_categories.reload()
+        // table_drugs.reload()
+        // table_pharmacies.reload()
+
+
+    })
+
+    $(document).on('changed.bs.select', '#type-select', function () {
+
+        $('#warehouse-select').selectpicker('refresh');
+        $('#offer-select').selectpicker('refresh');
+        $('#manufacture-select').selectpicker('refresh');
+
+        var $type = $(this).val();
+        if ($type == 1) {
+            $('.manufacturer-select-cont').removeClass('hidden')
+            $('.offers-select-cont').addClass('hidden')
+            $('.warehouse-select-cont').addClass('hidden')
+
+
+        } else if ($type == 2) {
+
+            $('.manufacturer-select-cont').addClass('hidden')
+            $('.offers-select-cont').removeClass('hidden')
+            $('.warehouse-select-cont').addClass('hidden')
+        } else {
+
+            $('.manufacturer-select-cont').addClass('hidden')
+            $('.offers-select-cont').addClass('hidden')
+            $('.warehouse-select-cont').removeClass('hidden')
+        }
+
+
+    })
+
+    $(document).on('changed.bs.select', '#SubscriptionType-select', function () {
+
+        $('#profit-warehouse').val('');
+
+
+        var $type = $(this).val();
+
+        if ($type == 1 || $type == 2) {
+
+            $('#profit-cont').removeClass('hidden')
+        } else {
+            $('#profit-cont').addClass('hidden')
+        }
+
+    })
+
+    if ($('#change-password').val() == 1) {
+
+
+        $('#change-password-modal').modal({show: true})
+
+    }
+
+
+    if ($('#error-msg').val() !== '') {
+        $.notify($('#error-msg').val(), {position: "left bottom", className: $('#error-msg').data('type')});
+
+
+    }
+
 
 })
+
+

@@ -22,7 +22,7 @@ if ($id) {
 //    var_dump($respons);exit();
     if ($respons->code == 1) {
         $respons = $respons->data;
-
+//var_dump($respons);
 
     } else {
         general_error('../pharmacies-list');
@@ -125,7 +125,7 @@ if ($id) {
                     <label class="col-lg-8 control-label text-left ">License Number:</label>
                     <div class="col-lg-8">
                         <input required class="form-control" name="LicenseNumber" placeholder="License Number"
-                               type="text"
+                               type="number"
                                value="<?php echo isset($respons->LicenseNumber) ? $respons->LicenseNumber : null ?>">
                     </div>
                 </div>
@@ -137,13 +137,15 @@ if ($id) {
 
 
                             <div class="btn-group btn-group-toggle" data-toggle="buttons"><label
-                                    class="btn btn-info "><input checked="" type="radio" name="options"
-                                                                       data-id="<?php echo $id ?>"
-                                                                       class="approve-pharmacy" autocomplete="off">
+                                        class="btn btn-info "><input checked="" type="radio" name="options"
+                                                                     data-id="<?php echo $id ?>"
+                                                                     class="approve-pharmacy" autocomplete="off">
                                     Approve
-                                </label><label style="min-width: 77px;" class="btn btn-info "><input type="radio" name="options"
-                                                                            data-id="<?php echo $id ?>"
-                                                                            class="reject-pharmacy" autocomplete="off">
+                                </label><label style="min-width: 77px;" class="btn btn-info "><input type="radio"
+                                                                                                     name="options"
+                                                                                                     data-id="<?php echo $id ?>"
+                                                                                                     class="reject-pharmacy"
+                                                                                                     autocomplete="off">
                                     Reject </label>
                             </div>
 
@@ -152,16 +154,15 @@ if ($id) {
                             <span style="font-size: 18px;" class="badge badge-pill badge-success">Approved</span>
 
 
-
                         <?php } else if (isset($respons->Status) && $respons->Status == 0) { ?>
 
 
-                            <span  class="badge badge-pill badge-danger">Rejected</span>
+                            <span class="badge badge-pill badge-danger">Rejected</span>
 
-                        <?php }  else if (isset($respons->Status) && $respons->Status == 4) { ?>
+                        <?php } else if (isset($respons->Status) && $respons->Status == 4) { ?>
 
 
-                            <span  class="badge badge-pill badge-primary">Admin</span>
+                            <span class="badge badge-pill badge-primary">Admin</span>
 
                         <?php } ?>
 
@@ -218,8 +219,57 @@ if ($id) {
                         ><?php echo isset($respons->WorkingHours) ? $respons->WorkingHours : null ?></textarea>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-lg-8 control-label text-left ">Syndicate Number: </label>
+                    <div class="col-lg-8">
+                        <input required class="form-control" name="SyndicateNumber" placeholder="Syndicate Number"
+                               type="number"
+                               value="<?php echo isset($respons->SyndicateNumber) ? $respons->SyndicateNumber : null ?>">
+                    </div>
+                </div>
+                <?php if (isset($id)) { ?>
+                    <div class="form-group">
+                        <label class="col-lg-8 control-label text-left ">Syndicate Photo File: </label>
+                        <div class="col-lg-8">
+                            <a href="<?php echo $FILES_ROOT . 'images/pharmacies/large/'; ?><?php echo isset($respons->SyndicateIdPhoto) ? $respons->SyndicateIdPhoto : 'test' ?>">Download
+                                File</a>
+
+                        </div>
+                    </div>
+                <?php } ?>
 
 
+                <div class="form-group">
+                    <label class="col-md-8 control-label text-left ">Syndicate Photo:</label>
+                    <div class="col-md-8">
+                        <input <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
+                                                                          name="SyndicateIdPhoto" accept="image/*">
+                        <input name="old-img-SyndicateIdPhoto" type="hidden"
+                               value="<?php if (isset($respons->SyndicateIdPhoto)) echo $respons->SyndicateIdPhoto ?>">
+
+                    </div>
+                </div>
+                <?php if (isset($id)) { ?>
+                    <div class="form-group">
+                        <label class="col-lg-8 control-label text-left ">Pharmacy Photo File: </label>
+                        <div class="col-lg-8">
+                            <a href="<?php echo $FILES_ROOT . 'images/pharmacies/large/'; ?><?php echo isset($respons->PharmacyPhoto) ? $respons->PharmacyPhoto : 'test' ?>">Download
+                                File</a>
+
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <div class="form-group">
+                    <label class="col-md-8 control-label text-left ">Pharmacy Photo:</label>
+                    <div class="col-md-8">
+                        <input <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
+                                                                          name="PharmacyPhoto" accept="image/*">
+                        <input name="old-img-PharmacyPhoto" type="hidden"
+                               value="<?php if (isset($respons->PharmacyPhoto)) echo $respons->PharmacyPhoto ?>">
+
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left "></label>

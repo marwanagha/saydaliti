@@ -22,6 +22,7 @@
         }
     }
 
+    $id = isset($_GET['id']) ? make_safe($_GET['id']) : null;
 
     ?>
 
@@ -38,7 +39,7 @@
         <div class="container-fluid ">
             <div class="navbar-holder d-flex align-items-center justify-content-between">
                 <div class="navbar-header">
-                    <a href="<?php echo $APP_ROOT . $pages['categories'] ?>" class="navbar-brand">
+                    <a href="" class="navbar-brand">
                         <div class="brand-text brand-big hidden-lg-down"><img
                                     src="<?php echo $ASSET_URL ?>img/logo3.png" class="header-img icon-admin    " alt="Logo"
                                     class="img-fluid"></div>
@@ -53,9 +54,9 @@
             </div>
             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Expand-->
-                <?php if (isset($_SESSION['role_id'])) { ?>
+                <?php if (isset($_SESSION['role_id']) && !empty($_SESSION['role_id'])) { ?>
                     <li class="nav-item d-flex align-items-center full_scr_exp"><a id="logout" class="nav-link "
-                                                                                   href="requests/logout.php">Logout</a>
+                                                                                   href="<?php if(isset($id) && $id!=null ) echo '../requests/logout.php'; else echo 'requests/logout.php';?>">Logout</a>
                     </li>
                 <?php } ?>
 

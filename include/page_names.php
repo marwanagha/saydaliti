@@ -15,5 +15,12 @@ $pages = array(
     "pharmacies-list"=>"pharmacies-list",
     "warehouses-list"=>"warehouses-list",
     "warehouse-form"=>"warehouse-form",
+    "ads-list"=>"ads-list",
+    "orders-list"=>"orders-list",
+    "wa-info"=>"wa-info",
+    "wa-drugs"=>"wa-drugs",
+    "offers-list"=>"offers-list",
+    "offer-form"=>"offer-form",
+
 
 );

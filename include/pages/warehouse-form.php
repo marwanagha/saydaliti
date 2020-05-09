@@ -14,7 +14,7 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 }
 
 
-$respons_drugs = api_post('Listing/GetDrugsList', '');
+//$respons_drugs = api_post('Listing/GetDrugsList', '');
 
 
 $path = '../';
@@ -27,16 +27,16 @@ if ($id) {
     if ($respons->code == 1) {
         $respons = $respons->data;
 
-        $selected_drugs_array = array();
-
-        if (isset($respons->Drugs)) {
-
-            foreach ($respons->Drugs as $drug) {
-
-                array_push($selected_drugs_array, $drug->Id);
-
-            }
-        }
+//        $selected_drugs_array = array();
+//
+//        if (isset($respons->Drugs)) {
+//
+//            foreach ($respons->Drugs as $drug) {
+//
+//                array_push($selected_drugs_array, $drug->Id);
+//
+//            }
+//        }
 
     } else {
         general_error('warehouses-list');
@@ -87,7 +87,6 @@ if ($id) {
 </div>
 
 
-
 <div class="content-inner chart-cont">
 
     <div class="col personal-info " align="center">
@@ -107,7 +106,7 @@ if ($id) {
                   else echo '../requests/warehouses-management.php' ?>"
                   enctype="multipart/form-data"
                   method="post"
-                  class="form-horizontal  row">
+                  class="form-horizontal ">
                 <div class="col-8">
                     <input name="id" type="hidden" value="<?php if (isset($id)) echo $id ?>">
                     <div class="form-group">
@@ -190,6 +189,41 @@ if ($id) {
                     <input id="city-id" type="hidden"
                            value="<?php if (isset($respons->CityId)) echo $respons->CityId ?>">
 
+                    <div class="form-group">
+                        <label class="col-md-8 control-label text-left ">Type: </label>
+                        <div class="col-lg-8">
+                            <select required name="SubscriptionType-select" id="SubscriptionType-select"
+                                    class="selectpicker"
+                                    menuPlacement="top">
+                                <?php if (isset($respons->SubscriptionType)) {
+
+                                    if ($respons->SubscriptionType == 1) {
+                                        $SubscriptionName = 'Commission';
+                                    } else {
+                                        $SubscriptionName = 'Subscription';
+                                    }
+
+                                    echo '<option value="' . $respons->SubscriptionType . '" >' . $SubscriptionName . '</option>';
+                                } else {
+                                    echo '<option value="-1" selected>please choose</option>';
+                                    echo '<option value="1" >Commission</option>';
+                                    echo '<option value="2" >Subscription</option>';
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="profit-cont"
+                         class="form-group <?php if (!isset($respons->SubscriptionType)) echo 'hidden'; ?>">
+                        <label class="col-lg-8 control-label text-left ">Profit: </label>
+                        <div class="col-lg-8">
+                            <input required class="form-control" id="profit-warehouse" name="profit"
+                                   placeholder="Profit"
+                                   type="number"
+                                   value="<?php echo isset($respons->SubscriptionPrice) ? $respons->SubscriptionPrice : null ?>">
+                        </div>
+                    </div>
+
 
                     <div class="form-group">
                         <label class="col-md-8 control-label text-left "></label>
@@ -202,59 +236,59 @@ if ($id) {
                         </div>
                     </div>
                 </div>
-                <div class="col-4 drugs-list">
-                    <div><h4 class="text-left">Drugs List</h4></div>
-                    <div>
-                        <hr/>
-                    </div>
-                    <?php
-
-                    if (isset($respons_drugs->code) && $respons_drugs->code == 1) {
-
-                        if (!empty($selected_drugs_array)) {
-
-                            foreach ($respons_drugs->data->dropDownListItems as $drug) {
-
-                                if (in_array($drug->id, $selected_drugs_array)) {
-
-                                    $checked = 'checked';
-                                } else {
-                                    $checked = '';
-                                }
-
-                                ?>
-
-                                <div class="mb-1 text-left"><input type="checkbox" name="drugs[]" <?php echo $checked ?>
-                                                                   value="<?php echo $drug->id ?>"><span
-                                            class="ml-1"><?php echo $drug->Name ?></span></div>
-
-                                <?php
-
-
-                            }
-
-                        } else {
-
-                            foreach ($respons_drugs->data->dropDownListItems as $drug) {
-
-                                ?>
-
-                                <div class="mb-1 text-left"><input type="checkbox" name="drugs[]"
-                                                                   value="<?php echo $drug->id ?>"><span
-                                            class="ml-1"><?php echo $drug->Name ?></span></div>
-
-                                <?php
-
-
-                            }
-                        }
-
-
-                    } else {
-                        general_error('warehouses-list');
-                    }
-                    ?>
-                </div>
+<!--                <div class="col-4 drugs-list">-->
+<!--                    <div><h4 class="text-left">Drugs List</h4></div>-->
+<!--                    <div>-->
+<!--                        <hr/>-->
+<!--                    </div>-->
+<!--                    --><?php
+//
+//                    if (isset($respons_drugs->code) && $respons_drugs->code == 1) {
+//
+//                        if (!empty($selected_drugs_array)) {
+//
+//                            foreach ($respons_drugs->data->dropDownListItems as $drug) {
+//
+//                                if (in_array($drug->id, $selected_drugs_array)) {
+//
+//                                    $checked = 'checked';
+//                                } else {
+//                                    $checked = '';
+//                                }
+//
+//                                ?>
+<!---->
+<!--                                <div class="mb-1 text-left"><input type="checkbox" name="drugs[]" --><?php //echo $checked ?>
+<!--                                                                   value="--><?php //echo $drug->id ?><!--"><span-->
+<!--                                            class="ml-1">--><?php //echo $drug->Name ?><!--</span></div>-->
+<!---->
+<!--                                --><?php
+//
+//
+//                            }
+//
+//                        } else {
+//
+//                            foreach ($respons_drugs->data->dropDownListItems as $drug) {
+//
+//                                ?>
+<!---->
+<!--                                <div class="mb-1 text-left"><input type="checkbox" name="drugs[]"-->
+<!--                                                                   value="--><?php //echo $drug->id ?><!--"><span-->
+<!--                                            class="ml-1">--><?php //echo $drug->Name ?><!--</span></div>-->
+<!---->
+<!--                                --><?php
+//
+//
+//                            }
+//                        }
+//
+//
+//                    } else {
+//                        general_error('warehouses-list');
+//                    }
+//                    ?>
+<!--                </div>-->
 
             </form>
 
