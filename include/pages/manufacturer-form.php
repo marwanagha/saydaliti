@@ -45,13 +45,13 @@ if ($id) {
                 <h3><i class="fa fa-archive"></i> Manufacturer Info</h3>
             </div>
             <br>
-            <form style="margin: auto;"
+            <form id="man-form" style="margin: auto;"
                   action="<?php if (!isset($respons)) echo 'requests/manufacturers-management.php';
                   else echo '../requests/manufacturers-management.php' ?>"
                   enctype="multipart/form-data"
                   method="post"
                   class="form-horizontal  col-8 ">
-                <input name="id" type="hidden" value="<?php if (isset($id)) echo $id ?>">
+                <input id="man-id" name="id" type="hidden" value="<?php if (isset($id)) echo $id ?>">
                 <div class="form-group">
                     <label class="col-lg-8 control-label text-left ">Name: </label>
                     <div class="col-lg-8">
@@ -86,7 +86,7 @@ if ($id) {
                 <div class="form-group">
                     <label class="col-lg-8 control-label text-left ">Phones: </label>
                     <div class="col-lg-8">
-                        <textarea class="form-control" name="Phones" type="text" placeholder="Phones"
+                        <textarea required class="form-control" name="Phones" type="text" placeholder="Phones"
                         ><?php echo isset($respons->Phones) ? $respons->Phones: null ?></textarea>
                     </div>
                 </div>
@@ -109,14 +109,15 @@ if ($id) {
                         </select>
                     </div>
                 </div>
+                <span class="text-danger hidden" id="city-error">You Have to select city</span>
                 <input id="city-id" type="hidden"
                        value="<?php if (isset($respons->CityId)) echo $respons->CityId ?>">
 
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left "></label>
                     <div class="col-md-8">
-                        <button type="submit" <?php if (isset($respons)) echo 'id="edit-man" name="edit-man"';
-                        else echo 'id="add-man" name="add-man"'; ?>
+                        <button type="submit" <?php if (isset($respons)) echo 'id="edit-man-id" name="edit-man"';
+                        else echo 'id="add-man-id" name="add-man"'; ?>
                                 class="btn btn-general btn-blue mr-2">Submit
                         </button>
                         <span></span>

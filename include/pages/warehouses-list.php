@@ -45,6 +45,32 @@ $path = '../';
     </div>
 </div>
 
+<div id="confirm-modal-link-warehouse" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div align="center" class="modal-content" style="margin-top: 100px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Are You Sure?</h4>
+                <input type="hidden" id="item-type" value="3">
+            </div>
+            <div class="modal-footer">
+                <div class="row" style="margin: auto;">
+                    <div class="col">
+                        <button id="yes-add-ad" type="button" class="btn btn-info btn" data-dismiss="modal">
+                            Yes
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button id="no-add-ad" type="button" class="btn btn-info btn" data-dismiss="modal">No
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <div class="content-inner chart-cont">
 

@@ -124,18 +124,13 @@ if ($id) {
                                    value="<?php echo isset($respons->Username) ? $respons->Username : 'user' . generatePIN() ?>">
                         </div>
                     </div>
-                    <?php
-                    if (!isset($id)) { ?>
                         <div class="form-group">
                             <label class="col-lg-8 control-label text-left ">Password: </label>
                             <div class="col-lg-8">
-                                <input required class="form-control" name="Password" placeholder="Password" type="text"
-                                       value="<?php echo randomPassword() ?>">
+                                <input <?php if(!isset($id)) echo 'required' ?> class="form-control" name="Password" placeholder="Password" type="text"
+                                       value="<?php if(!isset($id)) echo randomPassword() ?>">
                             </div>
                         </div>
-                    <?php }
-
-                    ?>
                     <div class="form-group">
                         <label class="col-lg-8 control-label text-left ">Address: </label>
                         <div class="col-lg-8">
@@ -163,7 +158,7 @@ if ($id) {
                     <div class="form-group">
                         <label class="col-lg-8 control-label text-left ">Phones: </label>
                         <div class="col-lg-8">
-                        <textarea class="form-control" name="Phones" type="text" placeholder="Phones"
+                        <textarea required class="form-control" name="Phones" type="text" placeholder="Phones"
                         ><?php echo isset($respons->Phones) ? $respons->Phones : null ?></textarea>
                         </div>
                     </div>
@@ -186,6 +181,7 @@ if ($id) {
                             </select>
                         </div>
                     </div>
+                    <span class="text-danger hidden" id="city-error">You Have to select city</span>
                     <input id="city-id" type="hidden"
                            value="<?php if (isset($respons->CityId)) echo $respons->CityId ?>">
 
@@ -212,12 +208,12 @@ if ($id) {
                             </select>
                         </div>
                     </div>
-
+                    <span class="text-danger hidden" id="warehouse-type-error">You Have to select type</span>
                     <div id="profit-cont"
                          class="form-group <?php if (!isset($respons->SubscriptionType)) echo 'hidden'; ?>">
                         <label class="col-lg-8 control-label text-left ">Profit: </label>
                         <div class="col-lg-8">
-                            <input required class="form-control" id="profit-warehouse" name="profit"
+                            <input  class="form-control" id="profit-warehouse" name="profit"
                                    placeholder="Profit"
                                    type="number"
                                    value="<?php echo isset($respons->SubscriptionPrice) ? $respons->SubscriptionPrice : null ?>">
@@ -228,8 +224,8 @@ if ($id) {
                     <div class="form-group">
                         <label class="col-md-8 control-label text-left "></label>
                         <div class="col-md-8">
-                            <button type="submit" <?php if (isset($respons)) echo 'id="edit-warehouse" name="edit-warehouse"';
-                            else echo 'id="add-warehouse" name="add-warehouse"'; ?>
+                            <button type="submit" <?php if (isset($respons)) echo 'id="edit-warehouse-submit" name="edit-warehouse"';
+                            else echo 'id="add-warehouse-submit" name="add-warehouse"'; ?>
                                     class="btn btn-general btn-blue mr-2">Submit
                             </button>
                             <span></span>

@@ -16,6 +16,32 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 
 
 ?>
+<div id="confirm-modal-link-offer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div align="center" class="modal-content" style="margin-top: 100px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Are You Sure?</h4>
+                <input type="hidden" id="item-type" value="2">
+            </div>
+            <div class="modal-footer">
+                <div class="row" style="margin: auto;">
+                    <div class="col">
+                        <button id="yes-add-ad" type="button" class="btn btn-info btn" data-dismiss="modal">
+                            Yes
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button id="no-add-ad" type="button" class="btn btn-info btn" data-dismiss="modal">No
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <div id="confirm-modal-delete-offer" class="modal fade" role="dialog">
     <div class="modal-dialog">

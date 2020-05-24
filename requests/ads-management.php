@@ -12,6 +12,28 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list-types') {
         echo -1;
     }
 }
+
+
+
+else if(isset($_POST['action']) && $_POST['action']=='add-to-ads' ){
+
+    $Type = isset($_POST['type']) ? make_safe($_POST['type']) : null;
+    $TypeId = isset($_POST['item_id']) ? make_safe($_POST['item_id']) : null;
+    $post_array = array(
+
+        'Type' => $Type,
+        'TypeId' => $TypeId
+    );
+
+
+//var_dump($post_array);exit();
+    $respons = api_post('AdvertismentsAdmin/AddAdvertisment', $post_array);
+    if ($respons->code == 1) {
+        echo 1;
+    } else {
+        echo $respons->message;
+    }
+}
 else if (isset($_POST['submit-ad'])) {
 
 

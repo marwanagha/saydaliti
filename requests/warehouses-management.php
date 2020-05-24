@@ -4,7 +4,11 @@
 include '../include/config.php';
 
 if (isset($_POST['action']) && $_POST['action'] == 'show-list-warehouse') {
-    $respons = api_post('Listing/GetWarehousesList', $_POST);
+    $city_id = isset($_POST['city_id']) ? make_safe($_POST['city_id']) : null;
+    $post_array = array(
+        'Filter' => $city_id
+    );
+    $respons = api_post('Listing/GetWarehousesByCityList', $post_array);
 
     if ($respons->code == 1) {
         echo json_encode($respons->data->dropDownListItems);
@@ -50,7 +54,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list-warehouse') {
 
 } else if (isset($_POST['draw'])) {
 
-//    var_dump(json_encode($_POST));exit;
+
 
     $respons = api_post('WarehousesAdmin/LoadWarehousesList', $_POST);
     echo json_encode($respons);
@@ -69,8 +73,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list-warehouse') {
     $CityId = isset($_POST['city-select']) ? make_safe($_POST['city-select']) : null;
     $Id = isset($_POST['id']) ? make_safe($_POST['id']) : null;
     $Drugs = isset($_POST['drugs']) ? make_safe_array($_POST['drugs']) : null;
-    $SubscriptionPrice = isset($_POST['SubscriptionPrice']) ? make_safe_array($_POST['SubscriptionPrice']) : null;
-    $SubscriptionType = isset($_POST['SubscriptionType-select']) ? make_safe_array($_POST['SubscriptionType-select']) : null;
+    $SubscriptionPrice = isset($_POST['profit']) ? make_safe($_POST['profit']) : null;
+    $SubscriptionType = isset($_POST['SubscriptionType-select']) ? make_safe($_POST['SubscriptionType-select']) : null;
 
 
     $post_array = array(
@@ -78,6 +82,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list-warehouse') {
         'Status' => $Status,
         'Name' => $Name,
         'Username' => $Username,
+        'Password' => $Password,
         'Address' => $Address,
         'Longitude' => $Longitude,
         'Phones' => $Phones,
@@ -91,7 +96,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list-warehouse') {
 
     );
 
-
+//var_dump(json_encode($post_array));exit;
     $respons = api_post('WarehousesAdmin/EditWarehouse', $post_array);
 
 

@@ -98,7 +98,7 @@ if ($id) {
                 <h3><i class="fa fa-archive"></i> Drug Info</h3>
             </div>
             <br>
-            <form style="margin: auto;"
+            <form id="pharma-form" style="margin: auto;"
                   action="<?php if (!isset($respons)) echo 'requests/pharmacies-management.php'; else echo '../requests/pharmacies-management.php' ?>"
                   enctype="multipart/form-data"
                   method="post"
@@ -187,6 +187,7 @@ if ($id) {
                         </select>
                     </div>
                 </div>
+                <span class="text-danger hidden" id="city-error">You Have to select city</span>
                 <input id="city-id" type="hidden"
                        value="<?php if (isset($respons->CityId)) echo $respons->CityId ?>">
                 <div class="form-group">
@@ -244,7 +245,7 @@ if ($id) {
                     <div class="col-md-8">
                         <input <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
                                                                           name="SyndicateIdPhoto" accept="image/*">
-                        <input name="old-img-SyndicateIdPhoto" type="hidden"
+                        <input required name="old-img-SyndicateIdPhoto" type="hidden"
                                value="<?php if (isset($respons->SyndicateIdPhoto)) echo $respons->SyndicateIdPhoto ?>">
 
                     </div>
@@ -274,7 +275,7 @@ if ($id) {
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left "></label>
                     <div class="col-md-8">
-                        <button type="submit" <?php if (isset($respons)) echo 'id="edit-pharmacy" name="edit-pharmacy"'; else echo 'id="add-pharmacy" name="add-pharmacy"'; ?>
+                        <button type="submit" <?php if (isset($respons)) echo 'id="edit-pharmacy-submit" name="edit-pharmacy-submit"'; else echo 'id="add-pharmacy-submit" name="add-pharmacy-submit"'; ?>
                                 class="btn btn-general btn-blue mr-2">Submit
                         </button>
                         <span></span>
