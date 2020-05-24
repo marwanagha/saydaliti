@@ -160,17 +160,14 @@ if ($id) {
                                value="<?php echo isset($respons->Strengths) ? $respons->Strengths : null ?>">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Price:</label>
-                    <div class="col-lg-8">
-                        <input required class="form-control" name="Price" placeholder="Price"
-                               type="number"
-                               value="<?php echo isset($respons->Price) ? $respons->Price : null ?>">
-                    </div>
-                </div>
-
-
-
+<!--                <div class="form-group">-->
+<!--                    <label class="col-lg-8 control-label text-left ">Price:</label>-->
+<!--                    <div class="col-lg-8">-->
+<!--                        <input  class="form-control" name="Price" placeholder="Price"-->
+<!--                               type="number"-->
+<!--                               value="--><?php //echo isset($respons->Price) ? $respons->Price : null ?><!--">-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left ">Thumbnail:</label>
                     <div class="col-md-8">
