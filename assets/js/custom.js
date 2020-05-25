@@ -2266,16 +2266,24 @@ $(document).ready(function () {
 
         document.getElementsByClassName("btn dropdown-toggle btn-light")[0].style.borderColor = "";
         $city_id = $('#city-id').val();
-      //manufacturer form error fixing
         $man_id = $('#man-id').val();
+
+
+
+      //manufacturer form error fixing
+      //   $man_id = $('#man-id').val();
+        // $pharmacy_id = $('#pharmacy-id').val();
         $selected = '';
         $path = '';
-        if ($city_id !== '' || $man_id!== '') {
+
+        if ($city_id !== ''  ) {
             $selected = 'selected';
             $path = '../';
             $('#city-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
             $('#city-select').selectpicker('refresh');
         }
+        if($man_id!==undefined && $man_id!=='')
+            $path='../'
 
         if (select_clicked_city == false) {
             Loading()

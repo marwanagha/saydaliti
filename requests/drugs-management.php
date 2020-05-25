@@ -123,8 +123,9 @@ if (isset($_POST['action']) && $_POST['action'] == 'link-drug') {
             'Status' => $Status
 
         );
-
+//        var_dump($_SESSION);
 //    var_dump(json_encode($post_array));exit;
+
 //    var_dump($post_array);
         $respons = api_post('DrugsAdmin/EditDrug', $post_array);
 //    var_dump($respons);exit;

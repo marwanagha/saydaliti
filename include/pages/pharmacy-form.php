@@ -275,7 +275,7 @@ if ($id) {
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left "></label>
                     <div class="col-md-8">
-                        <button type="submit" <?php if (isset($respons)) echo 'id="edit-pharmacy-submit" name="edit-pharmacy-submit"'; else echo 'id="add-pharmacy-submit" name="add-pharmacy-submit"'; ?>
+                        <button type="submit" <?php if (isset($respons)) echo 'id="edit-pharmacy-submit" name="edit-pharmacy"'; else echo 'id="add-pharmacy-submit" name="add-pharmacy"'; ?>
                                 class="btn btn-general btn-blue mr-2">Submit
                         </button>
                         <span></span>

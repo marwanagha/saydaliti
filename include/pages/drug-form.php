@@ -180,7 +180,7 @@ if ($id) {
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left "></label>
                     <div class="col-md-8">
-                        <button type="submit" <?php if (isset($respons)) echo 'id="edit-drug-submit" name="edit-drug-submit"'; else echo 'id="add-drug-submit" name="add-drug-submit"'; ?>
+                        <button type="submit" <?php if (isset($respons)) echo 'id="edit-drug-submit" name="edit-drug"'; else echo 'id="add-drug-submit" name="add-drug"'; ?>
                                 class="btn btn-general btn-blue mr-2">Submit
                         </button>
                         <span></span>
