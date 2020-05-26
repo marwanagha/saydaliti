@@ -87,7 +87,7 @@ if (isset($_POST['delete'])) {
         exit;
     }
 
-
+    $pp = '';
     if ($PharmacyPhoto['error'] != 4) {
         $uploadPath = 'pharmacies';
         $upload_result = @upload_image($PharmacyPhoto, $uploadPath, $image_sizes['services'], '../');
@@ -95,47 +95,46 @@ if (isset($_POST['delete'])) {
         unlink('../files/images/pharmacies/large/' . $old_pic_PharmacyPhoto);
 
     }
-
+    $sp = '';
     if ($SyndicateIdPhoto['error'] != 4) {
         $uploadPath = 'pharmacies';
         $upload_result = @upload_image($SyndicateIdPhoto, $uploadPath, $image_sizes['services'], '../');
         $sp = $upload_result['data']['file_name'];
         unlink('../files/images/pharmacies/large/' . $old_pic_SyndicateIdPhoto);
 
-        $post_array = array(
-
-            'Id' => $id,
-            'PharmacyName' => $PharmacyName,
-            'PharmacistName' => $PharmacistName,
-            'LicenseNumber' => $LicenseNumber,
-            'CityId' => $CityId,
-            'Address' => $Address,
-            'Longitude' => $Longitude,
-            'Latidute' => $Latidute,
-            'WorkingHours' => $WorkingHours,
-            'Status' => $Status,
-            'SyndicateNumber' => $SyndicateNumber,
-            'PharmacyPhoto' => $pp,
-            'SyndicateIdPhoto' => $sp
-
-        );
-
-//var_dump(json_encode($post_array));exit;
-        $respons = api_post('PharmacistsAdmin/EditPharmacist', $post_array);
-
-
-        if ($respons->code == 1) {
-            $_SESSION['error_msg'] = $lang['successfully_done'];
-            $_SESSION['msg_type'] = 1;
-            redirect('../' . 'pharmacy-form/' . $id);
-        } else {
-//        general_error('../' . 'pharmacies-list');
-
-            general_error('../' . 'pharmacies-list', $respons->message);
-        }
 
     }
+    $post_array = array(
 
+        'Id' => $id,
+        'PharmacyName' => $PharmacyName,
+        'PharmacistName' => $PharmacistName,
+        'LicenseNumber' => $LicenseNumber,
+        'CityId' => $CityId,
+        'Address' => $Address,
+        'Longitude' => $Longitude,
+        'Latidute' => $Latidute,
+        'WorkingHours' => $WorkingHours,
+        'Status' => $Status,
+        'SyndicateNumber' => $SyndicateNumber,
+        'PharmacyPhoto' => $pp,
+        'SyndicateIdPhoto' => $sp
+
+    );
+
+//var_dump(json_encode($post_array));
+    $respons = api_post('PharmacistsAdmin/EditPharmacist', $post_array);
+//var_dump($respons);exit;
+
+    if ($respons->code == 1) {
+        $_SESSION['error_msg'] = $lang['successfully_done'];
+        $_SESSION['msg_type'] = 1;
+        redirect('../' . 'pharmacy-form/' . $id);
+    } else {
+//        general_error('../' . 'pharmacies-list');
+
+        general_error('../' . 'pharmacies-list', $respons->message);
+    }
 
 } else if (isset($_POST['add-pharmacy'])) {
 
@@ -175,7 +174,7 @@ if (isset($_POST['delete'])) {
         exit;
     }
 
-
+    $pp = '';
     if ($PharmacyPhoto['error'] != 4) {
         $uploadPath = 'pharmacies';
         $upload_result = @upload_image($PharmacyPhoto, $uploadPath, $image_sizes['services'], '../');
@@ -183,44 +182,42 @@ if (isset($_POST['delete'])) {
 
 
     }
-
+    $sp = '';
     if ($SyndicateIdPhoto['error'] != 4) {
         $uploadPath = 'pharmacies';
         $upload_result = @upload_image($SyndicateIdPhoto, $uploadPath, $image_sizes['services'], '../');
         $sp = $upload_result['data']['file_name'];
 
+    }
 
-        $post_array = array(
+    $post_array = array(
 
-            'PharmacyName' => $PharmacyName,
-            'PharmacistName' => $PharmacistName,
-            'LicenseNumber' => $LicenseNumber,
-            'CityId' => $CityId,
-            'Address' => $Address,
-            'Longitude' => $Longitude,
-            'Latidute' => $Latidute,
-            'WorkingHours' => $WorkingHours,
-            'Status' => $Status,
-            'SyndicateNumber' => $SyndicateNumber,
-            'PharmacyPhoto' => $pp,
-            'SyndicateIdPhoto' => $sp
+        'PharmacyName' => $PharmacyName,
+        'PharmacistName' => $PharmacistName,
+        'LicenseNumber' => $LicenseNumber,
+        'CityId' => $CityId,
+        'Address' => $Address,
+        'Longitude' => $Longitude,
+        'Latidute' => $Latidute,
+        'WorkingHours' => $WorkingHours,
+        'Status' => $Status,
+        'SyndicateNumber' => $SyndicateNumber,
+        'PharmacyPhoto' => $pp,
+        'SyndicateIdPhoto' => $sp
 
-        );
+    );
 
 
-        $respons = api_post('PharmacistsAdmin/AddPharmacist', $post_array);
+    $respons = api_post('PharmacistsAdmin/AddPharmacist', $post_array);
 
-        if ($respons->code == 1) {
-            $_SESSION['error_msg'] = $lang['successfully_done'];
-            $_SESSION['msg_type'] = 1;
-            redirect('../' . 'pharmacies-list');
-        } else {
+    if ($respons->code == 1) {
+        $_SESSION['error_msg'] = $lang['successfully_done'];
+        $_SESSION['msg_type'] = 1;
+        redirect('../' . 'pharmacies-list');
+    } else {
 //            general_error('../' . 'pharmacies-list');
 
-            general_error('../' . 'pharmacies-list', $respons->message);
-        }
-
-
+        general_error('../' . 'pharmacies-list', $respons->message);
     }
 
 

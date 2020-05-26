@@ -613,6 +613,15 @@ h3 {
 
 }
 
+.offer-details-text {
+
+    min-width: auto; max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
 .select-danger {
     box-shadow:  0px 1px 0px 0px #d9534f;
 }

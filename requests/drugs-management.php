@@ -115,7 +115,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'link-drug') {
             'ScientificNameAr' => $ScientificNameAr,
             'ScientificNameEn' => $ScientificNameEn,
             'Strengths' => $Strengths,
-            'Price' => $Price,
+//            'Price' => 0,
             'ManufactureId' => $ManufactureId,
             'CategoryId' => $CategoryId,
             'FormId' => $FormId,
@@ -169,42 +169,43 @@ if (isset($_POST['action']) && $_POST['action'] == 'link-drug') {
             exit;
         }
 
-
+        $uploaded_file_name='';
         if ($Icon['error'] != 4) {
             $uploadPath = 'drugs';
             $upload_result = @upload_image($Icon, $uploadPath, $image_sizes['services'], '../');
             $uploaded_file_name = $upload_result['data']['file_name'];
 
-            $post_array = array(
 
-                'CommerceNameAr' => $CommerceNameAr,
-                'CommerceNameEn' => $CommerceNameEn,
-                'ScientificNameAr' => $ScientificNameAr,
-                'ScientificNameEn' => $ScientificNameEn,
-                'Strengths' => $Strengths,
-                'Price' => $Price,
-                'ManufactureId' => $ManufactureId,
-                'CategoryId' => $CategoryId,
-                'FormId' => $FormId,
-                'Icon' => $uploaded_file_name,
-                'Status' => $Status
+        }
 
-            );
+        $post_array = array(
+
+            'CommerceNameAr' => $CommerceNameAr,
+            'CommerceNameEn' => $CommerceNameEn,
+            'ScientificNameAr' => $ScientificNameAr,
+            'ScientificNameEn' => $ScientificNameEn,
+            'Strengths' => $Strengths,
+//            'Price' => $Price,
+            'ManufactureId' => $ManufactureId,
+            'CategoryId' => $CategoryId,
+            'FormId' => $FormId,
+            'Icon' => $uploaded_file_name,
+            'Status' => $Status
+
+        );
 //        var_dump($post_array);
-            $respons = api_post('DrugsAdmin/AddDrug', $post_array);
+        $respons = api_post('DrugsAdmin/AddDrug', $post_array);
 //        var_dump($respons);exit;
 
-            if ($respons->code == 1) {
-                $_SESSION['error_msg'] = $lang['successfully_done'];
-                $_SESSION['msg_type'] = 1;
-                redirect('../' . 'drug-list');
-            } else {
+        if ($respons->code == 1) {
+            $_SESSION['error_msg'] = $lang['successfully_done'];
+            $_SESSION['msg_type'] = 1;
+            redirect('../' . 'drug-list');
+        } else {
 //            general_error('../' . 'drug-list');
-                general_error('../' . 'drug-list', $respons->message);
-            }
+            general_error('../' . 'drug-list', $respons->message);
+        }
 
-        } else
-            general_error($APP_ROOT . 'drug-list');
     } else
         general_error($APP_ROOT . 'drug-list');
 

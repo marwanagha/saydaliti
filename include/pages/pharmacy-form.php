@@ -95,7 +95,7 @@ if ($id) {
         <!--                </div>-->
         <div class="card form" id="form1">
             <div class="card-header">
-                <h3><i class="fa fa-archive"></i> Drug Info</h3>
+                <h3><i class="fa fa-archive"></i> Pharmacy Info</h3>
             </div>
             <br>
             <form id="pharma-form" style="margin: auto;"
@@ -243,9 +243,9 @@ if ($id) {
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left ">Syndicate Photo:</label>
                     <div class="col-md-8">
-                        <input <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
+                        <input required <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
                                                                           name="SyndicateIdPhoto" accept="image/*">
-                        <input required name="old-img-SyndicateIdPhoto" type="hidden"
+                        <input  name="old-img-SyndicateIdPhoto" type="hidden"
                                value="<?php if (isset($respons->SyndicateIdPhoto)) echo $respons->SyndicateIdPhoto ?>">
 
                     </div>
@@ -266,7 +266,7 @@ if ($id) {
                     <div class="col-md-8">
                         <input <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
                                                                           name="PharmacyPhoto" accept="image/*">
-                        <input name="old-img-PharmacyPhoto" type="hidden"
+                        <input  name="old-img-PharmacyPhoto" type="hidden"
                                value="<?php if (isset($respons->PharmacyPhoto)) echo $respons->PharmacyPhoto ?>">
 
                     </div>

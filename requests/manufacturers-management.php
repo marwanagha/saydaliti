@@ -1,18 +1,14 @@
 <?php
 
 
-
 include '../include/config.php';
 
 if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
-    $respons=api_post('Listing/GetManufacturesList',$_POST);
+    $respons = api_post('Listing/GetManufacturesList', $_POST);
 
-    if($respons->code==1)
-    {
+    if ($respons->code == 1) {
         echo json_encode($respons->data->dropDownListItems);
-    }
-    else
-    {
+    } else {
         echo -1;
     }
 } else if (isset($_POST['add-man'])) {
@@ -27,6 +23,31 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
     $CityId = isset($_POST['city-select']) ? make_safe($_POST['city-select']) : null;
 
 
+    $Image = isset($_FILES['Image']) ? make_safe($_FILES['Image']) : null;
+
+
+    $pics = array();
+    $allowed_files = array(
+        "image/png",
+        "image/jpeg",
+    );
+
+    if ($Image['error'] != 4 && in_array($Image['type'], $allowed_files) == false) {
+        $_SESSION['error_msg'] = $lang['only_image'];
+        $_SESSION['msg_type'] = -1;
+        redirect('manufacturer-form', $path);
+        exit;
+    }
+
+    $new_image='';
+
+    if ($Image['error'] != 4) {
+        $uploadPath = 'manufacturers';
+        $upload_result = @upload_image($Image, $uploadPath, $image_sizes['services'], '../');
+        $new_image = $upload_result['data']['file_name'];
+
+    }
+
 
     $post_array = array(
 
@@ -37,6 +58,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
         'Phones' => $Phones,
         'Latidude' => $Latidude,
         'CityId' => $CityId,
+        'Icon' => $new_image,
 
 
     );
@@ -46,19 +68,19 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
     if ($respons->code == 1) {
         $_SESSION['error_msg'] = $lang['successfully_done'];
         $_SESSION['msg_type'] = 1;
-        redirect(  '../manufacturers');
+        redirect('../manufacturers');
     } else {
 //        general_error('../manufacturers');
-        general_error('../' . 'manufacturers',$respons->message);
+        general_error('../' . 'manufacturers', $respons->message);
     }
 
 } else if ((isset($_POST['action']) && $_POST['action'] == 'delete')) {
     $man_id = isset($_POST['man_id']) ? make_safe($_POST['man_id']) : null;
-    $status=2;
+    $status = 2;
 
     $post_array = array(
-        'Status'=>$status,
-        'Id'=>$man_id
+        'Status' => $status,
+        'Id' => $man_id
     );
 
     $respons = api_post('ManufacturesAdmin/ChangeManufactureStatus', $post_array);
@@ -67,7 +89,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
     } else {
         echo -1;
     }
-
 
 
 } else if ((isset($_POST['action']) && $_POST['action'] == 'change-status')) {
@@ -80,8 +101,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
     $man_id = isset($_POST['man_id']) ? make_safe($_POST['man_id']) : null;
 
     $post_array = array(
-        'Status'=>$status,
-        'Id'=>$man_id
+        'Status' => $status,
+        'Id' => $man_id
     );
 
     $respons = api_post('ManufacturesAdmin/ChangeManufactureStatus', $post_array);
@@ -98,11 +119,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
     $respons = api_post('ManufacturesAdmin/LoadManufacturesList', $_POST);
     echo json_encode($respons);
 
-}
-
-
-else if (isset($_POST['edit-man'])) {
-
+} else if (isset($_POST['edit-man'])) {
 
 
     $Status = 1;
@@ -114,8 +131,31 @@ else if (isset($_POST['edit-man'])) {
     $CityId = isset($_POST['city-select']) ? make_safe($_POST['city-select']) : null;
     $Id = isset($_POST['id']) ? make_safe($_POST['id']) : null;
 
+    $Image = isset($_FILES['Image']) ? make_safe($_FILES['Image']) : null;
+    $OldImage = isset($_FILES['old-img']) ? make_safe($_FILES['old-img']) : null;
 
 
+    $pics = array();
+    $allowed_files = array(
+        "image/png",
+        "image/jpeg",
+    );
+
+    if ($Image['error'] != 4 && in_array($Image['type'], $allowed_files) == false) {
+        $_SESSION['error_msg'] = $lang['only_image'];
+        $_SESSION['msg_type'] = -1;
+        redirect('manufacturer-form', $path);
+        exit;
+    }
+    $new_image='';
+
+    if ($Image['error'] != 4) {
+        $uploadPath = 'manufacturers';
+        $upload_result = @upload_image($Image, $uploadPath, $image_sizes['services'], '../');
+        $new_image = $upload_result['data']['file_name'];
+        unlink('../files/images/manufacturers/large/' . $OldImage);
+
+    }
 
     $post_array = array(
 
@@ -127,6 +167,7 @@ else if (isset($_POST['edit-man'])) {
         'Latidude' => $Latidude,
         'CityId' => $CityId,
         'Id' => $Id,
+        'Icon' => $new_image,
 
 
     );
@@ -135,11 +176,12 @@ else if (isset($_POST['edit-man'])) {
     if ($respons->code == 1) {
         $_SESSION['error_msg'] = $lang['successfully_done'];
         $_SESSION['msg_type'] = 1;
-        redirect('../' . 'manufacturer-form/'.$Id);
+        redirect('../' . 'manufacturer-form/' . $Id);
     } else {
 //        general_error('../' . 'manufacturers');
-        general_error('../' . 'manufacturers',$respons->message);
+        general_error('../' . 'manufacturers', $respons->message);
     }
+
 
 }
 

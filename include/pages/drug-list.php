@@ -121,7 +121,7 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
                 <th>ScientificNameAr</th>
                 <th>ScientificNameEn</th>
                 <th>Strengths</th>
-                <th>Price</th>
+<!--                <th>Price</th>-->
                 <th>Manufacture</th>
                 <th>Category</th>
                 <th>Form</th>

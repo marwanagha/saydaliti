@@ -915,7 +915,7 @@ $(document).ready(function () {
                         '<tr><td>' + item.Drug + '</td>' +
                         '<td>' + item.Quantity + '</td>' +
                         '<td>' + item.Price + '</td>' +
-                        '<td>' + item.OfferDescription + '</td></tr>'
+                        '<td class="offer-details-text" data-toggle="tooltip" data-placement="top" title="'+ item.OfferDescription +'">' + item.OfferDescription + '</td></tr>'
                     )
                 })
 
@@ -1110,6 +1110,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1227,6 +1228,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1256,12 +1258,17 @@ $(document).ready(function () {
             {'data': 'Phones'},
             {'data': 'City'},
             {'data': 'Status'},
+            {
+                'data': 'Icon', render: function (data, type, row) {
+                    return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/manufacturers/large/' + row.Icon + '">';
+                }
+            },
             {'data': 'Actions'}
 
         ],
 
         columnDefs: [{
-            "targets": 6, "data": "Actions", render: function (data, type, row) {
+            "targets": 7, "data": "Actions", render: function (data, type, row) {
                 return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-man "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button>\n' +
@@ -1331,6 +1338,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1394,6 +1402,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1458,6 +1467,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1551,6 +1561,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1586,7 +1597,7 @@ $(document).ready(function () {
                 }
             },
             {'data': 'Strengths'},
-            {'data': 'Price'},
+            // {'data': 'Price'},
             {'data': 'Manufacture'},
             {'data': 'Category'},
             {'data': 'Form'},
@@ -1600,7 +1611,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 11, "data": "Actions", render: function (data, type, row) {
+            "targets": 10, "data": "Actions", render: function (data, type, row) {
                 return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-drug "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button>\n' +
@@ -1624,6 +1635,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1689,6 +1701,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1754,6 +1767,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1832,6 +1846,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1888,6 +1903,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1976,6 +1992,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+        "scrollX": true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,

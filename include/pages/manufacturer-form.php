@@ -113,6 +113,17 @@ if ($id) {
                 <input id="city-id" type="hidden"
                        value="<?php if (isset($respons->CityId)) echo $respons->CityId ?>">
 
+
+                <div class="form-group">
+                    <label class="col-md-8 control-label text-left ">Manufacturer Logo:</label>
+                    <div class="col-md-8">
+                        <input <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
+                                                                          name="Image" accept="image/*">
+                        <input name="old-img" type="hidden"
+                               value="<?php if (isset($respons->Image)) echo $respons->Image ?>">
+
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left "></label>
                     <div class="col-md-8">

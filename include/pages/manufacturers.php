@@ -151,6 +151,7 @@ $path = '../';
             <th>Phones</th>
             <th>City</th>
             <th>Status</th>
+            <th>Icon</th>
             <th>Actions</th>
         </tr>
         </thead>
