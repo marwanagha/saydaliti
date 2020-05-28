@@ -120,7 +120,7 @@ if ($id) {
                         <input <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
                                                                           name="Image" accept="image/*">
                         <input name="old-img" type="hidden"
-                               value="<?php if (isset($respons->Image)) echo $respons->Image ?>">
+                               value="<?php if (isset($respons->Icon)) echo $respons->Icon ?>">
 
                     </div>
                 </div>

@@ -1663,7 +1663,7 @@ $(document).ready(function () {
             {'data': 'ScientificNameAr'},
             {'data': 'ScientificNameEn'},
             {'data': 'Strengths'},
-            {'data': 'Price'},
+            // {'data': 'Price'},
             {'data': 'Manufacture'},
             {'data': 'Category'},
             {'data': 'Form'},
@@ -1677,7 +1677,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 11, "data": "Actions", render: function (data, type, row) {
+            "targets": 10, "data": "Actions", render: function (data, type, row) {
                 if (row.AvaiableInWarehouse != 1) {
                     return '<button data-toggle="tooltip" data-placement="top" title="Add drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn link-drug-modal "><i\n' +
                         '                                        class="fa fa-plus-square-o  "\n' +

@@ -243,7 +243,7 @@ if ($id) {
                 <div class="form-group">
                     <label class="col-md-8 control-label text-left ">Syndicate Photo:</label>
                     <div class="col-md-8">
-                        <input required <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
+                        <input  <?php if ($id == null) echo 'required'; ?> type="file" class="form-control"
                                                                           name="SyndicateIdPhoto" accept="image/*">
                         <input  name="old-img-SyndicateIdPhoto" type="hidden"
                                value="<?php if (isset($respons->SyndicateIdPhoto)) echo $respons->SyndicateIdPhoto ?>">

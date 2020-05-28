@@ -94,18 +94,22 @@ if (isset($_POST['action']) && $_POST['action'] == 'link-drug') {
             exit;
         }
 
+        $uploaded_file_name = '';
 
         if ($Icon['error'] != 4) {
             $uploadPath = 'drugs';
             $upload_result = @upload_image($Icon, $uploadPath, $image_sizes['services'], '../');
             $uploaded_file_name = $upload_result['data']['file_name'];
-
-            unlink('../files/images/drugs/large/' . $old_pic);
+            if ($old_pic != NULL)
+                unlink('../files/images/drugs/large/' . $old_pic);
 
         }
 
-        if (!isset($uploaded_file_name))
-            $uploaded_file_name = '';
+
+        if ($uploaded_file_name == '' && $old_pic != null) {
+            $uploaded_file_name = $old_pic;
+        }
+
 
         $post_array = array(
 
@@ -123,12 +127,9 @@ if (isset($_POST['action']) && $_POST['action'] == 'link-drug') {
             'Status' => $Status
 
         );
-//        var_dump($_SESSION);
-//    var_dump(json_encode($post_array));exit;
 
-//    var_dump($post_array);
         $respons = api_post('DrugsAdmin/EditDrug', $post_array);
-//    var_dump($respons);exit;
+
 
         if ($respons->code == 1) {
             $_SESSION['error_msg'] = $lang['successfully_done'];
@@ -169,7 +170,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'link-drug') {
             exit;
         }
 
-        $uploaded_file_name='';
+        $uploaded_file_name = '';
         if ($Icon['error'] != 4) {
             $uploadPath = 'drugs';
             $upload_result = @upload_image($Icon, $uploadPath, $image_sizes['services'], '../');

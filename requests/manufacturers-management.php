@@ -132,7 +132,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
     $Id = isset($_POST['id']) ? make_safe($_POST['id']) : null;
 
     $Image = isset($_FILES['Image']) ? make_safe($_FILES['Image']) : null;
-    $OldImage = isset($_FILES['old-img']) ? make_safe($_FILES['old-img']) : null;
+    $OldImage = isset($_POST['old-img']) ? make_safe($_POST['old-img']) : null;
 
 
     $pics = array();
@@ -153,10 +153,16 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list') {
         $uploadPath = 'manufacturers';
         $upload_result = @upload_image($Image, $uploadPath, $image_sizes['services'], '../');
         $new_image = $upload_result['data']['file_name'];
+        if($OldImage!=NULL)
         unlink('../files/images/manufacturers/large/' . $OldImage);
 
     }
 
+
+if($new_image=='' && $OldImage!=null)
+{
+    $new_image=$OldImage;
+}
     $post_array = array(
 
         'Status' => $Status,

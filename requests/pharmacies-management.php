@@ -92,7 +92,8 @@ if (isset($_POST['delete'])) {
         $uploadPath = 'pharmacies';
         $upload_result = @upload_image($PharmacyPhoto, $uploadPath, $image_sizes['services'], '../');
         $pp = $upload_result['data']['file_name'];
-        unlink('../files/images/pharmacies/large/' . $old_pic_PharmacyPhoto);
+        if ($old_pic_PharmacyPhoto != NULL)
+            unlink('../files/images/pharmacies/large/' . $old_pic_PharmacyPhoto);
 
     }
     $sp = '';
@@ -100,10 +101,21 @@ if (isset($_POST['delete'])) {
         $uploadPath = 'pharmacies';
         $upload_result = @upload_image($SyndicateIdPhoto, $uploadPath, $image_sizes['services'], '../');
         $sp = $upload_result['data']['file_name'];
-        unlink('../files/images/pharmacies/large/' . $old_pic_SyndicateIdPhoto);
+        if ($old_pic_SyndicateIdPhoto != NULL)
+            unlink('../files/images/pharmacies/large/' . $old_pic_SyndicateIdPhoto);
 
 
     }
+
+
+    if ($pp == '' && $old_pic_PharmacyPhoto != null) {
+        $pp = $old_pic_PharmacyPhoto;
+    }
+
+    if ($sp == '' && $old_pic_SyndicateIdPhoto != null) {
+        $sp = $old_pic_SyndicateIdPhoto;
+    }
+
     $post_array = array(
 
         'Id' => $id,
