@@ -152,12 +152,23 @@ if ($id && strpos($id, 'D') === false) {
                 <div class="form-group">
                     <label class="col-lg-8 control-label text-left ">Gift :</label>
                     <div class="col-lg-8">
-                        <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
+                        <input required <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->Gift) ? $respons->Gift : null ?>"
 
                                 class="form-control" placeholder="Gift" name="Gift" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-8 control-label text-left ">Discount :</label>
+                    <div class="col-lg-8">
+                        <input required <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
+                            echo 'disabled';
+                        } ?>
+                                value="<?php echo isset($respons->Discount) ? $respons->Discount : null ?>"
+
+                                class="form-control" placeholder="Discount" name="Discount" type="number">
                     </div>
                 </div>
                 <div class="form-group">
@@ -182,17 +193,7 @@ if ($id && strpos($id, 'D') === false) {
                                 class="form-control" placeholder="Expiry Date" name="ExpiryDate" type="date">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Discount :</label>
-                    <div class="col-lg-8">
-                        <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
-                            echo 'disabled';
-                        } ?>
-                                value="<?php echo isset($respons->Discount) ? $respons->Discount : null ?>"
 
-                                class="form-control" placeholder="Discount" name="Discount" type="number">
-                    </div>
-                </div>
                 <div class="form-group">
                     <label class="col-lg-8 control-label text-left ">Total Price :</label>
                     <div class="col-lg-8">

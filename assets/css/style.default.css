@@ -746,7 +746,7 @@ nav.navbar .container-fluid {
 }
 
 nav.navbar .menu-btn.active {
-    margin-right: 20px;
+    margin-left: 116px;
     font-size: 1.2em;
     height: 13px;
     transition: all 0.7s;

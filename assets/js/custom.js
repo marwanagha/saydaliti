@@ -1161,15 +1161,15 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 9, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-warehouse "><i\n' +
+                return '<div class="row "><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-warehouse "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n' +
-                    '                            <button data-id="' + row.Id + '" class="btn btn-blue btn delete-warehouse"><i\n' +
+                    '                                        aria-hidden="true"></i></button></div>\n' +
+                    '                            <div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-warehouse"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
-                    '                                        aria-hidden="true"></i></button> ' +
-                    '<button  data-toggle="tooltip" data-placement="top" title="Add to Advertisements" data-id="' + row.Id + '" class="btn btn-blue btn link-warehouse "><i\n' +
+                    '                                        aria-hidden="true"></i></button></div> ' +
+                    '<div class="col "><button  data-toggle="tooltip" data-placement="top" title="Add to Advertisements" data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn link-warehouse "><i\n' +
                     '                                        class="fa fa-plus-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n';
+                    '                                        aria-hidden="true"></i></button></div></div>\n';
             }
         },
 
@@ -1269,15 +1269,15 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 7, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-man "><i\n' +
+                return '<div class="row"><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-man "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n' +
-                    '                            <button data-id="' + row.Id + '" class="btn btn-blue btn delete-man"><i\n' +
+                    '                                        aria-hidden="true"></i></button></div>\n' +
+                    '                            <div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-man"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
-                    '                                        aria-hidden="true"></i></button> ' +
-                    '<button  data-toggle="tooltip" data-placement="top" title="Add to Advertisements" data-id="' + row.Id + '" class="btn btn-blue btn link-man "><i\n' +
+                    '                                        aria-hidden="true"></i></button></div> ' +
+                    '<div class="col "><button  data-toggle="tooltip" data-placement="top" title="Add to Advertisements" data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn link-man "><i\n' +
                     '                                        class="fa fa-plus-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n';
+                    '                                        aria-hidden="true"></i></button></div></div>\n';
             }
         },
 
@@ -1363,7 +1363,11 @@ $(document).ready(function () {
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
             {'data': 'Id'},
-            {'data': 'Description'},
+            {
+                'data': 'Description', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
+                }
+            },
             {'data': 'Durg'},
             {'data': 'Quantity'},
             {'data': 'ExpiryDate'},
@@ -1375,12 +1379,12 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 7, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-offer "><i\n' +
+                return '<div class="row "><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-offer "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n' +
-                    '                            <button data-id="' + row.Id + '" class="btn btn-blue btn delete-offer"><i\n' +
+                    '                                        aria-hidden="true"></i></button></div>\n' +
+                    '                           <div class="col "> <button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-offer"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>';
+                    '                                        aria-hidden="true"></i></button></div></div>';
             }
 
         }],
@@ -1428,7 +1432,11 @@ $(document).ready(function () {
             // {"DT_RowId": "drug-"+'Id'},
             {'data': 'Id'},
             {'data': 'Warehouse'},
-            {'data': 'Description'},
+            {
+                'data': 'Description', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
+                }
+            },
             {'data': 'Durg'},
             {'data': 'Quantity'},
             {'data': 'ExpiryDate'},
@@ -1440,12 +1448,12 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 8, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-offer "><i\n' +
+                return '<div class="row "><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-offer "><i\n' +
                     '                                        class="fa fa-search-plus  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n' +
-                    '<button  data-toggle="tooltip" data-placement="top" title="Add to Advertisements" data-id="' + row.Id + '" class="btn btn-blue btn link-offer "><i\n' +
+                    '                                        aria-hidden="true"></i></button></div>\n' +
+                    '<div class="col "><button  data-toggle="tooltip" data-placement="top" title="Add to Advertisements" data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn link-offer "><i\n' +
                     '                                        class="fa fa-plus-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n';
+                    '                                        aria-hidden="true"></i></button></div></div>\n';
             }
 
         }],
@@ -1501,7 +1509,7 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 4, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn delete-cat"><i\n' +
+                return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-cat"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
                     '                                        aria-hidden="true"></i></button>';
             }
@@ -1562,6 +1570,7 @@ $(document).ready(function () {
             zeroRecords: "No matching records found"
         },
         "scrollX": true,
+        // responsive: true,
         processing: true,
         serverSide: true,
         orderCellsTop: true,
@@ -1599,25 +1608,29 @@ $(document).ready(function () {
             {'data': 'Strengths'},
             // {'data': 'Price'},
             {'data': 'Manufacture'},
-            {'data': 'Category'},
-            {'data': 'Form'},
             {
-                'data': 'Icon', render: function (data, type, row) {
-                    return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
+                'data': 'Category', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Category + '">' + row.Category + '</span>';
                 }
             },
+            {'data': 'Form'},
+            // {
+            //     'data': 'Icon', render: function (data, type, row) {
+            //         return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
+            //     }
+            // },
             {'data': 'Actions'}
 
         ],
 
-        columnDefs: [{
-            "targets": 10, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-drug "><i\n' +
+        columnDefs: [
+            { "targets": 9, "data": "Actions", render: function (data, type, row) {
+                return '<div class="row"><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-drug "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n' +
-                    '                            <button data-id="' + row.Id + '" class="btn btn-blue btn delete-drug"><i\n' +
+                    '                                        aria-hidden="true"></i></button></div>\n' +
+                    '                            <div class="col"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-drug"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>';
+                    '                                        aria-hidden="true"></i></button></div></div>';
             }
         }],
         // bServerSide: true,
@@ -1635,6 +1648,7 @@ $(document).ready(function () {
             processing: "Loading Data...",
             zeroRecords: "No matching records found"
         },
+
         "scrollX": true,
         processing: true,
         serverSide: true,
@@ -1660,26 +1674,38 @@ $(document).ready(function () {
             {'data': 'Id'},
             {'data': 'CommerceNameAr'},
             {'data': 'CommerceNameEn'},
-            {'data': 'ScientificNameAr'},
-            {'data': 'ScientificNameEn'},
+            {
+                'data': 'ScientificNameAr', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
+                }
+            },
+            {
+                'data': 'ScientificNameEn', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameEn + '">' + row.ScientificNameEn + '</span>';
+                }
+            },
             {'data': 'Strengths'},
             // {'data': 'Price'},
             {'data': 'Manufacture'},
-            {'data': 'Category'},
-            {'data': 'Form'},
             {
-                'data': 'Icon', render: function (data, type, row) {
-                    return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
+                'data': 'Category', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Category + '">' + row.Category + '</span>';
                 }
             },
+            {'data': 'Form'},
+            // {
+            //     'data': 'Icon', render: function (data, type, row) {
+            //         return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
+            //     }
+            // },
             {'data': 'Actions'}
 
         ],
 
         columnDefs: [{
-            "targets": 10, "data": "Actions", render: function (data, type, row) {
+            "targets": 9, "data": "Actions", render: function (data, type, row) {
                 if (row.AvaiableInWarehouse != 1) {
-                    return '<button data-toggle="tooltip" data-placement="top" title="Add drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn link-drug-modal "><i\n' +
+                    return '<button data-toggle="tooltip" data-placement="top" title="Add drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn link-drug-modal "><i\n' +
                         '                                        class="fa fa-plus-square-o  "\n' +
                         '                                        aria-hidden="true"></i></button>';
                 } else return '<span class="badge badge-pill badge-primary">Added</span>';
@@ -1726,30 +1752,42 @@ $(document).ready(function () {
             {'data': 'Id'},
             {'data': 'CommerceNameAr'},
             {'data': 'CommerceNameEn'},
-            {'data': 'ScientificNameAr'},
-            {'data': 'ScientificNameEn'},
+            {
+                'data': 'ScientificNameAr', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
+                }
+            },
+            {
+                'data': 'ScientificNameEn', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameEn + '">' + row.ScientificNameEn + '</span>';
+                }
+            },
             {'data': 'Strengths'},
             {'data': 'Price'},
             {'data': 'Manufacture'},
-            {'data': 'Category'},
-            {'data': 'Form'},
             {
-                'data': 'Icon', render: function (data, type, row) {
-                    return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
+                'data': 'Category', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Category + '">' + row.Category + '</span>';
                 }
             },
+            {'data': 'Form'},
+            // {
+            //     'data': 'Icon', render: function (data, type, row) {
+            //         return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/drugs/large/' + row.Icon + '">';
+            //     }
+            // },
             {'data': 'Actions'}
 
         ],
 
         columnDefs: [{
-            "targets": 11, "data": "Actions", render: function (data, type, row) {
-                return '<button data-toggle="tooltip" data-placement="top" title="delete drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn unlink-drug-modal  "><i\n' +
+            "targets": 10, "data": "Actions", render: function (data, type, row) {
+                return '<div class="row "><div class="col mb-1"><button data-toggle="tooltip" data-placement="top" title="delete drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn unlink-drug-modal  "><i\n' +
                     '                                        class="fa fa-trash  "\n' +
-                    '                                        aria-hidden="true"></i></button> ' +
-                    '<button data-toggle="tooltip" data-placement="top" title="Add offer" data-name="' + row.CommerceNameEn + '" data-price="' + row.Price + '" data-id="' + row.Id + '" class="btn btn-blue btn add-offer-drug "><i\n' +
+                    '                                        aria-hidden="true"></i></button> </div>' +
+                    '<div class="col "><button data-toggle="tooltip" data-placement="top" title="Add offer" data-name="' + row.CommerceNameEn + '" data-price="' + row.Price + '" data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn add-offer-drug "><i\n' +
                     '                                        class="fa fa-plus-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>';
+                    '                                        aria-hidden="true"></i></button></div></div>';
             }
         }],
         // bServerSide: true,
@@ -1805,12 +1843,12 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 7, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn edit-pharmacy "><i\n' +
+                return '<div class="row "><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-pharmacy "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>\n' +
-                    '                            <button data-id="' + row.Id + '" class="btn btn-blue btn delete-pharmacy"><i\n' +
+                    '                                        aria-hidden="true"></i></button></div>\n' +
+                    '                            <div class="col "><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-pharmacy"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
-                    '                                        aria-hidden="true"></i></button>';
+                    '                                        aria-hidden="true"></i></button></div></div>';
             }
         },
             {
@@ -1880,7 +1918,7 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 3, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn delete-ad"><i\n' +
+                return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-ad"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
                     '                                        aria-hidden="true"></i></button>';
             }
@@ -1953,7 +1991,7 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 8, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn order-details "><i\\n\' +\n' +
+                return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                     '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                     '                    \'                                        aria-hidden="true"></i></button>'
             }
@@ -2078,7 +2116,7 @@ $(document).ready(function () {
                         ' Reject' +
                         ' </label>' +
                         '</div> ' +
-                        '<button data-id="' + row.Id + '" class="btn btn-blue btn order-details "><i\\n\' +\n' +
+                        '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                         '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                         '                    \'                                        aria-hidden="true"></i></button>';
 
@@ -2104,11 +2142,11 @@ $(document).ready(function () {
                         ' Reject' +
                         ' </label>' +
                         '</div> ' +
-                        '<button data-id="' + row.Id + '" class="btn btn-blue btn order-details "><i\\n\' +\n' +
+                        '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                         '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                         '                    \'                                        aria-hidden="true"></i></button>';
                 } else {
-                    return '<button data-id="' + row.Id + '" class="btn btn-blue btn order-details "><i\\n\' +\n' +
+                    return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                         '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                         '                    \'                                        aria-hidden="true"></i></button>';
                 }

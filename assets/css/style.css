@@ -433,6 +433,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 .dataTables_wrapper {
     width: 100%;
+    margin: 0 auto;
 }
 
 .table{
@@ -683,3 +684,18 @@ h3 {
     pointer-events: none;
     overflow-x: hidden;
 }
+
+.side-menu-icon {
+    width: 27px;
+    height: 27px;
+}
+
+.btn-blue-table {
+    width: 13px;
+}
+
+/*div.dataTables_wrapper {*/
+/*    direction: rtl;*/
+/*}*/
+
+/*th, td { text-align: right; }*/

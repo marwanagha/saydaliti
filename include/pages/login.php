@@ -58,7 +58,7 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
                       <label for="exampleInputEmail1" class="text-left">Password</label>
                       <input required placeholder="Enter password" class="form-control" type="password" value="" name="password" id="password">
                     </div>   
-                    <button class="btn btn-general btn-blue" type="submit" role="button"><i fa fa-right-arrow></i>Login</button>
+                    <button style="width: auto;" class="btn btn-general btn-blue" type="submit" role="button"><i fa fa-right-arrow></i>Login</button>
                   </form>
                 </div>
             </div>
