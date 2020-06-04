@@ -129,7 +129,7 @@ $path = '../';
 " style="width:100%">
         <thead class="bg-info text-white">
         <tr>
-            <th>Id</th>
+<!--            <th>Id</th>-->
             <th>Name Ar</th>
             <th>Name En</th>
             <th>Status</th>

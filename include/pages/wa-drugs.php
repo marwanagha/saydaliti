@@ -51,21 +51,21 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
     </div>
 
 
-
     <table id="table-my-drugs-admin" class="table table-hover table-striped m-1 " style="width:100%">
         <thead class="bg-info text-white">
         <tr>
-            <th>Id</th>
-            <th>CommerceNameAr</th>
+            <!--            <th>Id</th>-->
             <th>CommerceNameEn</th>
-            <th>ScientificNameAr</th>
+            <th>CommerceNameAr</th>
+            <!--            <th>ScientificNameAr</th>-->
             <th>ScientificNameEn</th>
-            <th>Strengths</th>
-            <th>Price</th>
             <th>Manufacture</th>
+            <th>Strengths</th>
             <th>Category</th>
+            <!--            <th>Price</th>-->
+
             <th>Form</th>
-<!--            <th>Icon</th>-->
+            <!--            <th>Icon</th>-->
             <th>Actions</th>
         </tr>
         </thead>

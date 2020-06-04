@@ -87,12 +87,16 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
         <thead class="bg-info text-white">
         <tr>
 
-            <th>Id</th>
+<!--            <th>Id</th>-->
             <?php if($_SESSION['role_id']==1) echo '<th>Warehouse</th>'; ?>
-            <th>Description</th>
+<!--            <th>Description</th>-->
+<!--            <th>Manufacturer</th>-->
             <th>Durg</th>
+            <th>pharmacist Price</th>
+            <th>General Price</th>
             <th>Quantity</th>
-            <th>ExpiryDate</th>
+            <th>Gift</th>
+<!--            <th>ExpiryDate</th>-->
             <th>Discount</th>
             <th>TotalPrice</th>
             <th>Actions</th>

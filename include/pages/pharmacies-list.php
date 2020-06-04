@@ -63,7 +63,7 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 " style="width:100%">
         <thead class="bg-info text-white">
         <tr>
-            <th>Id</th>
+<!--            <th>Id</th>-->
             <th>PharmacyName</th>
             <th>PharmacistName</th>
             <th>LicenseNumber</th>

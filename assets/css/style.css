@@ -699,3 +699,17 @@ h3 {
 /*}*/
 
 /*th, td { text-align: right; }*/
+
+
+
+.notifyjs-bootstrap-base {
+    margin-top: 150px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 300px;
+    text-align: center;
+}
+
+.search-input-xl {
+    width: 651px !important;
+}

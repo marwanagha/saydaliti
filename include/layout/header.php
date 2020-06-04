@@ -45,6 +45,10 @@
                                     class="img-fluid"></div>
                         <div class="brand-text brand-small admin-header-small-img"><img class="icon-admin"  src="<?php echo $ASSET_URL ?>img/logo3.png" alt="Logo" style="display: none;"></div>
                     </a>
+                    <a href="" class="navbar-brand">
+                        <div class="brand-text brand-big hidden-lg-down"> My Pharma Order</div>
+                        <div class="brand-text brand-small admin-header-small-img"></div>
+                    </a>
                     <a id="toggle-btn" href="#" class="menu-btn active">
                         <span></span>
                         <span></span>

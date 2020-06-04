@@ -167,7 +167,7 @@ if (isset($_SESSION['change_password'])) {
         <thead class="bg-info text-white">
         <tr>
 
-            <th>Id</th>
+<!--            <th>Id</th>-->
             <?php if(isset($_SESSION['role_id']) && $_SESSION['role_id']==1) { ?>
                 <th>Warehouse</th>
             <?php } ?>

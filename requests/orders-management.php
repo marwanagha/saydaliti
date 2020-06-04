@@ -79,6 +79,8 @@ require '../include/config.php';
 
  }
 else if (isset($_POST['draw'])) {
+//var_dump(json_encode($_POST));exit;
+//var_dump($_SESSION);exit;
 
     $respons = api_post('OrdersAdmin/LoadOrderList', $_POST);
 

@@ -145,13 +145,12 @@ $path = '../';
         <tr>
 
 
-            <th>Id</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phones</th>
-            <th>City</th>
-            <th>Status</th>
+<!--            <th>Id</th>-->
             <th>Icon</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Status</th>
             <th>Actions</th>
         </tr>
         </thead>

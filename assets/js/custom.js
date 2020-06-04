@@ -66,11 +66,11 @@ $(document).ready(function () {
 
                 })
 
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else if (msg == -1) {
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
             } else
-                $.notify('Can not delete drug ' + msg, {position: "left bottom", className: "error"});
+                $.notify('Can not delete drug ' + msg, {position: "top center", className: "error"});
 
         })
 
@@ -114,9 +114,9 @@ $(document).ready(function () {
     //     }).done(function (msg) {
     //
     //         if (msg == 1)
-    //             $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+    //             $.notify(lang.successfully_done, {position: "top center", className: "success"});
     //         else
-    //             $.notify(lang.general_error, {position: "left bottom", className: "error"});
+    //             $.notify(lang.general_error, {position: "top center", className: "error"});
     //
     //
     //     })
@@ -155,9 +155,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -181,9 +181,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -202,9 +202,9 @@ $(document).ready(function () {
     //     }).done(function (msg) {
     //
     //         if (msg == 1)
-    //             $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+    //             $.notify(lang.successfully_done, {position: "top center", className: "success"});
     //         else
-    //             $.notify(lang.general_error, {position: "left bottom", className: "error"});
+    //             $.notify(lang.general_error, {position: "top center", className: "error"});
     //
     //
     //     })
@@ -246,9 +246,9 @@ $(document).ready(function () {
                     $(this).remove();
 
                 })
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else {
-                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
+                $.notify(lang.canNotDeleteCat, {position: "top center", className: "error"});
             }
 
         })
@@ -292,9 +292,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -318,9 +318,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -339,9 +339,9 @@ $(document).ready(function () {
     //     }).done(function (msg) {
     //
     //         if (msg == 1)
-    //             $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+    //             $.notify(lang.successfully_done, {position: "top center", className: "success"});
     //         else
-    //             $.notify(lang.general_error, {position: "left bottom", className: "error"});
+    //             $.notify(lang.general_error, {position: "top center", className: "error"});
     //
     //
     //     })
@@ -383,9 +383,9 @@ $(document).ready(function () {
                     $(this).remove();
 
                 })
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else {
-                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
+                $.notify(lang.canNotDeleteCat, {position: "top center", className: "error"});
             }
 
         })
@@ -435,7 +435,7 @@ $(document).ready(function () {
 
                 window.location.href = siteURL + "pharmacy-form/" + $pharmacy_id;
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -460,7 +460,7 @@ $(document).ready(function () {
             if (msg == 1)
                 window.location.href = siteURL + "pharmacy-form/" + $pharmacy_id;
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -515,11 +515,11 @@ $(document).ready(function () {
 
                 })
 
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else if (msg == -1) {
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
             } else
-                $.notify('Can not delete drug ' + msg, {position: "left bottom", className: "error"});
+                $.notify('Can not delete drug ' + msg, {position: "top center", className: "error"});
 
         })
 
@@ -564,9 +564,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -591,9 +591,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -628,9 +628,9 @@ $(document).ready(function () {
                     $(this).remove();
 
                 })
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else {
-                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
+                $.notify(lang.canNotDeleteCat, {position: "top center", className: "error"});
             }
 
         })
@@ -714,9 +714,9 @@ $(document).ready(function () {
             unLoading()
             if (msg == 1) {
 
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else {
-                $.notify(msg, {position: "left bottom", className: "error"});
+                $.notify(msg, {position: "top center", className: "error"});
             }
 
         })
@@ -742,9 +742,9 @@ $(document).ready(function () {
                     $(this).remove();
 
                 })
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else {
-                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
+                $.notify(lang.canNotDeleteCat, {position: "top center", className: "error"});
             }
 
         })
@@ -776,9 +776,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -802,9 +802,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
 
         })
@@ -828,9 +828,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             unLoading()
             if (msg == 1)
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             else
-                $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                $.notify(lang.general_error, {position: "top center", className: "error"});
 
         })
 
@@ -880,7 +880,7 @@ $(document).ready(function () {
 
                     $('#profits-modal').modal({show: true})
                 } else
-                    $.notify(res.message, {position: "left bottom", className: "error"});
+                    $.notify(res.message, {position: "top center", className: "error"});
 
             })
         }
@@ -915,14 +915,14 @@ $(document).ready(function () {
                         '<tr><td>' + item.Drug + '</td>' +
                         '<td>' + item.Quantity + '</td>' +
                         '<td>' + item.Price + '</td>' +
-                        '<td class="offer-details-text" data-toggle="tooltip" data-placement="top" title="'+ item.OfferDescription +'">' + item.OfferDescription + '</td></tr>'
+                        '<td class="offer-details-text" data-toggle="tooltip" data-placement="top" title="' + item.OfferDescription + '">' + item.OfferDescription + '</td></tr>'
                     )
                 })
 
                 $('#order-modal').modal({show: true})
 
             } else
-                $.notify(res.message, {position: "left bottom", className: "error"});
+                $.notify(res.message, {position: "top center", className: "error"});
 
         })
 
@@ -994,9 +994,9 @@ $(document).ready(function () {
 
                 })
 
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else
-                $.notify(msg, {position: "left bottom", className: "error"});
+                $.notify(msg, {position: "top center", className: "error"});
 
         })
 
@@ -1024,10 +1024,10 @@ $(document).ready(function () {
 
                 })
 
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
 
             } else
-                $.notify(msg, {position: "left bottom", className: "error"});
+                $.notify(msg, {position: "top center", className: "error"});
 
         })
 
@@ -1095,9 +1095,9 @@ $(document).ready(function () {
                     $(this).remove();
 
                 })
-                $.notify(lang.successfully_done, {position: "left bottom", className: "success"});
+                $.notify(lang.successfully_done, {position: "top center", className: "success"});
             } else {
-                $.notify(lang.canNotDeleteCat, {position: "left bottom", className: "error"});
+                $.notify(lang.canNotDeleteCat, {position: "top center", className: "error"});
             }
 
         })
@@ -1113,6 +1113,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1134,7 +1135,7 @@ $(document).ready(function () {
 
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
-            {'data': 'Id'},
+            // {'data': 'Id'},
             {'data': 'Name'},
             {'data': 'Username'},
             {'data': 'City'},
@@ -1160,7 +1161,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 9, "data": "Actions", render: function (data, type, row) {
+            "targets": 8, "data": "Actions", render: function (data, type, row) {
                 return '<div class="row "><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-warehouse "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button></div>\n' +
@@ -1231,6 +1232,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1249,26 +1251,27 @@ $(document).ready(function () {
         //     }
         // ],
 
-
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
-            {'data': 'Id'},
-            {'data': 'Name'},
-            {'data': 'Address'},
-            {'data': 'Phones'},
-            {'data': 'City'},
-            {'data': 'Status'},
+            // {'data': 'Id'},
             {
                 'data': 'Icon', render: function (data, type, row) {
                     return '<img style="width: 100px; height:100px" src="' + siteFilesURL + 'images/manufacturers/large/' + row.Icon + '">';
                 }
             },
+            {'data': 'Name'},
+
+            // {'data': 'Phones'},
+            {'data': 'City'},
+            {'data': 'Address'},
+            {'data': 'Status'},
+
             {'data': 'Actions'}
 
         ],
 
         columnDefs: [{
-            "targets": 7, "data": "Actions", render: function (data, type, row) {
+            "targets": 5, "data": "Actions", render: function (data, type, row) {
                 return '<div class="row"><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-man "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button></div>\n' +
@@ -1341,6 +1344,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1360,17 +1364,27 @@ $(document).ready(function () {
         // ],
 
 
+
+
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
-            {'data': 'Id'},
+            // {'data': 'Id'},
+            // {
+            //     'data': 'Description', render: function (data, type, row) {
+            //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
+            //     }
+            // },
+            // {'data': 'Manufacturer'},
+            {'data': 'Durg'},
+            {'data': 'Price'},
+            {'data': 'NormalPrice'},
+            {'data': 'Quantity'},
             {
-                'data': 'Description', render: function (data, type, row) {
-                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
+                'data': 'Gift', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Gift + '">' + row.Gift + '</span>';
                 }
             },
-            {'data': 'Durg'},
-            {'data': 'Quantity'},
-            {'data': 'ExpiryDate'},
+            // {'data': 'ExpiryDate'},
             {'data': 'Discount'},
             {'data': 'TotalPrice'},
             {'data': 'Actions'}
@@ -1409,6 +1423,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1430,16 +1445,24 @@ $(document).ready(function () {
 
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
-            {'data': 'Id'},
+            // {'data': 'Id'},
             {'data': 'Warehouse'},
+            // {
+            //     'data': 'Description', render: function (data, type, row) {
+            //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
+            //     }
+            // },
+            // {'data': 'Manufacturer'},
+            {'data': 'Durg'},
+            {'data': 'Price'},
+            {'data': 'NormalPrice'},
+            {'data': 'Quantity'},
             {
-                'data': 'Description', render: function (data, type, row) {
-                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
+                'data': 'Gift', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Gift + '">' + row.Gift + '</span>';
                 }
             },
-            {'data': 'Durg'},
-            {'data': 'Quantity'},
-            {'data': 'ExpiryDate'},
+            // {'data': 'ExpiryDate'},
             {'data': 'Discount'},
             {'data': 'TotalPrice'},
             {'data': 'Actions'}
@@ -1478,6 +1501,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1499,7 +1523,7 @@ $(document).ready(function () {
 
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
-            {'data': 'Id'},
+            // {'data': 'Id'},
             {'data': 'NameAr'},
             {'data': 'NameEn'},
             {'data': 'Status'},
@@ -1508,7 +1532,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 4, "data": "Actions", render: function (data, type, row) {
+            "targets": 3, "data": "Actions", render: function (data, type, row) {
                 return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-cat"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
                     '                                        aria-hidden="true"></i></button>';
@@ -1572,7 +1596,9 @@ $(document).ready(function () {
         "scrollX": true,
         // responsive: true,
         processing: true,
+        pageLength:50,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1592,22 +1618,23 @@ $(document).ready(function () {
         // ],
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
-            {'data': 'Id'},
-            {'data': 'CommerceNameAr'},
+            // {'data': 'Id'},
+            // {'data': 'CommerceNameAr'},
             {'data': 'CommerceNameEn'},
-            {
-                'data': 'ScientificNameAr', render: function (data, type, row) {
-                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
-                }
-            },
+            // {
+            //     'data': 'ScientificNameAr', render: function (data, type, row) {
+            //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
+            //     }
+            // },
             {
                 'data': 'ScientificNameEn', render: function (data, type, row) {
                     return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameEn + '">' + row.ScientificNameEn + '</span>';
                 }
             },
+            {'data': 'Manufacture'},
             {'data': 'Strengths'},
             // {'data': 'Price'},
-            {'data': 'Manufacture'},
+
             {
                 'data': 'Category', render: function (data, type, row) {
                     return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Category + '">' + row.Category + '</span>';
@@ -1624,15 +1651,16 @@ $(document).ready(function () {
         ],
 
         columnDefs: [
-            { "targets": 9, "data": "Actions", render: function (data, type, row) {
-                return '<div class="row"><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-drug "><i\n' +
-                    '                                        class="fa fa-pencil-square-o  "\n' +
-                    '                                        aria-hidden="true"></i></button></div>\n' +
-                    '                            <div class="col"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-drug"><i\n' +
-                    '                                        class="fa fa-trash-o  "\n' +
-                    '                                        aria-hidden="true"></i></button></div></div>';
-            }
-        }],
+            {
+                "targets": 6, "data": "Actions", render: function (data, type, row) {
+                    return '<div class="row"><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-drug "><i\n' +
+                        '                                        class="fa fa-pencil-square-o  "\n' +
+                        '                                        aria-hidden="true"></i></button></div>\n' +
+                        '                            <div class="col"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-drug"><i\n' +
+                        '                                        class="fa fa-trash-o  "\n' +
+                        '                                        aria-hidden="true"></i></button></div></div>';
+                }
+            }],
         // bServerSide: true,
         ajax: {
             "url": "requests/drugs-management.php",
@@ -1652,9 +1680,11 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
+        // lengthMenu: [[10, 25, 50, 1000, -1], [10, 25, 50, 1000, "All"]],
         lengthMenu: [10, 25, 50, 100, 1000],
         // dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
         // buttons: [
@@ -1671,22 +1701,24 @@ $(document).ready(function () {
         // ],
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
-            {'data': 'Id'},
-            {'data': 'CommerceNameAr'},
+            // {'data': 'Id'},
+
             {'data': 'CommerceNameEn'},
-            {
-                'data': 'ScientificNameAr', render: function (data, type, row) {
-                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
-                }
-            },
+            {'data': 'CommerceNameAr'},
+            // {
+            //     'data': 'ScientificNameAr', render: function (data, type, row) {
+            //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
+            //     }
+            // },
             {
                 'data': 'ScientificNameEn', render: function (data, type, row) {
                     return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameEn + '">' + row.ScientificNameEn + '</span>';
                 }
             },
+            {'data': 'Manufacture'},
             {'data': 'Strengths'},
             // {'data': 'Price'},
-            {'data': 'Manufacture'},
+
             {
                 'data': 'Category', render: function (data, type, row) {
                     return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Category + '">' + row.Category + '</span>';
@@ -1703,7 +1735,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 9, "data": "Actions", render: function (data, type, row) {
+            "targets": 7, "data": "Actions", render: function (data, type, row) {
                 if (row.AvaiableInWarehouse != 1) {
                     return '<button data-toggle="tooltip" data-placement="top" title="Add drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn link-drug-modal "><i\n' +
                         '                                        class="fa fa-plus-square-o  "\n' +
@@ -1730,6 +1762,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1747,29 +1780,36 @@ $(document).ready(function () {
         //         }
         //     }
         // ],
+
+
+
+
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
-            {'data': 'Id'},
-            {'data': 'CommerceNameAr'},
+            // {'data': 'Id'},
             {'data': 'CommerceNameEn'},
-            {
-                'data': 'ScientificNameAr', render: function (data, type, row) {
-                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
-                }
-            },
+            {'data': 'CommerceNameAr'},
+
+            // {
+            //     'data': 'ScientificNameAr', render: function (data, type, row) {
+            //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
+            //     }
+            // },
+
             {
                 'data': 'ScientificNameEn', render: function (data, type, row) {
                     return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameEn + '">' + row.ScientificNameEn + '</span>';
                 }
             },
-            {'data': 'Strengths'},
-            {'data': 'Price'},
             {'data': 'Manufacture'},
+            {'data': 'Strengths'},
             {
                 'data': 'Category', render: function (data, type, row) {
                     return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Category + '">' + row.Category + '</span>';
                 }
             },
+            // {'data': 'Price'},
+
             {'data': 'Form'},
             // {
             //     'data': 'Icon', render: function (data, type, row) {
@@ -1781,7 +1821,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 10, "data": "Actions", render: function (data, type, row) {
+            "targets": 7, "data": "Actions", render: function (data, type, row) {
                 return '<div class="row "><div class="col mb-1"><button data-toggle="tooltip" data-placement="top" title="delete drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn unlink-drug-modal  "><i\n' +
                     '                                        class="fa fa-trash  "\n' +
                     '                                        aria-hidden="true"></i></button> </div>' +
@@ -1808,6 +1848,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1829,7 +1870,7 @@ $(document).ready(function () {
 
         columns: [
 
-            {'data': 'Id'},
+            // {'data': 'Id'},
             {'data': 'PharmacyName'},
             {'data': 'PharmacistName'},
             {'data': 'LicenseNumber'},
@@ -1842,7 +1883,7 @@ $(document).ready(function () {
 
 
         columnDefs: [{
-            "targets": 7, "data": "Actions", render: function (data, type, row) {
+            "targets": 6, "data": "Actions", render: function (data, type, row) {
                 return '<div class="row "><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-pharmacy "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button></div>\n' +
@@ -1887,6 +1928,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1908,7 +1950,7 @@ $(document).ready(function () {
 
         columns: [
 
-            {'data': 'Id'},
+            // {'data': 'Id'},
             {'data': 'TypeName'},
             {'data': 'Name'},
             {'data': 'Actions'},
@@ -1917,7 +1959,7 @@ $(document).ready(function () {
 
 
         columnDefs: [{
-            "targets": 3, "data": "Actions", render: function (data, type, row) {
+            "targets": 2, "data": "Actions", render: function (data, type, row) {
                 return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn delete-ad"><i\n' +
                     '                                        class="fa fa-trash-o  "\n' +
                     '                                        aria-hidden="true"></i></button>';
@@ -1944,6 +1986,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1965,7 +2008,7 @@ $(document).ready(function () {
 
         columns: [
 
-            {'data': 'Id'},
+            // {'data': 'Id'},
             {'data': 'Warehouse'},
             {'data': 'Pharmacy'},
             // {'data': 'Drug'},
@@ -1990,7 +2033,7 @@ $(document).ready(function () {
 
 
         columnDefs: [{
-            "targets": 8, "data": "Actions", render: function (data, type, row) {
+            "targets": 7, "data": "Actions", render: function (data, type, row) {
                 return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                     '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                     '                    \'                                        aria-hidden="true"></i></button>'
@@ -2033,6 +2076,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
+        pageLength:50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -2054,7 +2098,7 @@ $(document).ready(function () {
 
         columns: [
 
-            {'data': 'Id'},
+            // {'data': 'Id'},
             {'data': 'Pharmacy'},
             // {'data': 'Drug'},
             // {'data': 'Quantity'},
@@ -2083,7 +2127,7 @@ $(document).ready(function () {
 
 
         columnDefs: [{
-            "targets": 7, "data": "Actions", render: function (data, type, row) {
+            "targets": 6, "data": "Actions", render: function (data, type, row) {
                 if (row.RequestStatus == 1) {
 
 
@@ -2210,7 +2254,7 @@ $(document).ready(function () {
             }).done(function (msg) {
                 unLoading()
                 if (msg == -1)
-                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                    $.notify(lang.general_error, {position: "top center", className: "error"});
                 else {
                     // // console.log(msg)
                     jQuery(JSON.parse(msg)).each(function (i, item) {
@@ -2254,7 +2298,7 @@ $(document).ready(function () {
             }).done(function (msg) {
                 unLoading()
                 if (msg == -1)
-                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                    $.notify(lang.general_error, {position: "top center", className: "error"});
                 else {
                     // // console.log(msg)
                     jQuery(JSON.parse(msg)).each(function (i, item) {
@@ -2280,7 +2324,7 @@ $(document).ready(function () {
         $drug_id = $('#drug-id').val();
         $selected = '';
         $path = '';
-        if ($form_id !== '' || $drug_id!== '') {
+        if ($form_id !== '' || $drug_id !== '') {
             $selected = 'selected';
             $path = '../';
             $('#drug-forms-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
@@ -2298,7 +2342,7 @@ $(document).ready(function () {
             }).done(function (msg) {
                 unLoading()
                 if (msg == -1)
-                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                    $.notify(lang.general_error, {position: "top center", className: "error"});
                 else {
                     // // console.log(msg)
                     jQuery(JSON.parse(msg)).each(function (i, item) {
@@ -2324,21 +2368,20 @@ $(document).ready(function () {
         $man_id = $('#man-id').val();
 
 
-
-      //manufacturer form error fixing
-      //   $man_id = $('#man-id').val();
+        //manufacturer form error fixing
+        //   $man_id = $('#man-id').val();
         // $pharmacy_id = $('#pharmacy-id').val();
         $selected = '';
         $path = '';
 
-        if ($city_id !== ''  ) {
+        if ($city_id !== '') {
             $selected = 'selected';
             $path = '../';
             $('#city-select').find('option').eq(0).replaceWith('<option  value="-1">' + lang.pleaseChoose + '</option>');
             $('#city-select').selectpicker('refresh');
         }
-        if($man_id!==undefined && $man_id!=='')
-            $path='../'
+        if ($man_id !== undefined && $man_id !== '')
+            $path = '../'
 
         if (select_clicked_city == false) {
             Loading()
@@ -2352,7 +2395,7 @@ $(document).ready(function () {
             }).done(function (msg) {
                 unLoading()
                 if (msg == -1)
-                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                    $.notify(lang.general_error, {position: "top center", className: "error"});
                 else {
                     // // console.log(msg)
                     jQuery(JSON.parse(msg)).each(function (i, item) {
@@ -2397,7 +2440,7 @@ $(document).ready(function () {
             }).done(function (msg) {
                 unLoading()
                 if (msg == -1)
-                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                    $.notify(lang.general_error, {position: "top center", className: "error"});
                 else {
                     // // console.log(msg)
                     jQuery(JSON.parse(msg)).each(function (i, item) {
@@ -2489,7 +2532,7 @@ $(document).ready(function () {
             }).done(function (msg) {
                 unLoading()
                 if (msg == -1)
-                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                    $.notify(lang.general_error, {position: "top center", className: "error"});
                 else {
                     // console.log(msg)
                     jQuery(JSON.parse(msg)).each(function (i, item) {
@@ -2525,7 +2568,7 @@ $(document).ready(function () {
             }).done(function (msg) {
                 unLoading()
                 if (msg == -1)
-                    $.notify(lang.general_error, {position: "left bottom", className: "error"});
+                    $.notify(lang.general_error, {position: "top center", className: "error"});
                 else {
                     // console.log(msg)
                     jQuery(JSON.parse(msg)).each(function (i, item) {
@@ -2892,9 +2935,11 @@ $(document).ready(function () {
 
     }
 
+    $('input[type=search]').addClass('search-input-xl');
+
 
     if ($('#error-msg').val() !== '') {
-        $.notify($('#error-msg').val(), {position: "left bottom", className: $('#error-msg').data('type')});
+        $.notify($('#error-msg').val(), {position: "top center", className: $('#error-msg').data('type')});
 
 
     }

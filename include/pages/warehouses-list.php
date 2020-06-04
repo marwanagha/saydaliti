@@ -95,7 +95,7 @@ $path = '../';
         <thead class="bg-info text-white">
         <tr>
 
-            <th>Id</th>
+<!--            <th>Id</th>-->
             <th>Name</th>
             <th>Username</th>
             <th>City</th>

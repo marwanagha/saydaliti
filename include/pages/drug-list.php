@@ -16,7 +16,6 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 ?>
 
 
-
 <div id="warehouse-admin-link-drug-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -26,24 +25,27 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
                 <h4 class="modal-title">Add to My Drugs</h4>
             </div>
             <div class="modal-body">
-                <div   class="form-horizontal  col ">
+                <div class="form-horizontal  col ">
                     <input type="hidden" id="warehouse-drug-id" name="warehouse-drug-id" value="">
                     <div class="form-group">
                         <label class="col control-label text-left ">Drug:</label>
                         <div class="col">
-                            <input disabled required class="form-control" placeholder="Price" id="drug-warehouse-name" name="drug-warehouse-name" type="text" value="">
+                            <input disabled required class="form-control" placeholder="Price" id="drug-warehouse-name"
+                                   name="drug-warehouse-name" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col control-label text-left ">Price:</label>
                         <div class="col">
-                            <input required class="form-control" placeholder="Price" id="wa-drug-price" name="wa-drug-price" type="text" value="">
+                            <input required class="form-control" placeholder="Price" id="wa-drug-price"
+                                   name="wa-drug-price" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col control-label text-left ">Expiry Date:</label>
                         <div class="col">
-                            <input required class="form-control" placeholder="Expiry Date" id="drug-expiry-date" name="drug-expiry-date" type="date" value="">
+                            <input required class="form-control" placeholder="Expiry Date" id="drug-expiry-date"
+                                   name="drug-expiry-date" type="date" value="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -96,9 +98,9 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
     <div class="row">
         <div class="col-7"><h2 class="mb-5">Drugs Listing</h2></div>
         <div class="col-5">
-            <?php if(isset($_SESSION['role_id']) && $_SESSION['role_id']==1){ ?>
+            <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) { ?>
                 <button id="add-drug" class="btn btn-info admin-add-btn">Add</i></button>
-          <?php  } ?>
+            <?php } ?>
 
         </div>
     </div>
@@ -115,17 +117,21 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 
             <thead class="bg-info text-white">
             <tr>
-                <th>Id</th>
-                <th>CommerceNameAr</th>
+                <!--                <th>Id</th>-->
+
                 <th>CommerceNameEn</th>
-                <th>ScientificNameAr</th>
+                <?php if ($_SESSION['role_id'] == 2) { ?>
+                    <th>CommerceNameAr</th>
+                <?php } ?>
+
+                <!--                <th>ScientificNameAr</th>-->
                 <th>ScientificNameEn</th>
-                <th>Strengths</th>
-<!--                <th>Price</th>-->
                 <th>Manufacture</th>
+                <th>Strengths</th>
+                <!--                <th>Price</th>-->
                 <th>Category</th>
                 <th>Form</th>
-<!--                <th>Icon</th>-->
+                <!--                <th>Icon</th>-->
                 <th>Actions</th>
 
 

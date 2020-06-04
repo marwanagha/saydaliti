@@ -90,14 +90,25 @@ if ($id && strpos($id, 'D') === false) {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Normal Price :</label>
+                    <label class="col-lg-8 control-label text-left ">General Price :</label>
                     <div class="col-lg-8">
                         <input <?php echo 'disabled'; ?>
-                            value="<?php echo isset($respons->NormalPrice) ? $respons->NormalPrice : null ?>"
-                            required
-                            class="form-control" placeholder="Normal Price" <?php if ($type == 1) {
+                                value="<?php echo isset($respons->NormalPrice) ? $respons->NormalPrice : null ?>"
+                                required
+                                class="form-control" placeholder="General Price" <?php if ($type == 1) {
                             echo 'id="drug-offer-price"';
                         } ?> name="NormalPrice" type="number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-8 control-label text-left ">Pharma Price :</label>
+                    <div class="col-lg-8">
+                        <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
+                            echo 'disabled';
+                        } ?>
+                                value="<?php echo isset($respons->Price) ? $respons->Price : null ?>"
+                                required
+                                class="form-control" placeholder="Pharma Price" name="Price" type="number">
                     </div>
                 </div>
                 <div class="form-group">
@@ -111,17 +122,7 @@ if ($id && strpos($id, 'D') === false) {
                                 class="form-control" placeholder="Quantity" name="Quantity" type="number">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">New Price :</label>
-                    <div class="col-lg-8">
-                        <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
-                            echo 'disabled';
-                        } ?>
-                                value="<?php echo isset($respons->Price) ? $respons->Price : null ?>"
-                                required
-                                class="form-control" placeholder="New Price" name="Price" type="number">
-                    </div>
-                </div>
+
                 <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) { ?>
                     <div class="form-group">
                         <label class="col-lg-8 control-label text-left ">Warehouse :</label>
