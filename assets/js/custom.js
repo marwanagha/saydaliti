@@ -1,4 +1,5 @@
 var siteURL = '/saydaliti/';
+// var siteURL = 'https://saydaliti2.000webhostapp.com/'
 var siteFilesURL = siteURL + 'files/';
 var city_id_global = $('#city-select').val();
 
@@ -2126,7 +2127,7 @@ $(document).ready(function () {
         ],
 
 
-        columnDefs: [{
+        columnDefs: [ { "orderable": false, "targets": 0 },{
             "targets": 6, "data": "Actions", render: function (data, type, row) {
                 if (row.RequestStatus == 1) {
 
