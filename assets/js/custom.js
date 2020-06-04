@@ -2220,8 +2220,10 @@ $(document).ready(function () {
             "type": "post",
             async: true,
             data: function (data) {
-                var AdditionalValues = [city_id_global, order_status_id_global, warehouse_id_global, warehouse_from_date_global, warehouse_to_date_global];
+
+                var AdditionalValues = ["", order_status_id_global, "", "", ""];
                 data.AdditionalValues = AdditionalValues;
+                console.log(AdditionalValues)
             }
         }
 
