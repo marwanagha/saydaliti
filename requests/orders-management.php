@@ -33,6 +33,7 @@ require '../include/config.php';
          'ToDate'=>$ToDate,
          'WarehouseId'=>$WarehouseId
      );
+//     var_dump(json_encode($post_array));exit;
 
      $respons = api_post('OrdersAdmin/GetProfits', $post_array);
 
@@ -60,7 +61,7 @@ require '../include/config.php';
      );
 
      $respons = api_post('OrdersAdmin/GetOrderDetails', $post_array);
-
+//var_dump($respons);exit;
      $array = array ();
 
 

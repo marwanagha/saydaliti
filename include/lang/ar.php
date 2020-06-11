@@ -10,11 +10,11 @@ $lang= array(
 
 
     //side menu
-    'my_warehouse_info' => 'مغلومات مستودعي',
-    'drugs_management' => 'مغلومات مستودعي',
+    'my_warehouse_info' => 'معلومات مستودعي',
+    'drugs_management' => 'إدارة الأدوية',
     'my_drugs' => 'أدويتي',
-    'orders_management' => 'مغلومات مستودعي',
-    'offers_management' => 'مغلومات مستودعي',
+    'orders_management' => 'إدارة الطلبات',
+    'offers_management' => 'إدارة العروض',
 
 
 

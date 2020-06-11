@@ -7,17 +7,19 @@ if (isset($_POST['action']) && $_POST['action'] == 'link-drug') {
 
     $id = isset($_POST['id']) ? make_safe($_POST['id']) : null;
     $price = isset($_POST['price']) ? make_safe($_POST['price']) : null;
+    $second = isset($_POST['second']) ? make_safe($_POST['second']) : null;
     $expiry_date = isset($_POST['expiry_date']) ? make_safe($_POST['expiry_date']) : null;
 
     $post_array = array(
         'Id' => $id,
         'Price' => $price,
+        'SecondPrice' => $second,
         'DrugExpiryDate' => $expiry_date
     );
 
 
     $respons = api_post('WarehousesAdmin/LinkDrugToWarehouse', $post_array);
-
+//var_dump($respons);exit;
     if ($respons->code == 1) {
         echo 1;
     } else {
@@ -60,6 +62,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'link-drug') {
     } else if (isset($_POST['draw'])) {
 
         $respons = api_post('DrugsAdmin/LoadDrugsList', $_POST);
+//        var_dump($respons);exit;
         echo json_encode($respons);
 
     } else if (isset($_POST['edit-drug'])) {

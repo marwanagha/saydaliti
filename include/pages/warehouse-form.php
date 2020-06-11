@@ -127,7 +127,7 @@ if ($id) {
                         <div class="form-group">
                             <label class="col-lg-8 control-label text-left ">Password: </label>
                             <div class="col-lg-8">
-                                <input <?php if(!isset($id)) echo 'required' ?> class="form-control" name="Password" placeholder="Password" type="text"
+                                <input <?php if(!isset($id)) echo 'required' ?> class="form-control" name="Password" placeholder="Reset Password" type="text"
                                        value="<?php if(!isset($id)) echo randomPassword() ?>">
                             </div>
                         </div>

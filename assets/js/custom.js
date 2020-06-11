@@ -1,5 +1,5 @@
 var siteURL = '/saydaliti/';
-// var siteURL = 'https://saydaliti2.000webhostapp.com/'
+// var siteURL = 'https://saydaliti2.000webhostapp.com/';
 var siteFilesURL = siteURL + 'files/';
 var city_id_global = $('#city-select').val();
 
@@ -913,9 +913,12 @@ $(document).ready(function () {
                 jQuery(res.data).each(function (i, item) {
 
                     $('#table-body-order-details').append(
-                        '<tr><td>' + item.Drug + '</td>' +
+                        '<tr><td>' + item.Manufacture + '</td>' +
+                        '<td class="offer-details-text" data-toggle="tooltip" data-placement="top" title="' + item.Drug + '">' + item.Drug + '</td>' +
                         '<td>' + item.Quantity + '</td>' +
                         '<td>' + item.Price + '</td>' +
+                        '<td>' + item.SubTotalPrice + '</td>' +
+                        '<td>' + item.Gift + '</td>' +
                         '<td class="offer-details-text" data-toggle="tooltip" data-placement="top" title="' + item.OfferDescription + '">' + item.OfferDescription + '</td></tr>'
                     )
                 })
@@ -946,6 +949,7 @@ $(document).ready(function () {
     $(document).on('click', '.link-drug-modal', function () {
 
         $('#wa-drug-price').val('')
+        $('#wa-drug-second-price').val('')
         $('#drug-expiry-date').val('')
 
         $('#warehouse-admin-link-drug-modal').modal({show: true})
@@ -972,6 +976,7 @@ $(document).ready(function () {
 
         var $id = $('#warehouse-drug-id').val()
         var $price = $('#wa-drug-price').val()
+        var $second = $('#wa-drug-second-price').val()
         var $expiry_date = $('#drug-expiry-date').val()
         Loading()
         $.ajax({
@@ -981,6 +986,7 @@ $(document).ready(function () {
                 action: 'link-drug',
                 id: $id,
                 price: $price,
+                second: $second,
                 expiry_date: $expiry_date,
             }
         }).done(function (msg) {
@@ -1114,7 +1120,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1176,7 +1182,7 @@ $(document).ready(function () {
         },
 
             {
-                "targets": 8, "data": "Status", render: function (data, type, row) {
+                "targets": 7, "data": "Status", render: function (data, type, row) {
                     if (row.Status == 1) {
                         $status = 'active';
                         $status2 = '';
@@ -1233,7 +1239,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1286,7 +1292,7 @@ $(document).ready(function () {
         },
 
             {
-                "targets": 5, "data": "Status", render: function (data, type, row) {
+                "targets": 4, "data": "Status", render: function (data, type, row) {
                     if (row.Status == 1) {
                         $status = 'active';
                         $status2 = '';
@@ -1345,7 +1351,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1365,17 +1371,15 @@ $(document).ready(function () {
         // ],
 
 
-
-
         columns: [
             // {"DT_RowId": "drug-"+'Id'},
             // {'data': 'Id'},
-            // {
-            //     'data': 'Description', render: function (data, type, row) {
-            //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
-            //     }
-            // },
-            // {'data': 'Manufacturer'},
+            {
+                'data': 'Description', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
+                }
+            },
+            {'data': 'Manufacture'},
             {'data': 'Durg'},
             {'data': 'Price'},
             {'data': 'NormalPrice'},
@@ -1393,7 +1397,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 7, "data": "Actions", render: function (data, type, row) {
+            "targets": 9, "data": "Actions", render: function (data, type, row) {
                 return '<div class="row "><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-offer "><i\n' +
                     '                                        class="fa fa-pencil-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button></div>\n' +
@@ -1424,7 +1428,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1448,12 +1452,12 @@ $(document).ready(function () {
             // {"DT_RowId": "drug-"+'Id'},
             // {'data': 'Id'},
             {'data': 'Warehouse'},
-            // {
-            //     'data': 'Description', render: function (data, type, row) {
-            //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
-            //     }
-            // },
-            // {'data': 'Manufacturer'},
+            {
+                'data': 'Description', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Description + '">' + row.Description + '</span>';
+                }
+            },
+            {'data': 'Manufacture'},
             {'data': 'Durg'},
             {'data': 'Price'},
             {'data': 'NormalPrice'},
@@ -1471,7 +1475,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 8, "data": "Actions", render: function (data, type, row) {
+            "targets": 10, "data": "Actions", render: function (data, type, row) {
                 return '<div class="row "><div class="col mb-1"><button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn edit-offer "><i\n' +
                     '                                        class="fa fa-search-plus  "\n' +
                     '                                        aria-hidden="true"></i></button></div>\n' +
@@ -1502,7 +1506,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1541,7 +1545,7 @@ $(document).ready(function () {
         },
 
             {
-                "targets": 3, "data": "Status", render: function (data, type, row) {
+                "targets": 2, "data": "Status", render: function (data, type, row) {
                     if (row.Status == 1) {
                         $status = 'active';
                         $status2 = '';
@@ -1597,9 +1601,9 @@ $(document).ready(function () {
         "scrollX": true,
         // responsive: true,
         processing: true,
-        pageLength:50,
+        pageLength: 50,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1621,7 +1625,11 @@ $(document).ready(function () {
             // {"DT_RowId": "drug-"+'Id'},
             // {'data': 'Id'},
             // {'data': 'CommerceNameAr'},
-            {'data': 'CommerceNameEn'},
+            {
+                'data': 'CommerceNameEn', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.CommerceNameEn + '">' + row.CommerceNameEn + '</span>';
+                }
+            },
             // {
             //     'data': 'ScientificNameAr', render: function (data, type, row) {
             //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
@@ -1633,7 +1641,11 @@ $(document).ready(function () {
                 }
             },
             {'data': 'Manufacture'},
-            {'data': 'Strengths'},
+            {
+                'data': 'Strengths', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Strengths + '">' + row.Strengths + '</span>';
+                }
+            },
             // {'data': 'Price'},
 
             {
@@ -1681,7 +1693,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1704,8 +1716,18 @@ $(document).ready(function () {
             // {"DT_RowId": "drug-"+'Id'},
             // {'data': 'Id'},
 
-            {'data': 'CommerceNameEn'},
-            {'data': 'CommerceNameAr'},
+
+            {
+                'data': 'CommerceNameEn', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.CommerceNameEn + '">' + row.CommerceNameEn + '</span>';
+                }
+            },
+
+            {
+                'data': 'CommerceNameAr', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.CommerceNameAr + '">' + row.CommerceNameAr + '</span>';
+                }
+            },
             // {
             //     'data': 'ScientificNameAr', render: function (data, type, row) {
             //         return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.ScientificNameAr + '">' + row.ScientificNameAr + '</span>';
@@ -1717,7 +1739,11 @@ $(document).ready(function () {
                 }
             },
             {'data': 'Manufacture'},
-            {'data': 'Strengths'},
+            {
+                'data': 'Strengths', render: function (data, type, row) {
+                    return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Strengths + '">' + row.Strengths + '</span>';
+                }
+            },
             // {'data': 'Price'},
 
             {
@@ -1763,7 +1789,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1781,8 +1807,6 @@ $(document).ready(function () {
         //         }
         //     }
         // ],
-
-
 
 
         columns: [
@@ -1809,6 +1833,8 @@ $(document).ready(function () {
                     return '<span class="drug-field" data-toggle="tooltip" data-placement="top" title="' + row.Category + '">' + row.Category + '</span>';
                 }
             },
+            {'data': 'Price'},
+            {'data': 'SecondPrice'},
             // {'data': 'Price'},
 
             {'data': 'Form'},
@@ -1822,7 +1848,7 @@ $(document).ready(function () {
         ],
 
         columnDefs: [{
-            "targets": 7, "data": "Actions", render: function (data, type, row) {
+            "targets": 9, "data": "Actions", render: function (data, type, row) {
                 return '<div class="row "><div class="col mb-1"><button data-toggle="tooltip" data-placement="top" title="delete drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn unlink-drug-modal  "><i\n' +
                     '                                        class="fa fa-trash  "\n' +
                     '                                        aria-hidden="true"></i></button> </div>' +
@@ -1849,7 +1875,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1894,7 +1920,7 @@ $(document).ready(function () {
             }
         },
             {
-                "targets": 6, "data": "Status", render: function (data, type, row) {
+                "targets": 5, "data": "Status", render: function (data, type, row) {
                     if (row.Status === 0) {
                         return '<span class="badge badge-pill badge-danger">Rejected</span>';
                     } else if (row.Status === 1) {
@@ -1929,7 +1955,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -1987,7 +2013,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -2041,7 +2067,7 @@ $(document).ready(function () {
             }
         }, {
 
-            "targets": 7, "data": "RequestStatus", render: function (data, type, row) {
+            "targets": 6, "data": "RequestStatus", render: function (data, type, row) {
 
                 if (row.RequestStatus === 4) {
                     return '<span class="badge badge-pill badge-danger">Rejected</span>';
@@ -2077,7 +2103,7 @@ $(document).ready(function () {
         "scrollX": true,
         processing: true,
         serverSide: true,
-        pageLength:50,
+        pageLength: 50,
         orderCellsTop: true,
         autoWidth: true,
         deferRender: true,
@@ -2127,7 +2153,7 @@ $(document).ready(function () {
         ],
 
 
-        columnDefs: [ { "orderable": false, "targets": 0 },{
+        columnDefs: [{"orderable": false, "targets": 0}, {
             "targets": 6, "data": "Actions", render: function (data, type, row) {
                 if (row.RequestStatus == 1) {
 
@@ -2200,7 +2226,7 @@ $(document).ready(function () {
 
         }, {
 
-            "targets": 6, "data": "RequestStatus", render: function (data, type, row) {
+            "targets": 5, "data": "RequestStatus", render: function (data, type, row) {
 
                 if (row.RequestStatus === 4) {
                     return '<span class="badge badge-pill badge-danger">Rejected</span>';

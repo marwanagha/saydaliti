@@ -58,7 +58,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list-warehouse') {
 
     $respons = api_post('WarehousesAdmin/LoadWarehousesList', $_POST);
     echo json_encode($respons);
-
+//var_dump($respons);exit;
 } else if (isset($_POST['edit-warehouse'])) {
 
 

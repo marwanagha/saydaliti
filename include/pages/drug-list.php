@@ -35,10 +35,17 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col control-label text-left ">Price:</label>
+                        <label class="col control-label text-left ">General Price:</label>
                         <div class="col">
                             <input required class="form-control" placeholder="Price" id="wa-drug-price"
                                    name="wa-drug-price" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label text-left ">ٍSecond Price:</label>
+                        <div class="col">
+                            <input required class="form-control" placeholder="Price" id="wa-drug-second-price"
+                                   name="wa-drug-second-price" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">

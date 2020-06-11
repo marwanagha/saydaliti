@@ -13,7 +13,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'show-list-offer') {
 } else if (isset($_POST['draw'])) {
 
     $respons = api_post('OffersAdmin/LoadOffersList', $_POST);
-
+//var_dump($respons);exit;
     echo json_encode($respons);
 
 } else if ((isset($_POST['action']) && $_POST['action'] == 'delete-offer')) {

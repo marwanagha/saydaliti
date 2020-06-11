@@ -713,3 +713,7 @@ h3 {
 .search-input-xl {
     width: 651px !important;
 }
+
+.modal-dialog  {
+    max-width: 635px  !important;
+}

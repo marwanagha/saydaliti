@@ -17,7 +17,6 @@ if (isset($_SESSION['change_password'])) {
 }
 
 
-
 ?>
 
 <div id="change-password-modal" class="modal fade" role="dialog">
@@ -82,9 +81,12 @@ if (isset($_SESSION['change_password'])) {
                 <table style="margin-top:0" class="table table-striped" id="profits-response">
                     <thead>
                     <tr>
+                        <th>Manufacturer</th>
                         <th>Drug</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>Total</th>
+                        <th>Gift</th>
                         <th>Offer Description</th>
                     </tr>
                     </thead>
@@ -105,9 +107,9 @@ if (isset($_SESSION['change_password'])) {
     </div>
     <div class="row mb-3">
 
-        <?php if(isset($_SESSION['role_id']) && $_SESSION['role_id']==1){ ?>
+        <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) { ?>
             <div class="col ">
-                <label class=" text-left mr-3 ">City: </label>
+                <label class=" text-left mr-3 ">City: </label><br/>
                 <select required name="city-select" id="city-select" class="selectpicker "
                         menuPlacement="top">
                     <option value="-1" selected>please choose</option>
@@ -117,7 +119,7 @@ if (isset($_SESSION['change_password'])) {
             </div>
             <div class="col ">
                 <label class=" text-left mr-3 ">Warehouse: </label>
-                <select required  disabled name="warehouse-select" id="warehouse-select" class="selectpicker "
+                <select required disabled name="warehouse-select" id="warehouse-select" class="selectpicker "
                         menuPlacement="top">
                     <option value="-1" selected>please choose</option>
                 </select>
@@ -125,15 +127,17 @@ if (isset($_SESSION['change_password'])) {
             </div>
             <div class="col ">
                 <label class=" text-left mr-3 ">From: </label>
-                <input disabled value="" type="date" name="warehouse-from-date" id="warehouse-from-date" class="form-control ">
+                <input disabled value="" type="date" name="warehouse-from-date" id="warehouse-from-date"
+                       class="form-control ">
 
             </div>
             <div class="col ">
                 <label class=" text-left mr-3 ">To: </label>
-                <input disabled value="" type="date" name="warehouse-to-date" id="warehouse-to-date" class="form-control ">
+                <input disabled value="" type="date" name="warehouse-to-date" id="warehouse-to-date"
+                       class="form-control ">
 
             </div>
-        <?php  } ?>
+        <?php } ?>
         <div class="col ">
             <label class=" text-left mr-3 ">Status: </label>
             <select required name="status-select" id="status-select" class="selectpicker "
@@ -148,46 +152,49 @@ if (isset($_SESSION['change_password'])) {
                    value="">
         </div>
     </div>
-<div class="row">
-    <div class="col text-center">
-        <?php if(isset($_SESSION['role_id']) && $_SESSION['role_id']==1){ ?>
-            <button id="calculate-profits" class="btn btn-info mb-3">Profits</i></button>
-        <?php  } ?>
-    </div>
+    <div class="row">
+        <div class="col text-center">
+            <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) { ?>
+                <button id="calculate-profits" class="btn btn-info mb-3">Profits</i></button>
+            <?php } ?>
+        </div>
 
-</div>
-    <?php if(isset($_SESSION['role_id']) && $_SESSION['role_id']==1) { ?>
+    </div>
+    <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) { ?>
     <table id="table-orders" class="table table-hover table-striped m-1
 " style="width:100%">
-    <?php } else { ?>
+        <?php } else { ?>
         <table id="table-orders-admin" class="table table-hover table-striped m-1
 " style="width:100%">
-   <?php } ?>
-
-        <thead class="bg-info text-white">
-        <tr>
-
-<!--            <th>Id</th>-->
-            <?php if(isset($_SESSION['role_id']) && $_SESSION['role_id']==1) { ?>
-                <th>Warehouse</th>
             <?php } ?>
-            <th>Pharmacy</th>
-<!--            <th>Drug</th>-->
-<!--            <th>Quantity</th>-->
-            <th>Price</th>
-            <th>DeliveryDate</th>
-            <th>City</th>
-<!--            <th>OfferDescription</th>-->
-            <th>RequestType</th>
-            <th>RequestStatus</th>
-            <th>Actions</th>
+
+            <thead class="bg-info text-white">
+            <tr>
+
+                <!--            <th>Id</th>-->
+                <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) { ?>
+                    <th>Warehouse</th>
+                <?php } ?>
+                <th>Pharmacy</th>
+                <!--            <th>Drug</th>-->
+                <!--            <th>Quantity</th>-->
+                <th>Price</th>
+                <th>DeliveryDate</th>
+                <th>City</th>
+                <!--            <th>OfferDescription</th>-->
+                <th>RequestType</th>
+                <th>RequestStatus</th>
+                <th>Actions</th>
 
 
+            </tr>
+            </thead>
+            <tbody>
 
-        </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 </div>
+
+
+
+

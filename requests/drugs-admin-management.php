@@ -6,6 +6,7 @@ require '../include/config.php';
 if (isset($_POST['draw'])) {
 
     $respons = api_post('DrugsAdmin/LoadWarehouseDrugsList', $_POST);
+//    var_dump($respons);exit();
     echo json_encode($respons);
 
 } else if (isset($_POST['action']) && $_POST['action']=='delete') {

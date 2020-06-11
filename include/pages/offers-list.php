@@ -89,8 +89,8 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
 
 <!--            <th>Id</th>-->
             <?php if($_SESSION['role_id']==1) echo '<th>Warehouse</th>'; ?>
-<!--            <th>Description</th>-->
-<!--            <th>Manufacturer</th>-->
+            <th>Description</th>
+            <th>Manufacturer</th>
             <th>Durg</th>
             <th>pharmacist Price</th>
             <th>General Price</th>

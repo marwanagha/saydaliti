@@ -62,6 +62,8 @@ if (isset($_SESSION['error_msg']) && !empty($_SESSION['error_msg']) && isset($_S
             <th>Manufacture</th>
             <th>Strengths</th>
             <th>Category</th>
+            <th>General Price</th>
+            <th>Pharma Price</th>
             <!--            <th>Price</th>-->
 
             <th>Form</th>

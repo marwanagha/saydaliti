@@ -10,7 +10,7 @@
 
 
     <title><?php echo $page_title; ?></title>
-    <link  rel="shortcut icon" href="<?php echo $ASSET_URL ?>img/logo_saydaliti.png">
+    <link rel="shortcut icon" href="<?php echo $ASSET_URL ?>img/logo_saydaliti.png">
     <link rel="stylesheet" href="<?php echo $ASSET_URL ?>css/pages/404.css">
     <!--    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">-->
     <!--    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">-->
@@ -41,9 +41,13 @@
                 <div class="navbar-header">
                     <a href="" class="navbar-brand">
                         <div class="brand-text brand-big hidden-lg-down"><img
-                                    src="<?php echo $ASSET_URL ?>img/logo_saydaliti2.png" class="header-img icon-admin    " alt="Logo"
+                                    src="<?php echo $ASSET_URL ?>img/logo_saydaliti2.png"
+                                    class="header-img icon-admin    " alt="Logo"
                                     class="img-fluid"></div>
-                        <div class="brand-text brand-small admin-header-small-img"><img class="icon-admin"  src="<?php echo $ASSET_URL ?>img/logo3.png" alt="Logo" style="display: none;"></div>
+                        <div class="brand-text brand-small admin-header-small-img"><img class="icon-admin"
+                                                                                        src="<?php echo $ASSET_URL ?>img/logo3.png"
+                                                                                        alt="Logo"
+                                                                                        style="display: none;"></div>
                     </a>
                     <a href="" class="navbar-brand">
                         <div class="brand-text brand-big hidden-lg-down"> My Pharma Order</div>
@@ -60,13 +64,19 @@
                 <!-- Expand-->
                 <?php if (isset($_SESSION['role_id']) && !empty($_SESSION['role_id'])) { ?>
                     <li class="nav-item d-flex align-items-center full_scr_exp"><a id="logout" class="nav-link "
-                                                                                   href="<?php if(isset($id) && $id!=null ) echo '../requests/logout.php'; else echo 'requests/logout.php';?>">Logout</a>
+                                                                                   href="<?php if (isset($id) && $id != null) echo '../requests/logout.php'; else echo 'requests/logout.php'; ?>">Logout</a>
+                        <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 2) { ?>
+                            <a id="language" class="nav-link "
+                               href="<?php if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en') echo '?lang=ar'; else echo '?lang=en'; ?>"><?php if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en') echo 'AR'; else echo 'EN'; ?></a>
+                        <?php } ?>
                     </li>
                 <?php } ?>
 
-<!--                <li class="nav-item d-flex align-items-center full_scr_exp"><a-->
-<!--                            href="--><?php //if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en') echo '?lang=ar'; else echo '?lang=en'; ?><!--">--><?php //if ($_SESSION['lang'] == 'ar') echo 'English'; else echo $lang['arabic'] ?><!--</a>-->
-<!--                </li>-->
+                <!--                <li class="nav-item d-flex align-items-center full_scr_exp"><a-->
+                <!--                            href="-->
+                <?php //if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en') echo '?lang=ar'; else echo '?lang=en'; ?><!--">-->
+                <?php //if ($_SESSION['lang'] == 'ar') echo 'English'; else echo $lang['arabic'] ?><!--</a>-->
+                <!--                </li>-->
             </ul>
         </div>
     </nav>

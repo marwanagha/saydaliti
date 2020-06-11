@@ -57,8 +57,8 @@
                         <div class="row">
                             <div class="col col-xl-2"><img class="side-menu-icon mr-1"
                                                            src="<?php echo $ASSET_URL ?>img/settings.png"></div>
-                            <div class="col col-xl-10">My
-                                Warehouse Info
+
+                            <div class="col col-xl-10"><?php echo $lang['my_warehouse_info'] ?>
                             </div>
                         </div>
                     </a></li>
@@ -72,8 +72,8 @@
                         <div class="row">
                             <div class="col col-xl-2"><img class="side-menu-icon mr-1"
                                                            src="<?php echo $ASSET_URL ?>img/Drugs.png"></div>
-                            <div class="col col-xl-10">Drugs
-                                Management
+                            <div class="col col-xl-10"><?php echo $lang['drugs_management'] ?>
+
                             </div>
                         </div>
                     </a></li>
@@ -87,8 +87,9 @@
                         <div class="row">
                             <div class="col col-xl-2"><img class="side-menu-icon mr-1"
                                                            src="<?php echo $ASSET_URL ?>img/my_drugs.png"></div>
-                            <div class="col col-xl-10">My Drugs
-                                List
+                            <div class="col col-xl-10">
+                                <?php echo $lang['my_drugs'] ?>
+
                             </div>
                         </div>
                     </a></li>
@@ -147,8 +148,7 @@
                         <div class="row">
                             <div class="col col-xl-2"><img class="side-menu-icon mr-1"
                                                            src="<?php echo $ASSET_URL ?>img/order.png"></div>
-                            <div class="col col-xl-10">Orders
-                                Management
+                            <div class="col col-xl-10"><?php echo $lang['orders_management'] ?>
                             </div>
                         </div>
                     </a></li>
@@ -162,8 +162,7 @@
                         <div class="row">
                             <div class="col col-xl-2"><img class="side-menu-icon mr-1"
                                                            src="<?php echo $ASSET_URL ?>img/offer.png"></div>
-                            <div class="col col-xl-10">Offers
-                                Management
+                            <div class="col col-xl-10"><?php echo $lang['offers_management'] ?>
                             </div>
                         </div>
                     </a></li>

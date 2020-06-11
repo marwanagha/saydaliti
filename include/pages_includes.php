@@ -4,7 +4,7 @@
 $id = isset($_GET['id']) ? make_safe($_GET['id']) : null;
 $rtl = isset($_SESSION['lang']) && $_SESSION['lang'] == 'ar' ? $ASSET_URL.'css/rtl.css' : null;
 $rtl_js = isset($_SESSION['lang']) && $_SESSION['lang'] == 'ar' ? $ASSET_URL.'js/lang/ar.js' : $ASSET_URL.'js/lang/en.js';
-$rtl_js1 = isset($_SESSION['lang']) && $_SESSION['lang'] == 'ar' ? 'assets/site/js/lang/ar.js' : 'assets/site/js/lang/en.js';
+//$rtl_js1 = isset($_SESSION['lang']) && $_SESSION['lang'] == 'ar' ? 'assets/site/js/lang/ar.js' : 'assets/site/js/lang/en.js';
 $page_title = $lang['site_name'];
 
 $shared_css = array(
@@ -20,7 +20,7 @@ $shared_css = array(
     $ASSET_URL."css/pages/404.css",
     $ASSET_URL."css/style.css",
     $ASSET_URL."css/bootstrap-select.css",
-//    $rtl
+    $rtl
     );
 
 
@@ -41,7 +41,6 @@ $shared_js = array(
     $ASSET_URL . "js/notify.min.js",
     $ASSET_URL."js/custom.js",
     $rtl_js,
-    $rtl_js1
     );
 
 
