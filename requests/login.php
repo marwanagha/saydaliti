@@ -11,6 +11,7 @@ $post_array= array (
     'Username'=>$name,
     'Password'=>$password
 );
+
 $response = api_post('Admin/Login',$post_array);
 //var_dump($response);exit;
 
@@ -37,7 +38,13 @@ if($response->code==1)
 
 }else {
 
-    $_SESSION['error_msg'] = $response->message;
+
+    if($response->message=='USERS0004')
+    {
+        $_SESSION['error_msg'] = $lang['blocked_warehouse'];
+    }else {
+        $_SESSION['error_msg'] = $response->message;
+    }
     $_SESSION['msg_type']=-1;
     redirect('login', $path);
     exit();

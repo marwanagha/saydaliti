@@ -17,6 +17,7 @@ unset($_SESSION['username']);
 unset($_SESSION['error_msg']);
 unset($_SESSION['session']);
 unset($_SESSION['msg_type']);
+unset($_SESSION['lang']);
 if (isset($_SESSION['change_password']))
     unset($_SESSION['change_password']);
 

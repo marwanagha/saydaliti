@@ -893,7 +893,15 @@ $(document).ready(function () {
 
 
         id_order = $(this).data('id');
+        pharma = $(this).data('pharma');
+        date = $(this).data('date');
+        total = $(this).data('total');
+        warehouse = $(this).data('warehouse');
+
+
         $('#table-body-order-details').empty();
+        $('#order-details-header').empty();
+
         Loading()
         $.ajax({
             method: "POST",
@@ -909,14 +917,35 @@ $(document).ready(function () {
             var res = JSON.parse(msg)
             if (res.code == 1) {
 
+                $('#order-details-header').append(
+                    '<div class="row mb-2">' +
+                    ' <div class="col-6">'+ lang.warehouse + ' : ' + warehouse + '</div>\n' +
+                    '    <div class="col-6">'+ lang.order_number + ' : ' + id_order +'</div>'+
+                '</div>' +
+                    '<div class="row mb-2">' +
+                    ' <div class="col-6">'+ lang.pharmacy + ' : ' + pharma + '</div>\n' +
+                    '    <div class="col-6">'+ lang.date + ' : ' + date +'</div>'+
+                    '</div>' +
+                    '<div class="row mb-2">' +
+                    ' <div class="col-6">' + lang.city + ' : ' + res.data.Pharmacist.City + '</div>\n' +
+                    '    <div class="col-6">'+ lang.address + ' : ' + res.data.Pharmacist.Address + '</div>'+
+                    '</div>' +
+                    '<div class="row order-details-report mb-2">' +
+                    ' <div class="col-6">' + lang.phone + ' : ' + res.data.Pharmacist.Phone +'</div>\n' +
+                    '    <div class="col-6">'+ lang.mobile + ' : ' + res.data.Pharmacist.Mobile + '</div>'+
+                    '</div>' +
+                    '    <div class="mb-2" style="color: red">' + lang.total_price + ' : ' + total + '</div>\n'
 
-                jQuery(res.data).each(function (i, item) {
+            )
+                ;
+                jQuery(res.data.OrderItems).each(function (i, item) {
 
                     $('#table-body-order-details').append(
                         '<tr><td>' + item.Manufacture + '</td>' +
                         '<td class="offer-details-text" data-toggle="tooltip" data-placement="top" title="' + item.Drug + '">' + item.Drug + '</td>' +
                         '<td>' + item.Quantity + '</td>' +
                         '<td>' + item.Price + '</td>' +
+                        '<td>' + item.SecondPrice + '</td>' +
                         '<td>' + item.SubTotalPrice + '</td>' +
                         '<td>' + item.Gift + '</td>' +
                         '<td class="offer-details-text" data-toggle="tooltip" data-placement="top" title="' + item.OfferDescription + '">' + item.OfferDescription + '</td></tr>'
@@ -1346,7 +1375,18 @@ $(document).ready(function () {
     var table_offers_admin = $('#table-offers-admin').DataTable({
         language: {
             processing: "Loading Data...",
-            zeroRecords: "No matching records found"
+            zeroRecords: "No matching records found",
+            "lengthMenu": lang.show + " _MENU_ " + lang.entries,
+            "search": lang.search + ":",
+            "info": lang.showing + " _START_ " + lang.to + " _END_ " + lang.of + " _TOTAL_ " + lang.entries,
+            "paginate": {
+                "first": lang.first,
+                "last": lang.last,
+                "next": lang.next,
+                "previous": lang.previous
+            },
+            "infoEmpty": lang.showing + " 0 " + lang.to + " 0 " + lang.of + " 0 " + lang.entries,
+            "infoFiltered": "(" + lang.filtered + " " + lang.from + " _MAX_ " + lang.total + " " + lang.entries + ")",
         },
         "scrollX": true,
         processing: true,
@@ -1596,7 +1636,8 @@ $(document).ready(function () {
     var table_drugs = $('#table-drugs').DataTable({
         language: {
             processing: "Loading Data...",
-            zeroRecords: "No matching records found"
+            zeroRecords: "No matching records found",
+
         },
         "scrollX": true,
         // responsive: true,
@@ -1687,7 +1728,18 @@ $(document).ready(function () {
     var table_drugs_admin = $('#table-drugs-admin').DataTable({
         language: {
             processing: "Loading Data...",
-            zeroRecords: "No matching records found"
+            zeroRecords: "No matching records found",
+            "lengthMenu": lang.show + " _MENU_ " + lang.entries,
+            "search": lang.search + ":",
+            "info": lang.showing + " _START_ " + lang.to + " _END_ " + lang.of + " _TOTAL_ " + lang.entries,
+            "paginate": {
+                "first": lang.first,
+                "last": lang.last,
+                "next": lang.next,
+                "previous": lang.previous
+            },
+            "infoEmpty": lang.showing + " 0 " + lang.to + " 0 " + lang.of + " 0 " + lang.entries,
+            "infoFiltered": "(" + lang.filtered + " " + lang.from + " _MAX_ " + lang.total + " " + lang.entries + ")",
         },
 
         "scrollX": true,
@@ -1764,10 +1816,10 @@ $(document).ready(function () {
         columnDefs: [{
             "targets": 7, "data": "Actions", render: function (data, type, row) {
                 if (row.AvaiableInWarehouse != 1) {
-                    return '<button data-toggle="tooltip" data-placement="top" title="Add drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn link-drug-modal "><i\n' +
+                    return '<button data-toggle="tooltip" data-placement="top" title="' + lang.add_drug + '" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn link-drug-modal "><i\n' +
                         '                                        class="fa fa-plus-square-o  "\n' +
                         '                                        aria-hidden="true"></i></button>';
-                } else return '<span class="badge badge-pill badge-primary">Added</span>';
+                } else return '<span class="badge badge-pill badge-primary">' + lang.added + '</span>';
 
             }
         }],
@@ -1784,7 +1836,18 @@ $(document).ready(function () {
     var table_my_drugs_admin = $('#table-my-drugs-admin').DataTable({
         language: {
             processing: "Loading Data...",
-            zeroRecords: "No matching records found"
+            zeroRecords: "No matching records found",
+            "lengthMenu": lang.show + " _MENU_ " + lang.entries,
+            "search": lang.search + ":",
+            "info": lang.showing + " _START_ " + lang.to + " _END_ " + lang.of + " _TOTAL_ " + lang.entries,
+            "paginate": {
+                "first": lang.first,
+                "last": lang.last,
+                "next": lang.next,
+                "previous": lang.previous
+            },
+            "infoEmpty": lang.showing + " 0 " + lang.to + " 0 " + lang.of + " 0 " + lang.entries,
+            "infoFiltered": "(" + lang.filtered + " " + lang.from + " _MAX_ " + lang.total + " " + lang.entries + ")",
         },
         "scrollX": true,
         processing: true,
@@ -1852,7 +1915,7 @@ $(document).ready(function () {
                 return '<div class="row "><div class="col mb-1"><button data-toggle="tooltip" data-placement="top" title="delete drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn unlink-drug-modal  "><i\n' +
                     '                                        class="fa fa-trash  "\n' +
                     '                                        aria-hidden="true"></i></button> </div>' +
-                    '<div class="col "><button data-toggle="tooltip" data-placement="top" title="Add offer" data-name="' + row.CommerceNameEn + '" data-price="' + row.Price + '" data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn add-offer-drug "><i\n' +
+                    '<div class="col "><button data-toggle="tooltip" data-placement="top" title="' + lang.add_offer + '" data-name="' + row.CommerceNameEn + '" data-price="' + row.Price + '" data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn add-offer-drug "><i\n' +
                     '                                        class="fa fa-plus-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button></div></div>';
             }
@@ -2041,14 +2104,26 @@ $(document).ready(function () {
             // {'data': 'Drug'},
             // {'data': 'Quantity'},
             {'data': 'RequestPrice'},
-            {'data': 'DeliveryDate'},
+            {
+                'data': 'DeliveryDate', render: function (data, type, row) {
+                    var date = new Date(row.DeliveryDate),
+                        yr = date.getFullYear(),
+                        month = parseInt(date.getMonth()) + 1;
+                    month = date.getMonth() < 10 ? '0' + month : date.getMonth(),
+                        day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
+                        newDate = yr + '/' + month + '/' + day;
+                    return newDate;
+                }
+            },
             {'data': 'City'},
             {
                 'data': 'RequestType', render: function (data, type, row) {
                     if (row.RequestType == 1) {
-                        return '<span class="badge badge-pill badge-primary">Offer</span>';
+                        return '<span class="badge badge-pill badge-primary">' + lang.offer + '</span>';
+                    } else if (row.RequestType == 2) {
+                        return '<span class="badge badge-pill badge-warning">' + lang.order + '</span>';
                     } else {
-                        return '<span class="badge badge-pill badge-warning">Order</span>';
+                        return '<span class="badge badge-pill badge-secondary">' + lang.order_offer + '</span>';
                     }
                 }
             },
@@ -2061,7 +2136,7 @@ $(document).ready(function () {
 
         columnDefs: [{
             "targets": 7, "data": "Actions", render: function (data, type, row) {
-                return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
+                return '<button data-id="' + row.Id + '" data-warehouse="' + row.Warehouse + '" data-pharma="' + row.Pharmacy + '" data-date="' + row.CreateDate + '" data-total="' + row.RequestPrice + '"   class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                     '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                     '                    \'                                        aria-hidden="true"></i></button>'
             }
@@ -2098,7 +2173,18 @@ $(document).ready(function () {
     var table_orders_admin = $('#table-orders-admin').DataTable({
         language: {
             processing: "Loading Data...",
-            zeroRecords: "No matching records found"
+            zeroRecords: "No matching records found",
+            "lengthMenu": lang.show + " _MENU_ " + lang.entries,
+            "search": lang.search + ":",
+            "info": lang.showing + " _START_ " + lang.to + " _END_ " + lang.of + " _TOTAL_ " + lang.entries,
+            "paginate": {
+                "first": lang.first,
+                "last": lang.last,
+                "next": lang.next,
+                "previous": lang.previous
+            },
+            "infoEmpty": lang.showing + " 0 " + lang.to + " 0 " + lang.of + " 0 " + lang.entries,
+            "infoFiltered": "(" + lang.filtered + " " + lang.from + " _MAX_ " + lang.total + " " + lang.entries + ")",
         },
         "scrollX": true,
         processing: true,
@@ -2130,7 +2216,16 @@ $(document).ready(function () {
             // {'data': 'Drug'},
             // {'data': 'Quantity'},
             {'data': 'RequestPrice'},
-            {'data': 'DeliveryDate'},
+            {
+                'data': 'DeliveryDate', render: function (data, type, row) {
+                    var date = new Date(row.DeliveryDate),
+                        yr = date.getFullYear(),
+                        month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth(),
+                        day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
+                        newDate = yr + '/' + month + '/' + day;
+                    return newDate;
+                }
+            },
             {'data': 'City'},
             // {
             //     'data': 'OfferDescription', render: function (data, type, row) {
@@ -2141,9 +2236,11 @@ $(document).ready(function () {
             {
                 'data': 'RequestType', render: function (data, type, row) {
                     if (row.RequestType == 1) {
-                        return '<span class="badge badge-pill badge-primary">Offer</span>';
+                        return '<span class="badge badge-pill badge-primary">' + lang.offer + '</span>';
+                    } else if (row.RequestType == 2) {
+                        return '<span class="badge badge-pill badge-warning">' + lang.order + '</span>';
                     } else {
-                        return '<span class="badge badge-pill badge-warning">Order</span>';
+                        return '<span class="badge badge-pill badge-secondary">' + lang.order_offer + '</span>';
                     }
                 }
             },
@@ -2166,7 +2263,7 @@ $(document).ready(function () {
                         ' data-id="' + row.Id + '"' +
                         ' class="processing-order"' +
                         ' autocomplete="off">' +
-                        ' Processing' +
+                        lang.processing_status +
                         ' </label>' +
 
                         '<label class="btn btn-info order-status-btn ">' +
@@ -2175,7 +2272,7 @@ $(document).ready(function () {
                         ' data-id="' + row.Id + '"' +
                         ' class="done-order"' +
                         ' autocomplete="off">' +
-                        ' Done' +
+                        lang.done +
                         ' </label>' +
 
                         '<label class="btn btn-info order-status-btn ">' +
@@ -2184,10 +2281,10 @@ $(document).ready(function () {
                         ' data-id="' + row.Id + '"' +
                         ' class="reject-order"' +
                         ' autocomplete="off">' +
-                        ' Reject' +
+                        lang.reject +
                         ' </label>' +
                         '</div> ' +
-                        '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
+                        '<button data-id="' + row.Id + '" data-warehouse="' + row.Warehouse + '" data-pharma="' + row.Pharmacy + '" data-date="' + row.CreateDate + '" data-total="' + row.RequestPrice + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                         '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                         '                    \'                                        aria-hidden="true"></i></button>';
 
@@ -2201,7 +2298,7 @@ $(document).ready(function () {
                         ' data-id="' + row.Id + '"' +
                         ' class="done-order"' +
                         ' autocomplete="off">' +
-                        ' Done' +
+                        lang.done +
                         ' </label>' +
 
                         '<label class="btn btn-info order-status-btn">' +
@@ -2210,14 +2307,14 @@ $(document).ready(function () {
                         ' data-id="' + row.Id + '"' +
                         ' class="reject-order"' +
                         ' autocomplete="off">' +
-                        ' Reject' +
+                        lang.reject +
                         ' </label>' +
                         '</div> ' +
-                        '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
+                        '<button data-id="' + row.Id + '" data-warehouse="' + row.Warehouse + '" data-pharma="' + row.Pharmacy + '" data-date="' + row.DeliveryDate + '" data-total="' + row.RequestPrice + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                         '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                         '                    \'                                        aria-hidden="true"></i></button>';
                 } else {
-                    return '<button data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
+                    return '<button data-id="' + row.Id + '" data-warehouse="' + row.Warehouse + '" data-pharma="' + row.Pharmacy + '" data-date="' + row.DeliveryDate + '" data-total="' + row.RequestPrice + '"  class="btn btn-blue btn-blue-table btn order-details "><i\\n\' +\n' +
                         '                    \'                                        class="fa fa-search-plus  "\\n\' +\n' +
                         '                    \'                                        aria-hidden="true"></i></button>';
                 }
@@ -2229,13 +2326,13 @@ $(document).ready(function () {
             "targets": 5, "data": "RequestStatus", render: function (data, type, row) {
 
                 if (row.RequestStatus === 4) {
-                    return '<span class="badge badge-pill badge-danger">Rejected</span>';
+                    return '<span class="badge badge-pill badge-danger">' + lang.rejected + '</span>';
                 } else if (row.RequestStatus === 3) {
-                    return '<span class="badge badge-pill badge-success">Done</span>';
+                    return '<span class="badge badge-pill badge-success">' + lang.done + '</span>';
                 } else if (row.RequestStatus === 1) {
-                    return '<span class="badge badge-pill badge-warning">Pending</span>';
+                    return '<span class="badge badge-pill badge-warning">' + lang.pending + '</span>';
                 } else if (row.RequestStatus === 2) {
-                    return '<span class="badge badge-pill badge-primary">Processing</span>';
+                    return '<span class="badge badge-pill badge-primary">' + lang.processing_status + '</span>';
                 }
 
 
@@ -2493,16 +2590,16 @@ $(document).ready(function () {
         $selected = $('#delivery-select').val()
 
         $('#delivery-select').empty();
-        $('#delivery-select').append('<option value="' + -1 + '">' + 'Please choose' + '</option>');
+        $('#delivery-select').append('<option value="' + -1 + '">' + lang.pleaseChoose + '</option>');
         if ($selected == 0) {
-            $('#delivery-select').append('<option selected value="' + 0 + '">' + 'No' + '</option>');
-            $('#delivery-select').append('<option value="' + 1 + '">' + 'Yes' + '</option>');
+            $('#delivery-select').append('<option selected value="' + 0 + '">' + lang.no + '</option>');
+            $('#delivery-select').append('<option value="' + 1 + '">' + lang.yes + '</option>');
         } else if ($selected == 1) {
-            $('#delivery-select').append('<option  value="' + 0 + '">' + 'No' + '</option>');
-            $('#delivery-select').append('<option selected value="' + 1 + '">' + 'Yes' + '</option>');
+            $('#delivery-select').append('<option  value="' + 0 + '">' + lang.no + '</option>');
+            $('#delivery-select').append('<option selected value="' + 1 + '">' + lang.yes + '</option>');
         } else {
-            $('#delivery-select').append('<option  value="' + 0 + '">' + 'No' + '</option>');
-            $('#delivery-select').append('<option  value="' + 1 + '">' + 'Yes' + '</option>');
+            $('#delivery-select').append('<option  value="' + 0 + '">' + lang.no + '</option>');
+            $('#delivery-select').append('<option  value="' + 1 + '">' + lang.yes + '</option>');
         }
 
 
@@ -2652,6 +2749,7 @@ $(document).ready(function () {
         table_pharmacies.draw()
         table_warehouses.draw()
         table_orders.draw()
+
         // $('#table-manufacturers').DataTable().ajax.reload();
         // localStorage.setItem('city_id',"")
         // table_categories.reload()
@@ -2668,6 +2766,7 @@ $(document).ready(function () {
         // localStorage.setItem('city_id',city_id_global)
 
         table_orders.draw()
+        table_orders_admin.draw()
         // $('#table-manufacturers').DataTable().ajax.reload();
         // localStorage.setItem('city_id',"")
         // table_categories.reload()

@@ -4,22 +4,51 @@ var lang = {
 
     successfully_done: 'successfully done',
     general_error: 'General error',
-    already_added: 'Already added!',
-    pending_order: 'You have an unprocessed pending order!',
-    sp: 'S.P',
-    total: 'Total',
+    yes: 'Yes',
+    no: 'No',
+    pleaseChoose: 'Please Choose',
+    added: 'Added',
+    add_drug: 'Add to My Drugs',
+    add_offer: 'Add as Offer',
+    order: 'Order',
+    offer: 'Offer',
+    order_offer: 'Order & Offer',
+    processing_status: 'Processing',
+    done: 'Done',
+    reject: 'Reject',
+    pending: 'Pending',
+    rejected: 'Rejected',
+
+    //datatabe
+
+    show:'Show',
+    entries:'Entries',
+    search:'Search',
+    previous:'Previous',
+    next:'Next',
+    showing:'Showing',
+    to:'To',
+    of:'Of',
+    processing:'Loading Data...',
+    zeroRecords:'No matching records found',
+    first:'First',
+    last:'Last',
+    filtered:'Filtered',
+    total:'Total',
+    from:'From',
 
 
-    //** verification **//
+    //order
 
-    passwordsNotMatched:"Passwords are not matched",
-    enterMobile:"Mobile number must be inserted",
-    all:"All",
-    pleaseChoose:"Please choose",
-    canNotDeleteProduct:"You can not delete this product, you have to process order: ",
-    canNotDeleteCat:"You can not delete this category, you have to delete the subcategories that are below this category",
-    canNotDeleteSub:"You can not delete this subcategory, you have to delete products that are below this subcategory",
-
+    pharmacy: "Pharmacy",
+    date: "Date",
+    total_price: "Total Price",
+    city: "City",
+    address: "Address",
+    phone: "Phone",
+    mobile: "Mobile",
+    order_number: "Order Number",
+    warehouse: "Warehouse",
 
 
 

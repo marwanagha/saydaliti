@@ -9,6 +9,54 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                          REPORT-1
 ======================================================*/
 
+
+
+@font-face {
+    font-family: 'Cairo';
+    font-style: normal;
+    font-weight: 100;
+    src: url('../fonts/Cairo-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Cairo';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Cairo-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Cairo';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Cairo-SemiBold.ttf');
+}
+
+body {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+a {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+p {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+@media (min-width: 1600px) {
+    p {
+        font-family: 'Cairo', sans-serif !important;
+    }
+}
+
+
+
+
 #report1 .card-block {
 	padding:10px 10px 0 10px;
 }
@@ -715,5 +763,17 @@ h3 {
 }
 
 .modal-dialog  {
-    max-width: 635px  !important;
+    max-width: 825px  !important;
+}
+
+
+.modal-title {
+    margin: auto;
+}
+
+
+.order-details-report {
+    border-bottom: 1px solid;
+    border-color: #b7b7b7;
+    padding-bottom: 2em;
 }

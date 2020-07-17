@@ -50,7 +50,7 @@ $id = isset($_GET['id']) ? make_safe($_GET['id']) : 1;
         <!--                </div>-->
         <div class="card form" id="form1">
             <div class="card-header">
-                <h3><i class="fa fa-archive"></i> Warehouse Info</h3>
+                <h3><i class="fa fa-archive"></i><?php  echo $lang['warehouse_info']  ?></h3>
             </div>
             <br>
 
@@ -62,15 +62,15 @@ $id = isset($_GET['id']) ? make_safe($_GET['id']) : 1;
                 <div class="col-8">
                     <input name="id" type="hidden" value="<?php if (isset($id)) echo $id ?>">
                     <div class="form-group">
-                        <label class="col-lg-8 control-label text-left ">Minimum Order Price: </label>
+                        <label class="col-lg-8 control-label text-left "><?php  echo $lang['min_order_price']  ?>: </label>
                         <div class="col-lg-8">
                             <input value="<?php echo isset($respons->MinOrderValue) ? $respons->MinOrderValue : null ?>"
                                    required
-                                   class="form-control" placeholder="Minimum Order Price" name="MinOrderValue" type="number">
+                                   class="form-control" placeholder="<?php  echo $lang['min_order_price']  ?>" name="MinOrderValue" type="number">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-8 control-label text-left ">Delivery: </label>
+                        <label class="col-md-8 control-label text-left "><?php  echo $lang['delivery']  ?>: </label>
                         <div class="col-lg-8">
                             <select required name="delivery-select" id="delivery-select"
                                     class="selectpicker"
@@ -78,16 +78,16 @@ $id = isset($_GET['id']) ? make_safe($_GET['id']) : 1;
                                 <?php if (isset($respons->DeliveryStatus)) {
 
                                     if ($respons->DeliveryStatus == 0) {
-                                        $flag = 'No';
+                                        $flag = $lang['no'];
                                     } else {
-                                        $flag = 'Yes';
+                                        $flag = $lang['yes'];
                                     }
 
                                     echo '<option value="' . $respons->DeliveryStatus . '" >' . $flag . '</option>';
                                 } else {
-                                    echo '<option value="-1" selected>please choose</option>';
-                                    echo '<option value="0" >No</option>';
-                                    echo '<option value="1" >Yes</option>';
+                                    echo '<option value="-1" selected>'.$lang['please_choose'].'</option>';
+                                    echo '<option value="0" >'.$lang['no'].'</option>';
+                                    echo '<option value="1" >'.$lang['yes'].'</option>';
                                 } ?>
                             </select>
                         </div>
@@ -96,7 +96,7 @@ $id = isset($_GET['id']) ? make_safe($_GET['id']) : 1;
                     <div class="form-group">
                         <label class="col-md-8 control-label text-left "></label>
                         <div class="col-md-8">
-                            <button type="submit" id="edit-wa-info" name="edit-wa-info" class="btn btn-general btn-blue mr-2">Submit
+                            <button type="submit" id="edit-wa-info" name="edit-wa-info" class="btn btn-general btn-blue mr-2"><?php  echo $lang['submit']  ?>
                             </button>
                             <span></span>
                         </div>

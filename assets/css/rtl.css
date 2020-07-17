@@ -190,3 +190,26 @@ figcaption i {
 .top-data {
     text-align: left !important;
 }
+
+
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-right: 0.5em;
+    margin-left: 0;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    text-align: left;
+}
+
+.control-label {
+    text-align: right !important;
+}
+
+.filter-option-inner-inner {
+    text-align: right;
+    margin-right: 10px;
+}
+
+.form-control {
+ text-align: right;
+}

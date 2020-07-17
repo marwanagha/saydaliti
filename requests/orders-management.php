@@ -50,6 +50,7 @@ require '../include/config.php';
 
 
  }
+
  else  if ((isset($_POST['action']) && $_POST['action'] == 'order-details')) {
 
 
@@ -61,7 +62,7 @@ require '../include/config.php';
      );
 
      $respons = api_post('OrdersAdmin/GetOrderDetails', $post_array);
-//var_dump($respons);exit;
+
      $array = array ();
 
 
@@ -69,7 +70,7 @@ require '../include/config.php';
 
      if ($respons->code == 1) {
          $array['code']=1;
-         $array['data']=$respons->data->OrderItems;
+         $array['data']=$respons->data;
          echo json_encode($array);
      } else {
          $array['code']=-1;
@@ -84,12 +85,12 @@ else if (isset($_POST['draw'])) {
 //var_dump($_SESSION);exit;
 
     $respons = api_post('OrdersAdmin/LoadOrderList', $_POST);
-
+//var_dump($respons);exit();
     echo json_encode($respons);
 
 }
 
-
+//var_dump($_SESSION);exit;
 
 
 

@@ -41,7 +41,7 @@ if (isset($_POST['delete'])) {
 } else if (isset($_POST['draw'])) {
 
     $respons = api_post('PharmacistsAdmin/LoadPharmacistsList', $_POST);
-
+//var_dump($respons);exit;
 
     echo json_encode($respons);
 
@@ -57,6 +57,8 @@ if (isset($_POST['delete'])) {
     $Longitude = isset($_POST['Longitude']) ? make_safe($_POST['Longitude']) : null;
     $Latidute = isset($_POST['Latidute']) ? make_safe($_POST['Latidute']) : null;
     $WorkingHours = isset($_POST['WorkingHours']) ? make_safe($_POST['WorkingHours']) : null;
+    $Phone = isset($_POST['phone']) ? make_safe($_POST['phone']) : null;
+    $MobileNumber = isset($_POST['mobile']) ? make_safe($_POST['mobile']) : null;
     $Status = isset($_POST['status']) ? make_safe($_POST['status']) : null;
     $old_pic_PharmacyPhoto = isset($_POST['old-img-PharmacyPhoto']) ? make_safe($_POST['old-img-PharmacyPhoto']) : null;
     $old_pic_SyndicateIdPhoto = isset($_POST['old-img-SyndicateIdPhoto']) ? make_safe($_POST['old-img-SyndicateIdPhoto']) : null;
@@ -118,6 +120,8 @@ if (isset($_POST['delete'])) {
 
     $post_array = array(
 
+
+
         'Id' => $id,
         'PharmacyName' => $PharmacyName,
         'PharmacistName' => $PharmacistName,
@@ -127,6 +131,8 @@ if (isset($_POST['delete'])) {
         'Longitude' => $Longitude,
         'Latidute' => $Latidute,
         'WorkingHours' => $WorkingHours,
+        'Phone' => $Phone,
+        'Mobile' => $MobileNumber,
         'Status' => $Status,
         'SyndicateNumber' => $SyndicateNumber,
         'PharmacyPhoto' => $pp,
@@ -159,6 +165,8 @@ if (isset($_POST['delete'])) {
     $Longitude = isset($_POST['Longitude']) ? make_safe($_POST['Longitude']) : null;
     $Latidute = isset($_POST['Latidute']) ? make_safe($_POST['Latidute']) : null;
     $WorkingHours = isset($_POST['WorkingHours']) ? make_safe($_POST['WorkingHours']) : null;
+    $Phone = isset($_POST['phone']) ? make_safe($_POST['phone']) : null;
+    $MobileNumber = isset($_POST['mobile']) ? make_safe($_POST['mobile']) : null;
     $Status = 4;
 
     $SyndicateNumber = isset($_POST['SyndicateNumber']) ? make_safe($_POST['SyndicateNumber']) : null;
@@ -212,6 +220,8 @@ if (isset($_POST['delete'])) {
         'Longitude' => $Longitude,
         'Latidute' => $Latidute,
         'WorkingHours' => $WorkingHours,
+        'Phone' => $Phone,
+        'Mobile' => $MobileNumber,
         'Status' => $Status,
         'SyndicateNumber' => $SyndicateNumber,
         'PharmacyPhoto' => $pp,

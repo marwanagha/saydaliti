@@ -64,10 +64,10 @@
                 <!-- Expand-->
                 <?php if (isset($_SESSION['role_id']) && !empty($_SESSION['role_id'])) { ?>
                     <li class="nav-item d-flex align-items-center full_scr_exp"><a id="logout" class="nav-link "
-                                                                                   href="<?php if (isset($id) && $id != null) echo '../requests/logout.php'; else echo 'requests/logout.php'; ?>">Logout</a>
+                                                                                   href="<?php if (isset($id) && $id != null) echo '../requests/logout.php'; else echo 'requests/logout.php'; ?>"><?php echo $lang['logout'] ?></a>
                         <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 2) { ?>
                             <a id="language" class="nav-link "
-                               href="<?php if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en') echo '?lang=ar'; else echo '?lang=en'; ?>"><?php if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en') echo 'AR'; else echo 'EN'; ?></a>
+                               href="<?php if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en') echo '?lang=ar'; else echo '?lang=en'; ?>"><?php if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en') echo 'العربية'; else echo 'ENGLISH'; ?></a>
                         <?php } ?>
                     </li>
                 <?php } ?>

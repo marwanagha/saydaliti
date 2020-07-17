@@ -25,15 +25,15 @@ if (isset($_SESSION['change_password'])) {
         <div align="center" class="modal-content" style="margin-top: 100px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Please change your password</h4>
+                <h4 class="modal-title"><?php echo $lang['please_change_password'] ?></h4>
             </div>
             <div class="modal-body">
                 <form action="requests/warehouses-management.php" method="post" class="form-horizontal  col ">
                     <div class="form-group">
-                        <label class="col control-label text-left ">New Password: </label>
+                        <label class="col control-label text-left "><?php echo $lang['new_password'] ?>: </label>
                         <div class="col">
                             <input required minlength="8" class="form-control" id="change-password-field"
-                                   name="change-password-field" placeholder="New Password"
+                                   name="change-password-field" placeholder="<?php echo $lang['new_password'] ?>"
                                    type="password"
                                    value="">
                         </div>
@@ -42,7 +42,7 @@ if (isset($_SESSION['change_password'])) {
                         <label class="col-md-8 control-label text-left "></label>
                         <div class="col-md-8">
                             <button type="submit" id="submit-change-password" name="submit-change-password"
-                                    class="btn btn-general btn-blue mr-2">Submit
+                                    class="btn btn-general btn-blue mr-2"><?php echo $lang['submit'] ?>
                             </button>
                             <span></span>
                         </div>
@@ -75,19 +75,22 @@ if (isset($_SESSION['change_password'])) {
         <div align="center" class="modal-content" style="margin-top: 100px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Order Details</h4>
+                <h4 class="modal-title"><?php echo $lang['order_details'] ?></h4>
             </div>
             <div class="modal-body">
+                <div class="<?php if ($_SESSION['lang'] == 'ar') echo 'text-right'; else echo 'text-left'; ?>"
+                     id="order-details-header"></div>
                 <table style="margin-top:0" class="table table-striped" id="profits-response">
                     <thead>
                     <tr>
-                        <th>Manufacturer</th>
-                        <th>Drug</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                        <th>Gift</th>
-                        <th>Offer Description</th>
+                        <th><?php echo $lang['manufacturer'] ?></th>
+                        <th><?php echo $lang['drug'] ?></th>
+                        <th><?php echo $lang['quantity'] ?></th>
+                        <th><?php echo $lang['g_price'] ?></th>
+                        <th><?php echo $lang['secondprice'] ?></th>
+                        <th><?php echo $lang['total'] ?></th>
+                        <th><?php echo $lang['gift'] ?></th>
+                        <th><?php echo $lang['offer_desc'] ?></th>
                     </tr>
                     </thead>
                     <tbody id="table-body-order-details">
@@ -103,7 +106,7 @@ if (isset($_SESSION['change_password'])) {
 
 <div class="content-inner chart-cont">
     <div class="row">
-        <div class="col"><h2 class="mb-5">Orders Listing</h2></div>
+        <div class="col"><h2 class="mb-5"><?php echo $lang['orders_list'] ?></h2></div>
     </div>
     <div class="row mb-3">
 
@@ -139,14 +142,15 @@ if (isset($_SESSION['change_password'])) {
             </div>
         <?php } ?>
         <div class="col ">
-            <label class=" text-left mr-3 ">Status: </label>
+            <label class=" text-left <?php if ($_SESSION['lang'] == 'en') echo 'mr-3'; else echo 'ml-3'; ?> "><?php echo $lang['status'] ?>
+                : </label>
             <select required name="status-select" id="status-select" class="selectpicker "
                     menuPlacement="top">
-                <option value="-1" selected>please choose</option>
-                <option value="1">Pending</option>
-                <option value="2">Processing</option>
-                <option value="3">Done</option>
-                <option value="4">Rejected</option>
+                <option value="-1" selected><?php echo $lang['please_choose'] ?></option>
+                <option value="1"><?php echo $lang['pending'] ?></option>
+                <option value="2"><?php echo $lang['processing'] ?></option>
+                <option value="3"><?php echo $lang['done'] ?></option>
+                <option value="4"><?php echo $lang['rejected'] ?></option>
             </select>
             <input id="status-id" type="hidden"
                    value="">
@@ -173,18 +177,18 @@ if (isset($_SESSION['change_password'])) {
 
                 <!--            <th>Id</th>-->
                 <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) { ?>
-                    <th>Warehouse</th>
+                    <th><?php echo $lang['warehouse'] ?></th>
                 <?php } ?>
-                <th>Pharmacy</th>
+                <th><?php echo $lang['pharmacy'] ?></th>
                 <!--            <th>Drug</th>-->
                 <!--            <th>Quantity</th>-->
-                <th>Price</th>
-                <th>DeliveryDate</th>
-                <th>City</th>
+                <th><?php echo $lang['total_price'] ?></th>
+                <th><?php echo $lang['deliveryDate'] ?></th>
+                <th><?php echo $lang['city'] ?></th>
                 <!--            <th>OfferDescription</th>-->
-                <th>RequestType</th>
-                <th>RequestStatus</th>
-                <th>Actions</th>
+                <th><?php echo $lang['requestType'] ?></th>
+                <th><?php echo $lang['status'] ?></th>
+                <th><?php echo $lang['actions'] ?></th>
 
 
             </tr>
@@ -194,6 +198,7 @@ if (isset($_SESSION['change_password'])) {
             </tbody>
         </table>
 </div>
+
 
 
 

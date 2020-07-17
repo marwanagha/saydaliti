@@ -4,21 +4,53 @@ var lang = {
     //** general **//
     successfully_done: 'تم بنجاح',
     general_error: 'خطأ عام',
-    already_added: 'تمت الإضافة مسبقا!ً',
-    pending_order: 'لديك طلب سابق لم تتم معالجته!',
-    sp: 'ل.س',
-    total: 'المجموع',
+    yes: 'نعم',
+    no: 'لا',
+    pleaseChoose: 'الرجاء الاختيار',
+    added: 'مضاف',
+    add_drug: 'إضافة الى أدويتي',
+    add_offer: 'إضافة كاعرض',
+    order: 'طلب',
+    offer: 'عرض',
+    order_offer: 'طلب و عرض',
+    processing_status: 'معالجة',
+    done: 'تم',
+    reject: 'رفض',
+    pending: 'معلق',
+    rejected: 'مرفوض',
 
 
-    //** verification **//
+    //datatabe
 
-    passwordsNotMatched:"كلمة السر غير متطابقة",
-    enterMobile:"يجب إدخال رقم الهاتف المحمول",
-    all:"الكل",
-    pleaseChoose:"الرجاء الاختيار",
-    canNotDeleteCat:"لا يمكنك حذف الفئة, يجب حذف الفئات الفرعية المدرجه تحت هذه الفئة",
-    canNotDeleteSub:"لا يمكنك حذف هذه الفئة الفرعية, يجب حذف المنتجات المدرجه تحت هذه الفئة الفرعية",
-    canNotDeleteProduct:"لا يمكنك حذف هذا المنتج, يجب معالجة الطلب رقم: ",
+    show:'عرض',
+    entries:'عنصر',
+    search:'بحث',
+    previous:'السابق',
+    next:'التالي',
+    showing:'يتم عرض',
+    to:'الى',
+    of:'من',
+    processing:'يتم الآن تحميل البيانات...',
+    zeroRecords:'لا يوجد بيانات',
+    first:'الأول',
+    last:'الأخير',
+    filtered:'تم فلترة',
+    total:'كلي',
+    from:'من',
+
+    //order
+
+    pharmacy: "الصيدلية",
+    date: "التاريخ",
+    total_price: "السعر النهائي",
+    city: "المدينة",
+    address: "العنوان",
+    phone: "الهاتف الأرضي",
+    mobile: "الهاتف المحمول",
+    order_number: "رقم الفاتورة",
+    warehouse: "المستودع",
+
+
 
 
 };

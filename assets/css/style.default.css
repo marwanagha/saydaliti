@@ -290,8 +290,8 @@ input {
 
 nav.side-navbar {
     background: #fff;
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 236px;
+    max-width: 236px;
     /*color: #686a76;*/
     color:#757575;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);

@@ -17,6 +17,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'upload_image') {
     $type = isset($_POST['type']) ? make_safe($_POST['type']) : null;
 
 
+
     if ($Image['error'] != 4 && in_array($Image['type'], $allowed_files) == false) {
         $response['code'] = -1;
         $response['message'] = 'File not allowed';

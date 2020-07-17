@@ -54,7 +54,7 @@ if ($id && strpos($id, 'D') === false) {
         <!--                </div>-->
         <div class="card form" id="form1">
             <div class="card-header">
-                <h3><i class="fa fa-archive"></i> Offer Info</h3>
+                <h3><i class="fa fa-archive"></i><?php echo $lang['offer_form'] ?></h3>
             </div>
             <br>
             <form style="margin: auto;"
@@ -67,143 +67,143 @@ if ($id && strpos($id, 'D') === false) {
                        value="<?php if (isset($respons->DurgId)) echo $respons->DurgId; else echo $drug_id; ?>">
 
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Drug Name: </label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['drug'] ?>: </label>
                     <div class="col-lg-8">
                         <input <?php echo 'disabled'; ?>
                                 value="<?php echo isset($respons->Durg) ? $respons->Durg : null ?>"
                                 required
 
-                                class="form-control" placeholder="Drug Name" <?php if ($type == 1) {
+                                class="form-control" placeholder="<?php echo $lang['drug'] ?>" <?php if ($type == 1) {
                             echo 'id="drug-offer-name"';
                         } ?> name="Drug" type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Description :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['description'] ?> :</label>
                     <div class="col-lg-8">
                         <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->Description) ? $respons->Description : null ?>"
                                 required
-                                class="form-control" placeholder="Description" name="Description" type="text">
+                                class="form-control" placeholder="<?php echo $lang['description'] ?>" name="Description" type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">General Price :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['g_price'] ?> :</label>
                     <div class="col-lg-8">
                         <input <?php echo 'disabled'; ?>
                                 value="<?php echo isset($respons->NormalPrice) ? $respons->NormalPrice : null ?>"
                                 required
-                                class="form-control" placeholder="General Price" <?php if ($type == 1) {
+                                class="form-control" placeholder="<?php echo $lang['g_price'] ?>" <?php if ($type == 1) {
                             echo 'id="drug-offer-price"';
                         } ?> name="NormalPrice" type="number">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Pharma Price :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['p_price'] ?> :</label>
                     <div class="col-lg-8">
                         <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->Price) ? $respons->Price : null ?>"
                                 required
-                                class="form-control" placeholder="Pharma Price" name="Price" type="number">
+                                class="form-control" placeholder="<?php echo $lang['p_price'] ?>" name="Price" type="number">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Quantity :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['quantity'] ?> :</label>
                     <div class="col-lg-8">
                         <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->Quantity) ? $respons->Quantity : null ?>"
                                 required
-                                class="form-control" placeholder="Quantity" name="Quantity" type="number">
+                                class="form-control" placeholder="<?php echo $lang['quantity'] ?>" name="Quantity" type="number">
                     </div>
                 </div>
 
                 <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) { ?>
                     <div class="form-group">
-                        <label class="col-lg-8 control-label text-left ">Warehouse :</label>
+                        <label class="col-lg-8 control-label text-left "><?php echo $lang['warehouse'] ?> :</label>
                         <div class="col-lg-8">
                             <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                                 echo 'disabled';
                             } ?>
                                     value="<?php echo isset($respons->Warehouse) ? $respons->Warehouse : null ?>"
 
-                                    class="form-control" placeholder="Warehouse" name="Warehouse" type="text">
+                                    class="form-control" placeholder="<?php echo $lang['warehouse'] ?>" name="Warehouse" type="text">
                         </div>
                     </div>
                 <?php } ?>
                 <?php if ($type == 2) { ?>
                     <div class="form-group">
-                        <label class="col-lg-8 control-label text-left ">Create Date :</label>
+                        <label class="col-lg-8 control-label text-left "><?php echo $lang['create_date'] ?> :</label>
                         <div class="col-lg-8">
                             <input disabled <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                                 echo 'disabled';
                             } ?>
                                     value="<?php echo isset($respons->CreateDate) ? date_format($create_date, "Y-m-d") : null ?>"
 
-                                    class="form-control" placeholder="Create Date" name="CreateDate" type="date">
+                                    class="form-control" placeholder="<?php echo $lang['create_date'] ?> " name="CreateDate" type="date">
                         </div>
                     </div>
                 <?php } ?>
 
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Gift :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['gift'] ?> :</label>
                     <div class="col-lg-8">
-                        <input required <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
+                        <input  <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->Gift) ? $respons->Gift : null ?>"
 
-                                class="form-control" placeholder="Gift" name="Gift" type="text">
+                                class="form-control" placeholder="<?php echo $lang['gift'] ?>" name="Gift" type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Discount :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['discount'] ?> :</label>
                     <div class="col-lg-8">
-                        <input required <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
+                        <input  <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->Discount) ? $respons->Discount : null ?>"
 
-                                class="form-control" placeholder="Discount" name="Discount" type="number">
+                                class="form-control" placeholder="<?php echo $lang['discount'] ?>" name="Discount" type="number">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Notes :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['notes'] ?> :</label>
                     <div class="col-lg-8">
                         <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->Notes) ? $respons->Notes : null ?>"
 
-                                class="form-control" placeholder="Notes" name="Notes" type="text">
+                                class="form-control" placeholder="<?php echo $lang['notes'] ?>" name="Notes" type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Expiry Date :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['expiry_date'] ?> :</label>
                     <div class="col-lg-8">
                         <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->ExpiryDate) ? date_format($create_date, "Y-m-d") : null ?>"
                                 required
-                                class="form-control" placeholder="Expiry Date" name="ExpiryDate" type="date">
+                                class="form-control" placeholder="<?php echo $lang['expiry_date'] ?>" name="ExpiryDate" type="date">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-lg-8 control-label text-left ">Total Price :</label>
+                    <label class="col-lg-8 control-label text-left "><?php echo $lang['total_price'] ?> :</label>
                     <div class="col-lg-8">
                         <input disabled <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
                             echo 'disabled';
                         } ?>
                                 value="<?php echo isset($respons->TotalPrice) ? $respons->TotalPrice : null ?>"
                                 required
-                                class="form-control" placeholder="Total Price" name="TotalPrice" type="number">
+                                class="form-control" placeholder="<?php echo $lang['total_price'] ?>" name="TotalPrice" type="number">
                     </div>
                 </div>
 
@@ -212,7 +212,7 @@ if ($id && strpos($id, 'D') === false) {
                         <label class="col-md-8 control-label text-left "></label>
                         <div class="col-md-8">
                             <button type="submit" <?php if (isset($respons)) echo 'id="edit-offer" name="edit-offer"'; else echo 'id="add-offer" name="add-offer"'; ?>
-                                    class="btn btn-general btn-blue mr-2">Submit
+                                    class="btn btn-general btn-blue mr-2"><?php echo $lang['submit'] ?>
                             </button>
                             <span></span>
                         </div>
