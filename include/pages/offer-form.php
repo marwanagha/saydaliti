@@ -103,12 +103,12 @@ if ($id && strpos($id, 'D') === false) {
                 <div class="form-group">
                     <label class="col-lg-8 control-label text-left "><?php echo $lang['p_price'] ?> :</label>
                     <div class="col-lg-8">
-                        <input <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
-                            echo 'disabled';
-                        } ?>
+                        <input disabled
                                 value="<?php echo isset($respons->Price) ? $respons->Price : null ?>"
                                 required
-                                class="form-control" placeholder="<?php echo $lang['p_price'] ?>" name="Price" type="number">
+                                class="form-control" placeholder="<?php echo $lang['p_price'] ?>" <?php if ($type == 1) {
+                            echo 'id="drug-offer-s-price"';
+                        } ?> name="Price" type="number">
                     </div>
                 </div>
                 <div class="form-group">

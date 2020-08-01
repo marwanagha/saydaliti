@@ -2,9 +2,13 @@
 session_start();
 //var_dump($_SESSION);
 require_once "functions.php";
+//$API_ROOT = 'mypharmavv-001-site1.gtempurl.com/api/';
 $API_ROOT = 'mypharmavv-001-site1.gtempurl.com/api/';
+$API_ROOT = 'http://api.mypharma-order.com:8080/APIS/api/';
 $APP_ROOT = "/saydaliti/";
 //$APP_ROOT = "https://saydaliti2.000webhostapp.com/";
+//$APP_ROOT = "http://mypharma-order.com/";
+
 $FILES_ROOT = $APP_ROOT.'files/';
 $ASSET_URL = $APP_ROOT . 'assets/';
 //$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

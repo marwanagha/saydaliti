@@ -1,5 +1,7 @@
 var siteURL = '/saydaliti/';
 // var siteURL = 'https://saydaliti2.000webhostapp.com/';
+// var siteURL = 'http://mypharma-order.com/';
+// var siteURL = 'http://mypharma-order.com/';
 var siteFilesURL = siteURL + 'files/';
 var city_id_global = $('#city-select').val();
 
@@ -942,7 +944,7 @@ $(document).ready(function () {
 
                     $('#table-body-order-details').append(
                         '<tr><td>' + item.Manufacture + '</td>' +
-                        '<td class="offer-details-text" data-toggle="tooltip" data-placement="top" title="' + item.Drug + '">' + item.Drug + '</td>' +
+                        '<td class="" data-toggle="tooltip" data-placement="top" title="' + item.Drug + '">' + item.Drug + '</td>' +
                         '<td>' + item.Quantity + '</td>' +
                         '<td>' + item.Price + '</td>' +
                         '<td>' + item.SecondPrice + '</td>' +
@@ -1084,9 +1086,11 @@ $(document).ready(function () {
 
         $name = $(this).data('name')
         $price = $(this).data('price')
+        $s_price = $(this).data('s_price')
 
         localStorage.setItem('drug_offer_name', $name)
         localStorage.setItem('drug_offer_price', $price)
+        localStorage.setItem('drug_offer_second_price', $s_price)
 
 
         // $('#man-modal').modal({show: true})
@@ -1096,10 +1100,12 @@ $(document).ready(function () {
 
     $drug_offer_name = localStorage.getItem('drug_offer_name')
     $drug_offer_price = localStorage.getItem('drug_offer_price')
+    $drug_offer_s_price = localStorage.getItem('drug_offer_second_price')
 
-    if ($drug_offer_name != null && $drug_offer_price != null) {
+    if ($drug_offer_name != null && $drug_offer_price != null && $drug_offer_s_price != null) {
         $('#drug-offer-name').val($drug_offer_name)
         $('#drug-offer-price').val($drug_offer_price)
+        $('#drug-offer-s-price').val($drug_offer_s_price)
 
     }
 
@@ -1915,7 +1921,7 @@ $(document).ready(function () {
                 return '<div class="row "><div class="col mb-1"><button data-toggle="tooltip" data-placement="top" title="delete drug" data-name="' + row.CommerceNameEn + '"  data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn unlink-drug-modal  "><i\n' +
                     '                                        class="fa fa-trash  "\n' +
                     '                                        aria-hidden="true"></i></button> </div>' +
-                    '<div class="col "><button data-toggle="tooltip" data-placement="top" title="' + lang.add_offer + '" data-name="' + row.CommerceNameEn + '" data-price="' + row.Price + '" data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn add-offer-drug "><i\n' +
+                    '<div class="col "><button data-toggle="tooltip" data-placement="top" title="' + lang.add_offer + '" data-name="' + row.CommerceNameEn + '" data-price="' + row.Price + '" data-s_price="' + row.SecondPrice + '" data-id="' + row.Id + '" class="btn btn-blue btn-blue-table btn add-offer-drug "><i\n' +
                     '                                        class="fa fa-plus-square-o  "\n' +
                     '                                        aria-hidden="true"></i></button></div></div>';
             }
@@ -2222,7 +2228,7 @@ $(document).ready(function () {
                         yr = date.getFullYear(),
                         month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth(),
                         day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
-                        newDate = yr + '/' + month + '/' + day;
+                        newDate = day + '/' + month + '/' + yr ;
                     return newDate;
                 }
             },
